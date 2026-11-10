@@ -2,6 +2,8 @@ name: Build
 
 on:
   push:
+    branches: ['**']
+    tags: ['v*']
   pull_request:
   workflow_dispatch:
 
@@ -45,6 +47,16 @@ jobs:
           "password=$password" >> $env:GITHUB_OUTPUT
           Write-Output "::add-mask::$password"
 
+      - name: Version from tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        run: |
+          $version = '${{ github.ref_name }}'.Substring(1)
+          if ($version -notmatch '^\d+\.\d+\.\d+$') { throw "Tag must look like v1.2.3, not ${{ github.ref_name }}" }
+          $manifest = 'src\Eikon\Package.appxmanifest'
+          (Get-Content $manifest -Raw) -replace '(<Identity[^>]*?Version=")[^"]+"', "`${1}$version.0`"" | Set-Content $manifest -NoNewline
+          Select-String -Path $manifest -Pattern 'Version="' | Select-Object -First 1
+
       - name: Restore
         run: msbuild Eikon.sln /t:Restore /p:Configuration=${{ env.Configuration }} /p:Platform=${{ matrix.platform }} /v:minimal
 
@@ -81,6 +93,29 @@ jobs:
             artifacts/Eikon.cer
           if-no-files-found: error
 
+      - name: Release zip
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        run: |
+          $stage = Join-Path $env:RUNNER_TEMP 'Eikon'
+          New-Item -ItemType Directory -Force -Path $stage | Out-Null
+          $msix = Get-ChildItem artifacts\AppPackages -Recurse -Filter 'Eikon_*.msix' | Select-Object -First 1
+          Copy-Item $msix.FullName $stage
+          $deps = Join-Path $msix.DirectoryName 'Dependencies\${{ matrix.dependencies }}'
+          if (Test-Path $deps) { Copy-Item $deps (Join-Path $stage 'Dependencies') -Recurse }
+          Copy-Item artifacts\Eikon.cer, tools\install\Install.ps1, tools\install\Install.cmd $stage
+          $zip = "artifacts\Eikon-$('${{ github.ref_name }}'.Substring(1))-${{ matrix.platform }}.zip"
+          Compress-Archive -Path "$stage\*" -DestinationPath $zip
+          Get-ChildItem $zip
+
+      - name: Upload release zip
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.platform }}
+          path: artifacts/Eikon-*.zip
+          if-no-files-found: error
+
       - name: Upload build log
         if: failure()
         uses: actions/upload-artifact@v4
@@ -110,3 +145,29 @@ jobs:
             Write-Error "Eikon.Core.Tests failed ($LASTEXITCODE failed checks)"
             exit 1
           }
+
+  release:
+    name: Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: release-*
+          merge-multiple: true
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > notes.md <<'EOF'
+          **Install:** download the zip for your PC (x64 for most PCs, ARM64 for Snapdragon), extract it and
+          double-click `Install.cmd`. Windows asks once for permission to trust Eikon's signing certificate,
+          then Eikon installs, starts and sits in the notification area. Running a newer release's
+          `Install.cmd` updates it.
+
+          Default hotkeys: Ctrl+Shift+2 area, Ctrl+Shift+1 fullscreen, Ctrl+Alt+Shift+O copy text.
+          EOF
+          gh release create "$GITHUB_REF_NAME" Eikon-*.zip --repo "$GITHUB_REPOSITORY" --title "Eikon ${GITHUB_REF_NAME#v}" --notes-file notes.md
