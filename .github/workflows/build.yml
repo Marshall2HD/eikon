@@ -87,7 +87,7 @@ jobs:
         with:
           name: Lucida-${{ matrix.platform }}
           path: |
-            artifacts/AppPackages/**/Eikon_*.msix
+            artifacts/AppPackages/**/Lucida_*.msix
             artifacts/AppPackages/**/Dependencies/${{ matrix.dependencies }}/*.msix
             artifacts/AppPackages/**/Dependencies/${{ matrix.dependencies }}/*.appx
             artifacts/Lucida.cer
@@ -99,8 +99,8 @@ jobs:
         run: |
           $stage = Join-Path $env:RUNNER_TEMP 'Lucida'
           New-Item -ItemType Directory -Force -Path $stage | Out-Null
-          $msix = Get-ChildItem artifacts\AppPackages -Recurse -Filter 'Eikon_*.msix' | Select-Object -First 1
-          Copy-Item $msix.FullName (Join-Path $stage ($msix.Name -replace "^Eikon_", "Lucida_"))
+          $msix = Get-ChildItem artifacts\AppPackages -Recurse -Filter 'Lucida_*.msix' | Select-Object -First 1
+          Copy-Item $msix.FullName $stage
           $deps = Join-Path $msix.DirectoryName 'Dependencies\${{ matrix.dependencies }}'
           if (Test-Path $deps) { Copy-Item $deps (Join-Path $stage 'Dependencies') -Recurse }
           Copy-Item artifacts\Lucida.cer, tools\install\Install.ps1, tools\install\Install.cmd $stage
