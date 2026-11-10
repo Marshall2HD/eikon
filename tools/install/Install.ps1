@@ -47,7 +47,7 @@ if (Test-Path $deps) {
     }
 }
 
-$msix = Get-ChildItem $here -Filter 'Lucida_*.msix' | Select-Object -First 1
+$msix = Get-ChildItem $here -Filter 'Lucida*.msix' | Select-Object -First 1
 Add-AppxPackage -Path $msix.FullName -ForceApplicationShutdown -ForceUpdateFromAnyVersion
 $family = (Get-AppxPackage -Name MarshallHD.lucida).PackageFamilyName
 Write-Host "Lucida is installed."
