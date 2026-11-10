@@ -1,6 +1,6 @@
 #pragma once
 
-// The eikon:// URL scheme. Parsing only; the router
+// The lucida:// URL scheme. Parsing only; the router
 // is AppController::HandleUrl.
 
 #include <map>
@@ -28,10 +28,10 @@ namespace Eikon::Core
 
     struct UrlCommand
     {
-        // Lower-cased scheme: always "eikon".
+        // Lower-cased scheme: always "lucida".
         std::wstring scheme;
         // The URL cut at the first '?', then at the first '=', then everything
-        // after "://", trimmed of whitespace and lower-cased. "eikon://grab/delayed=5" -> "grab/delayed".
+        // after "://", trimmed of whitespace and lower-cased. "lucida://grab/delayed=5" -> "grab/delayed".
         std::wstring command;
         // Text after the first '=' anywhere in the URL (query included), percent-decoded, case kept.
         // nullopt when there is no '=' or the percent-encoding is invalid.
@@ -43,7 +43,7 @@ namespace Eikon::Core
         std::wstring host;
     };
 
-    // nullopt unless the scheme is eikon (case-insensitive) and the URL has one.
+    // nullopt unless the scheme is lucida (case-insensitive) and the URL has one.
     std::optional<UrlCommand> ParseUrlCommand(std::wstring_view url);
 
     // Strict percent-decoding: nullopt on a malformed escape or when

@@ -179,7 +179,7 @@ namespace Eikon
 
                 // Injected input still counts for shortcuts (remote desktop tools such as Parsec inject
                 // the user's keys); only our own dummy key is skipped. Paste detection below ignores all
-                // injected input so that Eikon's own Ctrl+V does not count as a user paste.
+                // injected input so that Lucida's own Ctrl+V does not count as a user paste.
                 if (!(injected && vk == DummyKey))
                 {
                     if (vk == VK_LWIN && (down || up))

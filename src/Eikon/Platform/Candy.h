@@ -1,6 +1,6 @@
 #pragma once
 
-// Eikon's "Candy" design tokens for code-drawn surfaces (Direct2D popups, the capture overlay, the
+// Lucida's "Candy" design tokens for code-drawn surfaces (Direct2D popups, the capture overlay, the
 // first-capture card) and code-built XAML. Themes/Candy.xaml holds the same values for XAML; keep the
 // two in step. Radius scale: 8 controls and labels (6 inner segments), 12 cards and rows (10 tiles),
 // 16 floating windows and popovers. No capsules.

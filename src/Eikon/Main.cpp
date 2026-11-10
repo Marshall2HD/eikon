@@ -1,5 +1,5 @@
-// Custom entry point (DISABLE_XAML_GENERATED_MAIN) so that Eikon stays single-instance: a
-// second launch (Start menu, the eikon.exe alias, the startup task, an eikon://
+// Custom entry point (DISABLE_XAML_GENERATED_MAIN) so that Lucida stays single-instance: a
+// second launch (Start menu, the lucida.exe alias, the startup task, a lucida://
 // URL) is redirected to the running instance, which handles it in App::OnActivated.
 #include "pch.h"
 #include "App.xaml.h"

@@ -14,7 +14,7 @@ own `ImageObjectExtractor` is not available (Platform/SubjectMask). It is embedd
   Opset 11; input `input.1` [1, 3, 320, 320]; the first output (`1959`, [1, 1, 320, 320]) is the
   saliency map.
 - Pre/post-processing (Core/CutOut): rembg's, i.e. resize to 320 × 320, divide by the brightest value,
-  ImageNet mean/std; the map is min-max stretched and scaled back up, then Eikon tightens the edge
+  ImageNet mean/std; the map is min-max stretched and scaled back up, then Lucida tightens the edge
   (smoothstep 0.3–0.7) and feathers it by about one device pixel.
 
 ## Updating

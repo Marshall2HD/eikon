@@ -1,6 +1,6 @@
 #pragma once
 
-// The selection's "Cut Out" button. Eikon finds the subject with Windows' ImageObjectExtractor where the system has it,
+// The selection's "Cut Out" button. Lucida finds the subject with Windows' ImageObjectExtractor where the system has it,
 // else with the bundled U²-Net-p model (Platform/SubjectMask); this file holds the platform-neutral
 // parts: the model's pre- and post-processing, the feathered mask, and the border-colour fallback.
 
@@ -16,7 +16,7 @@ namespace Eikon::Core
     // compared exactly, is flood-filled (4-neighbour) from every border pixel of that colour; the
     // filled pixels become transparent. Everything else, including enclosed areas of the same colour,
     // stays.
-    // Eikon's last resort, when no subject model can run or the model finds no subject.
+    // Lucida's last resort, when no subject model can run or the model finds no subject.
     Bitmap CutOutBackground(Bitmap const& image);
 
     // ---- The subject model (U²-Net-p, third_party/u2net) ----

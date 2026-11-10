@@ -54,7 +54,7 @@ namespace Eikon::Core::Library
 
     // ---- Line format ----
     // A line is JSON: an object of strings. Returns nullopt for anything else (other JSON, garbage,
-    // or an encrypted line, which Eikon does not read).
+    // or an encrypted line, which Lucida does not read).
     std::optional<Record> ParseLine(std::string_view line);
     // Compact JSON: no spaces, "/" escaped as "\/".
     std::string RecordJson(Record const& record);

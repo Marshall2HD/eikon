@@ -37,7 +37,7 @@ namespace Eikon::ScreenCapture
     // an opaque BGRA8 bitmap with dpr = monitor scale and screenRect = monitor bounds. With
     // `includeCursor` the mouse pointer is drawn into the image (captureCursor "include"; "auto" and
     // "exclude" leave it out). Windows with
-    // WDA_EXCLUDEFROMCAPTURE (Eikon's overlays) are left out. nullopt on failure.
+    // WDA_EXCLUDEFROMCAPTURE (Lucida's overlays) are left out. nullopt on failure.
     std::optional<Core::Bitmap> CaptureMonitor(Monitor const& monitor, bool includeCursor);
     // The same for any rectangle of the virtual desktop (Repeat Area; may span monitors), with
     // dpr = the scale of the monitor under its centre. Parts outside every monitor are black.
@@ -56,13 +56,13 @@ namespace Eikon::ScreenCapture
     };
 
     // "layer 0, on screen" windows, front to back: visible, not cloaked, not minimised, not
-    // a tool window, not topmost, not the desktop or the taskbar, not Eikon's capture overlays.
+    // a tool window, not topmost, not the desktop or the taskbar, not Lucida's capture overlays.
     // Owned windows (dialogs) are included.
     std::vector<WindowInfo> NormalWindows();
     // The active window: the first normal window larger than 70 × 70 pt.
     std::optional<WindowInfo> FrontmostWindow();
     // The window under `point` for Any Window capture: the first visible top-level window (topmost
-    // ones included, Eikon's overlays and the desktop excluded) whose bounds contain it. Without
+    // ones included, Lucida's overlays and the desktop excluded) whose bounds contain it. Without
     // `withNames` the title and owner are left empty (cheap enough for every mouse move).
     std::optional<WindowInfo> WindowAtPoint(POINT point, bool withNames = true);
     std::optional<WindowInfo> DescribeWindow(HWND window);

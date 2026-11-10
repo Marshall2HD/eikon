@@ -15,8 +15,8 @@ namespace winrt::Eikon::implementation
         struct Activation
         {
             Microsoft::Windows::AppLifecycle::ExtendedActivationKind kind{};
-            std::wstring arguments;   // launch arguments (the eikon.exe alias passes the command line)
-            std::wstring uri;         // protocol activation: the raw eikon:// URL
+            std::wstring arguments;   // launch arguments (the lucida.exe alias passes the command line)
+            std::wstring uri;         // protocol activation: the raw lucida:// URL
         };
         static Activation Snapshot(Microsoft::Windows::AppLifecycle::AppActivationArguments const& args);
 
@@ -25,7 +25,7 @@ namespace winrt::Eikon::implementation
         void OnActivated(winrt::Windows::Foundation::IInspectable const&,
                          Microsoft::Windows::AppLifecycle::AppActivationArguments const& args);
         // Protocol URLs (and URL arguments of the alias) go to the router. A plain second launch opens
-        // eikon://show in the running copy. `initial` = first launch of the process.
+        // lucida://show in the running copy. `initial` = first launch of the process.
         void HandleActivation(Activation const& activation, bool initial);
 
         Microsoft::UI::Dispatching::DispatcherQueue m_dispatcher{ nullptr };

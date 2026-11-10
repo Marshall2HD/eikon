@@ -7,7 +7,7 @@
 
 namespace Eikon
 {
-    // Minimal single-threaded multicast event. All Eikon services raise events on the UI thread.
+    // Minimal single-threaded multicast event. All Lucida services raise events on the UI thread.
     template <typename... Args>
     class Event
     {

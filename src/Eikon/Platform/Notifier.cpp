@@ -134,7 +134,7 @@ namespace Eikon::Notifier
             }
             // Level 101 (pop-up menu level), all Spaces, not activating -> topmost tool window that
             // never takes focus.
-            m_hwnd = CreateWindowExW(WS_EX_LAYERED | WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_NOACTIVATE, L"EikonNotification", L"Eikon",
+            m_hwnd = CreateWindowExW(WS_EX_LAYERED | WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_NOACTIVATE, L"EikonNotification", L"Lucida",
                                      WS_POPUP, 0, 0, 1, 1, nullptr, nullptr, GetModuleHandleW(nullptr), this);
             return m_hwnd != nullptr;
         }

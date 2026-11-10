@@ -1,7 +1,7 @@
 #pragma once
 
 // RegionSelector: a frozen, per-monitor topmost overlay where the user drags
-// a rectangle. Eikon uses it for every interactive capture: area,
+// a rectangle. Lucida uses it for every interactive capture: area,
 // window pick (highlights the window under the cursor), OCR and scrolling capture. Win32 layered
 // windows drawn with Direct2D, on the UI thread, excluded from capture (WDA_EXCLUDEFROMCAPTURE).
 

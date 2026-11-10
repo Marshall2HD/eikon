@@ -554,7 +554,7 @@ namespace Eikon
             auto image = std::make_shared<Core::Bitmap const>(Core::CropBitmap(*selection->frozen, static_cast<int>(r.x), static_cast<int>(r.y),
                                                                                  static_cast<int>(r.width), static_cast<int>(r.height)));
             m_rememberedArea = ToRect(selection->screenRect);
-            // R is the capture's rect; Eikon measures it from the screenshot's own
+            // R is the capture's rect; Lucida measures it from the screenshot's own
             // screen origin so the object lands next to where that area is in the screenshot.
             Core::Rect captureRect = selection->screenRect;
             Core::Rect const& origin = document->Image().screenRect;

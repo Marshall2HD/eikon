@@ -31,7 +31,7 @@ namespace Eikon::ScrollDriver
     // on the thread that installed it, and the UI thread both calls SendInput (which would then
     // wait for its own hook, letting timers re-enter) and does work that must not delay
     // system-wide input. AnyKeyOrClick: a key down or left/right button down that was not
-    // injected (Eikon's own wheel and keys are, during auto-scroll). Escape: any VK_ESCAPE
+    // injected (Lucida's own wheel and keys are, during auto-scroll). Escape: any VK_ESCAPE
     // key down (manual mode). Nothing is swallowed; the owner polls Triggered().
     class InputMonitor
     {

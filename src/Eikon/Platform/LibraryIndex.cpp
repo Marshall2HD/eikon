@@ -769,10 +769,10 @@ namespace Eikon
         }
     }
 
-    // Files added, renamed or deleted outside Eikon (Explorer, a shell, a sync client). Deleted files
+    // Files added, renamed or deleted outside Lucida (Explorer, a shell, a sync client). Deleted files
     // lose their record, renamed ones keep it under the new name, and new files that the scan would
     // count (image files with a screenshot name, any image with libIndexNonshots) get a record at
-    // once and are analysed in the background like a save. Eikon's own saves and deletions come through
+    // once and are analysed in the background like a save. Lucida's own saves and deletions come through
     // here too and find nothing left to do.
     void LibraryIndex::ApplyFolderChanges()
     {

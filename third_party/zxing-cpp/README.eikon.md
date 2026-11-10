@@ -1,6 +1,6 @@
 # ZXing-C++ (vendored subset)
 
-Eikon looks for a QR code before running OCR: if the area holds one, its payload is copied instead
+Lucida looks for a QR code before running OCR: if the area holds one, its payload is copied instead
 of recognised text. This folder holds the part of [ZXing-C++](https://github.com/zxing-cpp/zxing-cpp)
 needed for that, built by `ZXing.vcxproj` as a static library that `src/Eikon/Eikon.vcxproj`
 references.
@@ -14,13 +14,13 @@ references.
 
 ## Why vendored source and not vcpkg
 
-- **QR only at compile time.** Eikon detects QR codes and nothing else; it should not start
+- **QR only at compile time.** Lucida detects QR codes and nothing else; it should not start
   reading EAN or DataMatrix. Building only the QR reader enforces that in the binary, not just in
   `ReaderOptions`, and keeps the library small (about 1.9 MB of source, mostly libzueci's
   character-set tables for Shift_JIS/GB/Big5 QR payloads).
-- **Hermetic builds.** Eikon builds from the git tree with MSBuild alone, locally and on a clean CI
+- **Hermetic builds.** Lucida builds from the git tree with MSBuild alone, locally and on a clean CI
   runner. vcpkg manifest mode would need vcpkg bootstrapped on every build machine,
-  network access during every clean build, and a custom triplet to match Eikon's flags
+  network access during every clean build, and a custom triplet to match Lucida's flags
   (`/guard:cf`, the dynamic CRT, ARM64). A pinned copy in git builds the same everywhere.
 - **Cost:** updates are manual (below), so a ZXing security fix has to be pulled in by hand.
 

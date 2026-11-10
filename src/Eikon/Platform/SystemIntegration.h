@@ -13,7 +13,7 @@ namespace Eikon::SystemIntegration
     void OpenWindowsClipboardSettings();
     // Opens Settings > System > Notifications (ms-settings:notifications).
     void OpenWindowsNotificationSettings();
-    // False when Windows blocks Eikon's notifications (turned off for Eikon or for all apps, or by
+    // False when Windows blocks Lucida's notifications (turned off for Lucida or for all apps, or by
     // policy): AppNotificationManager::Setting() != Enabled.
     bool AreAppNotificationsEnabled();
 

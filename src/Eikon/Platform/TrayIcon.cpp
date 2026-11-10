@@ -421,7 +421,7 @@ namespace Eikon
             data.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP | NIF_SHOWTIP;
             data.uCallbackMessage = CallbackMessage;
             data.hIcon = IconFor(m_frame);
-            std::wstring const tip = m_tooltip.empty() ? std::wstring{ L"Eikon" } : m_tooltip;
+            std::wstring const tip = m_tooltip.empty() ? std::wstring{ L"Lucida" } : m_tooltip;
             wcsncpy_s(data.szTip, std::size(data.szTip), tip.c_str(), _TRUNCATE);
         }
         return Shell_NotifyIconW(message, &data) != FALSE;

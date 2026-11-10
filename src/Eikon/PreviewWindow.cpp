@@ -74,7 +74,7 @@ namespace Eikon
         }
         // Borderless, clear, no system shadow, level 1000 (above nearly everything), kept off the
         // taskbar; it takes keys (KeyableWindow).
-        m_hwnd = CreateWindowExW(WS_EX_LAYERED | WS_EX_TOOLWINDOW | WS_EX_TOPMOST, L"EikonPreview", L"Eikon", WS_POPUP, 0, 0, 1, 1, nullptr,
+        m_hwnd = CreateWindowExW(WS_EX_LAYERED | WS_EX_TOOLWINDOW | WS_EX_TOPMOST, L"EikonPreview", L"Lucida", WS_POPUP, 0, 0, 1, 1, nullptr,
                                  nullptr, GetModuleHandleW(nullptr), this);
         return m_hwnd != nullptr;
     }

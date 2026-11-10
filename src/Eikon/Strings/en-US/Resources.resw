@@ -17,7 +17,7 @@
     <comment>Package description (Start menu, Settings &gt; Apps)</comment>
   </data>
   <data name="Tray_Reopen" xml:space="preserve">
-    <value>Reopen Eikon</value>
+    <value>Reopen Lucida</value>
     <comment>Status menu row 2</comment>
   </data>
   <data name="Tray_CaptureScreen" xml:space="preserve">
@@ -99,8 +99,8 @@
     <comment>confirm dialog title</comment>
   </data>
   <data name="Url_DeepLinksMessage" xml:space="preserve">
-    <value>Some app, perhaps on your behalf, tries to execute deep link {0}://{1}. Do you want to enable deep links in Eikon?</value>
-    <comment>confirm dialog text; {0} = scheme (eikon), {1} = command</comment>
+    <value>Some app, perhaps on your behalf, tries to execute deep link {0}://{1}. Do you want to enable deep links in Lucida?</value>
+    <comment>confirm dialog text; {0} = scheme (lucida), {1} = command</comment>
   </data>
   <data name="Url_UnrecognizedThenTitle" xml:space="preserve">
     <value>Unrecognized "then" parameter</value>
@@ -143,11 +143,11 @@
     <comment>library hotkey</comment>
   </data>
   <data name="Editor_WindowTitle" xml:space="preserve">
-    <value>Eikon</value>
+    <value>Lucida</value>
     <comment>Editor window title</comment>
   </data>
   <data name="Settings_WindowTitle" xml:space="preserve">
-    <value>Eikon Settings</value>
+    <value>Lucida Settings</value>
     <comment>Settings window title</comment>
   </data>
   <data name="Settings_AppTitle.Text" xml:space="preserve">
@@ -484,13 +484,13 @@
     <value>Menu</value>
   </data>
   <data name="Menu_App" xml:space="preserve">
-    <value>Eikon</value>
+    <value>Lucida</value>
   </data>
   <data name="Menu_Settings" xml:space="preserve">
     <value>Settings…</value>
   </data>
   <data name="Menu_Quit" xml:space="preserve">
-    <value>Quit Eikon</value>
+    <value>Quit Lucida</value>
   </data>
   <data name="Menu_File" xml:space="preserve">
     <value>File</value>
@@ -614,7 +614,7 @@
     <value>Scrolling Capture</value>
   </data>
   <data name="Scrolling_IntroMessage" xml:space="preserve">
-    <value>Select the area and let Eikon scroll automatically for you. Don't touch your mouse or press any keys until it stops. If you want to interrupt scrolling, press Escape.</value>
+    <value>Select the area and let Lucida scroll automatically for you. Don't touch your mouse or press any keys until it stops. If you want to interrupt scrolling, press Escape.</value>
   </data>
   <data name="Scrolling_MaxHeightTitle" xml:space="preserve">
     <value>Max height reached</value>
@@ -623,7 +623,7 @@
     <value>You can change scrolling height limit in the app preferences</value>
   </data>
   <data name="Scrolling_CantScrollTitle" xml:space="preserve">
-    <value>Eikon wasn't able to scroll</value>
+    <value>Lucida wasn't able to scroll</value>
   </data>
   <data name="Scrolling_CantScrollMessage" xml:space="preserve">
     <value>Try again. If you're running a scroll-modificator app (MOS, Scroll Reverser, Smooze, etc), try setting Reverse Scrolling Capture direction in the app preferences (Advanced tab). Try enabling manual scroll.</value>
@@ -657,7 +657,7 @@
     <value>Average color: {0}</value>
   </data>
   <data name="PixelTools_ShowEditor" xml:space="preserve">
-    <value>Show Eikon</value>
+    <value>Show Lucida</value>
   </data>
   <data name="PixelTools_WcagHint" xml:space="preserve">
     <value>WCAG 2.0 Contrast Ratio</value>
@@ -1102,7 +1102,7 @@ For better result, align overlay and the background using the transparency mode.
     <value>S3 Connection Test Failed</value>
   </data>
   <data name="Notification_NoSystemPermission" xml:space="preserve">
-    <value>P.S. Eikon doesn't have permission to show System Notifications</value>
+    <value>P.S. Lucida doesn't have permission to show System Notifications</value>
   </data>
   <!-- area: settings -->
   <data name="Prefs_NavGeneral.Content" xml:space="preserve">
@@ -1169,7 +1169,7 @@ For better result, align overlay and the background using the transparency mode.
     <value>Can't change folder while indexing</value>
   </data>
   <data name="Prefs_IndexingMessage" xml:space="preserve">
-    <value>Open Eikon library and stop indexing process before changing the default folder.</value>
+    <value>Open Lucida library and stop indexing process before changing the default folder.</value>
   </data>
   <data name="Prefs_SaveFormat.Header" xml:space="preserve">
     <value>Save format</value>
@@ -1268,7 +1268,7 @@ For better result, align overlay and the background using the transparency mode.
     <value>Scrolling screenshot</value>
   </data>
   <data name="Prefs_HotkeyReopen.Header" xml:space="preserve">
-    <value>Show Eikon</value>
+    <value>Show Lucida</value>
   </data>
   <data name="Prefs_HotkeyOcr.Header" xml:space="preserve">
     <value>Instant Text/QR Recognition</value>
@@ -1292,7 +1292,7 @@ For better result, align overlay and the background using the transparency mode.
     <value>S3 (Amazon, Cloudflare, Backblaze, etc.)</value>
   </data>
   <data name="Prefs_UploadDisabled.Text" xml:space="preserve">
-    <value>Eikon allows you to upload an image online and generate a shareable link. Use the dropdown above to enable this functionality.</value>
+    <value>Lucida allows you to upload an image online and generate a shareable link. Use the dropdown above to enable this functionality.</value>
   </data>
   <data name="Prefs_S3Access.Header" xml:space="preserve">
     <value>Access key</value>
@@ -1475,10 +1475,10 @@ For better result, align overlay and the background using the transparency mode.
     <value>Enable deep links</value>
   </data>
   <data name="Library_WindowTitle" xml:space="preserve">
-    <value>Eikon Library</value>
+    <value>Lucida Library</value>
   </data>
   <data name="Library_ToolShow" xml:space="preserve">
-    <value>Show Eikon</value>
+    <value>Show Lucida</value>
   </data>
   <data name="Library_ToolFullscreen" xml:space="preserve">
     <value>Fullscreen Screenshot</value>
@@ -1550,7 +1550,7 @@ For better result, align overlay and the background using the transparency mode.
     <value>Quick Look</value>
   </data>
   <data name="Library_MenuEdit" xml:space="preserve">
-    <value>Edit in Eikon</value>
+    <value>Edit in Lucida</value>
   </data>
   <data name="Library_MenuOpen" xml:space="preserve">
     <value>Open in Default App</value>
@@ -1599,13 +1599,13 @@ For better result, align overlay and the background using the transparency mode.
     <comment>Candy empty state: the display-weight title over the message</comment>
   </data>
   <data name="Library_EmptyMessage" xml:space="preserve">
-    <value>Screenshots you save with Eikon will appear here.</value>
+    <value>Screenshots you save with Lucida will appear here.</value>
   </data>
   <data name="Library_NoFolderTitle" xml:space="preserve">
     <value>Pick a home for your shots</value>
   </data>
   <data name="Library_NoFolderMessage" xml:space="preserve">
-    <value>Everything you save with Eikon shows up here.</value>
+    <value>Everything you save with Lucida shows up here.</value>
   </data>
   <data name="Library_PreexistingTitle" xml:space="preserve">
     <value>Screenshots found</value>

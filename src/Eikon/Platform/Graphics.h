@@ -1,6 +1,6 @@
 #pragma once
 
-// Direct2D/DirectWrite/WIC helpers shared by Eikon's custom-drawn popups: the post-capture
+// Direct2D/DirectWrite/WIC helpers shared by Lucida's custom-drawn popups: the post-capture
 // thumbnail, pins and the notification window.
 // UI thread only.
 

@@ -4,7 +4,7 @@
 // imagelib.shdb in the screenshots folder, the folder scans ("blind indexing"), the analysis of each
 // file (size, OCR, domains, colours) on a background thread, the 1200 s rescan and the save-time
 // records, and a watcher on the folder (ReadDirectoryChangesW) that picks up files added, renamed or
-// deleted outside Eikon within about a second. UI thread only, except where noted; Changed is raised
+// deleted outside Lucida within about a second. UI thread only, except where noted; Changed is raised
 // on the UI thread.
 
 #include "Core/Bitmap.h"

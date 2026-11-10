@@ -33,25 +33,25 @@ It prints one `[ OK ]` or `[FAIL]` line per test and exits with the number of fa
 
 ## Sideload package
 
-To install Eikon outside Visual Studio, build a signed MSIX with a certificate of your own. The
-package's publisher is `CN=Eikon`, so the certificate's subject must match:
+To install Lucida outside Visual Studio, build a signed MSIX with a certificate of your own. The
+package's publisher is `CN=217334B3-10EF-48F6-BB35-BA93F82D16F3`, so the certificate's subject must match:
 
 ```powershell
-$cert = New-SelfSignedCertificate -Type Custom -Subject "CN=Eikon" -KeyUsage DigitalSignature `
+$cert = New-SelfSignedCertificate -Type Custom -Subject "CN=217334B3-10EF-48F6-BB35-BA93F82D16F3" -KeyUsage DigitalSignature `
   -CertStoreLocation Cert:\CurrentUser\My `
   -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
 $password = Read-Host -AsSecureString "PFX password"
-Export-PfxCertificate -Cert $cert -FilePath Eikon.pfx -Password $password
-Export-Certificate -Cert $cert -FilePath Eikon.cer
+Export-PfxCertificate -Cert $cert -FilePath Lucida.pfx -Password $password
+Export-Certificate -Cert $cert -FilePath Lucida.cer
 
 msbuild Eikon.sln /m /p:Configuration=Release /p:Platform=x64 `
   /p:GenerateAppxPackageOnBuild=true /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxBundle=Never `
-  /p:AppxPackageSigningEnabled=true /p:PackageCertificateKeyFile=$PWD\Eikon.pfx `
+  /p:AppxPackageSigningEnabled=true /p:PackageCertificateKeyFile=$PWD\Lucida.pfx `
   /p:PackageCertificatePassword=<password>
 ```
 
 The package and its framework dependencies land in `src\Eikon\AppPackages\`. Trust the certificate
-once (an elevated `Import-Certificate -FilePath Eikon.cer -CertStoreLocation Cert:\LocalMachine\TrustedPeople`),
+once (an elevated `Import-Certificate -FilePath Lucida.cer -CertStoreLocation Cert:\LocalMachine\TrustedPeople`),
 then install the `.msix` by double-clicking it or with `Add-AppxPackage`. `.github/workflows/build.yml`
 does the same in CI with a throwaway certificate.
 

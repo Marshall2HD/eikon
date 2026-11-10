@@ -4,7 +4,7 @@
 */
 // SPDX-License-Identifier: Apache-2.0
 
-// Eikon: core/Version.h.in configured by hand for a reader-only, QR-only build (what CMake writes
+// Lucida: core/Version.h.in configured by hand for a reader-only, QR-only build (what CMake writes
 // for -DZXING_READERS=ON -DZXING_WRITERS=OFF and every ZXING_ENABLE_* off except QRCODE).
 
 #pragma once

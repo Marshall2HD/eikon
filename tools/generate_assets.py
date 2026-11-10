@@ -1,13 +1,13 @@
-"""Generates Eikon's MSIX logo assets, the app .ico and the brand images.
+"""Generates Lucida's MSIX logo assets, the app .ico and the brand images.
 
 Run from the repository root:  uv run --with resvg-py==0.5.0 --with pillow python tools/generate_assets.py
 
-* The app icon is Eikon's Candy mark: a gradient squircle (#FF5A36 -> #B14BFF at 135 degrees under a peach
+* The app icon is Lucida's Candy mark: a gradient squircle (#FF5A36 -> #B14BFF at 135 degrees under a peach
   highlight top-left and a violet one bottom-right) with Lucide's white "scan" viewfinder and a centre dot,
   rendered with resvg. It is every MSIX logo asset, the .ico, docs/logo.png and the notification logo.
 * The brand images (the status icon eikon-22, the tray menu's 16-menu-eikon, the Library's
   lib-tool-28-eikon(-hl) and the notification logo 24-notification-logo(-dark)) are drawn with
-  Eikon's mark (brand_images), and so are the status icon's success frame eikon-22-ok (the plate with
+  Lucida's mark (brand_images), and so are the status icon's success frame eikon-22-ok (the plate with
   a check cut out) and its capture-in-progress frames eikon-22-animated-1..5 (marching ants around
   the plate's outline) (tray_frames). tools/generate_icons.py draws every other tool and UI image
   (Lucide icons and drawings).
@@ -81,7 +81,7 @@ def save_png(name, w, h, scale_fill=0.8):
 
 
 def mark(size, box, glyph_rgba, plate_rgba=None, radius_ratio=220 / 944, glow=None, bar=None):
-    """Eikon's mark drawn into `box` (x0, y0, x1, y1, pixels) of a size x size image.
+    """Lucida's mark drawn into `box` (x0, y0, x1, y1, pixels) of a size x size image.
 
     With `plate_rgba`, a rounded square in that colour with the viewfinder corners and the dot cut
     out (a template plate); without it, only the corners and the dot in `glyph_rgba`.
@@ -127,7 +127,7 @@ def mark(size, box, glyph_rgba, plate_rgba=None, radius_ratio=220 / 944, glow=No
 
 
 def brand_images():
-    """Draws the brand images with Eikon's mark."""
+    """Draws the brand images with Lucida's mark."""
     black = (0, 0, 0, 255)
 
     def glyph_box(x0, y0, x1, y1):
@@ -138,7 +138,7 @@ def brand_images():
     images = {
         # Status icon (template, 22 pt @2x): a 32 px plate in a 44 px canvas, glyph cut out.
         "Tray/eikon-22.png": mark(44, (6, 6, 38, 38), black, plate_rgba=black),
-        # "Reopen Eikon" tray menu item (template, 16 pt @2x).
+        # "Reopen Lucida" tray menu item (template, 16 pt @2x).
         "Menu/16-menu-eikon.png": mark(32, glyph_box(2, 2, 30, 30), black, bar=2.2),
         # Library toolbar "show" tool (28 pt @2x): a template glyph the light Candy toolbar tints.
         "Library/lib-tool-28-eikon.png": mark(56, glyph_box(10, 10, 46, 46), black, bar=2.6),

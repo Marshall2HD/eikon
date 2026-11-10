@@ -220,7 +220,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- The empty editor's welcome background (Eikon's "Candy" look): three soft radial
+        <!-- The empty editor's welcome background (Lucida's "Candy" look): three soft radial
              colour fields over a base colour, behind the title bar too. The brushes come from code
              (ApplyIntroTheme); collapsed once there is a capture and in high contrast. -->
         <Grid x:Name="IntroBackdrop" Grid.RowSpan="2" IsHitTestVisible="False" Visibility="Collapsed">
@@ -245,7 +245,7 @@
                 <!-- Snake: design 58 × 18 in a 75 × 32 box. -->
                 <Grid x:Name="LogoBox" Width="58" Height="24" Background="Transparent">
                     <!-- The wordmark in the Candy gradient (ApplyThemeImages; window text in high contrast). -->
-                    <TextBlock x:Name="LogoText" Text="eikon" FontSize="19" FontWeight="Bold" CharacterSpacing="-20"
+                    <TextBlock x:Name="LogoText" Text="lucida" FontSize="19" FontWeight="Bold" CharacterSpacing="-20"
                                FontFamily="{StaticResource CandyDisplayFont}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                     <!-- The Snake field (73 × 33) at the 75 × 32 box's origin: 8.5 left of the centred logo art,
                          centred on it vertically. A zero-size Canvas so the field is not clipped. -->
@@ -501,7 +501,7 @@
             </Grid>
         </Grid>
 
-        <!-- Intro (introStandard) in Eikon's look: "Welcome to eikon" (40 px, heavy, the name
+        <!-- Intro (introStandard) in Lucida's look: "Welcome to lucida" (40 px, heavy, the name
              in the wordmark gradient), the tagline on one line (15 px), and the two buttons 10 apart; centred
              in the whole window. Each of the three rows rises in when the panel appears (PlayIntroRise). -->
         <StackPanel x:Name="IntroPanel" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -509,7 +509,7 @@
             <StackPanel x:Name="IntroHeadline" Orientation="Horizontal" Spacing="9" HorizontalAlignment="Center">
                 <TextBlock x:Name="IntroWelcomeText" FontFamily="Segoe UI Variable Display, Segoe UI" FontSize="40" LineHeight="44"
                            FontWeight="Bold" CharacterSpacing="-25" />
-                <TextBlock Text="eikon" FontFamily="Segoe UI Variable Display, Segoe UI" FontSize="40" LineHeight="44"
+                <TextBlock Text="lucida" FontFamily="Segoe UI Variable Display, Segoe UI" FontSize="40" LineHeight="44"
                            FontWeight="Bold" CharacterSpacing="-25">
                     <TextBlock.Foreground>
                         <LinearGradientBrush x:Name="IntroNameBrush" StartPoint="0,0.5" EndPoint="1,0.5">

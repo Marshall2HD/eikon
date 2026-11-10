@@ -26,9 +26,9 @@ namespace winrt::Eikon::implementation
 
         void InitializeComponent();
 
-        // The status item / hotkey / eikon://lib: shows the window, or hides it when it is open.
+        // The status item / hotkey / lucida://lib: shows the window, or hides it when it is open.
         void Toggle();
-        // eikon://lib and lib/search: shows it, with the search field set when `search` is given.
+        // lucida://lib and lib/search: shows it, with the search field set when `search` is given.
         void Open(std::optional<std::wstring> const& search);
         void HideLibrary();
         bool IsOpen() const;

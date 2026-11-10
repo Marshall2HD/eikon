@@ -92,7 +92,7 @@ namespace Eikon::Platform
             bool Open()
             {
                 RegisterClass();
-                m_window = CreateWindowExW(WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_NOREDIRECTIONBITMAP, kClassName, L"Eikon", WS_POPUP,
+                m_window = CreateWindowExW(WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_NOREDIRECTIONBITMAP, kClassName, L"Lucida", WS_POPUP,
                                            0, 0, 1, 1, nullptr, nullptr, GetModuleHandleW(nullptr), this);
                 if (!m_window)
                 {
@@ -255,7 +255,7 @@ namespace Eikon::Platform
                 case WM_CAPTURECHANGED:
                     break;
                 case WM_CLOSE:
-                    return 0;   // only Eikon closes it
+                    return 0;   // only Lucida closes it
                 default:
                     break;
                 }

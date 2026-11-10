@@ -46,7 +46,7 @@ namespace Eikon::Core
     // CtrlToolbar layout.
     struct ToolbarMetrics
     {
-        // Items are 30 × 26; Eikon's Candy toolbar uses 32 × 32 icon buttons.
+        // Items are 30 × 26; Lucida's Candy toolbar uses 32 × 32 icon buttons.
         static constexpr double padding = 2;
         static constexpr double itemWidth = 32;
         static constexpr double itemHeight = 32;

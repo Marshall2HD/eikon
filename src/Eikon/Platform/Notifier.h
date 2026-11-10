@@ -1,11 +1,11 @@
 #pragma once
 
 // Notifications in three presentations (notificationType):
-//   "custom" (default)  Eikon's own notification window: a 360×54 card that slides
+//   "custom" (default)  Lucida's own notification window: a 360×54 card that slides
 //                       down at the top centre of a monitor, pauses while hovered, fades out after
 //                       `seconds`, and can be dragged away.
 //   "system"            a Windows app notification (toast); when Windows won't show them, the custom
-//                       window with "\nP.S. Eikon doesn't have permission to show System Notifications".
+//                       window with "\nP.S. Lucida doesn't have permission to show System Notifications".
 //   "none"              nothing (the beep still sounds).
 
 #include <cstdint>
@@ -37,7 +37,7 @@ namespace Eikon
         void Show(Notification notification);
         // Hides the custom window at once.
         void Hide();
-        // The monitor of the editor when Eikon last hid
+        // The monitor of the editor when Lucida last hid
         // it. A notification within 2 s of that appears on that monitor.
         void SetLastActiveMonitor(HMONITOR monitor);
     }

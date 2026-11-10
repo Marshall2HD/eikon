@@ -12,12 +12,12 @@ namespace Eikon
     // RegisterHotKey cannot do:
     //  * Win-key shortcuts that Windows keeps for itself (Win+V, Win+Shift+C, ...): each shortcut
     //    set with SetShortcuts is swallowed (and the Start menu suppressed on Win key release by
-    //    injecting a dummy VK 0xE8 key) and ShortcutPressed is raised instead, so Eikon opens
+    //    injecting a dummy VK 0xE8 key) and ShortcutPressed is raised instead, so Lucida opens
     //    instead of the Windows feature. Shortcuts set with SetBlockedShortcuts are swallowed the
     //    same way without raising anything (Block Win+C).
     //  * Paste detection for the paste stack: PasteDetected is raised when the user presses Ctrl+V
     //    or Shift+Insert anywhere (raised on key up). Injected input (LLKHF_INJECTED,
-    //    i.e. Eikon's own paste) is ignored.
+    //    i.e. Lucida's own paste) is ignored.
     // The hook is only installed while at least one feature is enabled. The callback must stay
     // fast; events are posted to the UI thread's queue rather than raised inside the hook.
     class KeyboardHook

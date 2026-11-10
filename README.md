@@ -1,13 +1,13 @@
-# Eikon
+# Lucida
 
-Eikon is a screenshot tool for Windows 11. It lives in the notification area, captures an area, a
+Lucida is a screenshot tool for Windows 11. It lives in the notification area, captures an area, a
 window, the whole screen or a scrolling page, and opens the result in a fast annotation editor where
 you can crop, draw, blur, measure, pick colours, add a backdrop and then save, copy, pin or drag the
 image out. It is a native WinUI 3 app written in C++.
 
-**[Download Eikon](https://github.com/Marshall2HD/eikon/releases/latest)**: take the x64 zip (ARM64 for
-Snapdragon PCs), extract it and double-click `Install.cmd`. Windows asks once to trust Eikon's signing
-certificate, then Eikon installs and starts in the notification area.
+**[Download Lucida](https://github.com/Marshall2HD/eikon/releases/latest)**: take the x64 zip (ARM64 for
+Snapdragon PCs), extract it and double-click `Install.cmd`. Windows asks once to trust Lucida's signing
+certificate, then Lucida installs and starts in the notification area.
 
 ![The empty editor's welcome screen](docs/screenshot-welcome.png)
 
@@ -28,7 +28,7 @@ certificate, then Eikon installs and starts in the notification area.
 - **Pin** any image above other windows, at any zoom.
 - **Library:** a searchable gallery of your screenshots folder that follows changes made outside the app.
 - **Upload** to your own S3-compatible bucket (optional).
-- **Automation:** `eikon://` URLs (`eikon://grab/area`, `eikon://grab/fullscreen`, `eikon://ocr`, …).
+- **Automation:** `lucida://` URLs (`lucida://grab/area`, `lucida://grab/fullscreen`, `lucida://ocr`, …).
 - Light, dark and high-contrast themes.
 
 ## Default hotkeys
@@ -43,7 +43,7 @@ They can be changed in Settings → Hotkeys, which can also take over <kbd>Print
 
 ## Building
 
-Eikon builds with Visual Studio 2022 or MSBuild on Windows 11:
+Lucida builds with Visual Studio 2022 or MSBuild on Windows 11:
 
 ```powershell
 msbuild Eikon.sln /t:Restore /p:Configuration=Release /p:Platform=x64
@@ -56,7 +56,7 @@ for how the code is organised.
 
 ## Licence
 
-Eikon is released under the [MIT licence](LICENSE).
+Lucida is released under the [MIT licence](LICENSE).
 
 ### Third-party notices
 

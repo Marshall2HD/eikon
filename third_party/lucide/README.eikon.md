@@ -1,6 +1,6 @@
 # Lucide (vendored icon sources)
 
-Eikon's tool and UI icons are [Lucide](https://lucide.dev) icons. `icons/` holds the SVGs that
+Lucida's tool and UI icons are [Lucide](https://lucide.dev) icons. `icons/` holds the SVGs that
 `tools/generate_icons.py` renders into `src/Eikon/Assets`, copied unmodified from the npm package.
 
 - Version: **lucide-static 1.70.0** (`npm pack lucide-static@1.70.0`, `package/icons/<name>.svg`).

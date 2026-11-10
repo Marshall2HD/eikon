@@ -2,7 +2,7 @@
 
 // Cut Out's subject lifting. In order of preference:
 //   1. Windows' own ImageObjectExtractor (Windows App SDK, Microsoft.Windows.AI.Imaging) where the system
-//      has it ready (Copilot+ PCs). When it is supported but not ready yet, Eikon asks Windows to prepare
+//      has it ready (Copilot+ PCs). When it is supported but not ready yet, Lucida asks Windows to prepare
 //      it (EnsureReadyAsync) and uses the next option this time.
 //   2. The bundled U²-Net-p model (third_party/u2net), run on the CPU with the ONNX Runtime of the
 //      Windows App SDK framework (Windows ML).

@@ -159,7 +159,7 @@ namespace Eikon::Core::Stitch
         bool finished = false;
         AutoStop stopped = AutoStop::None;
         bool maxHeightNotice = false;   // "Max height reached" notification (before finishing)
-        bool cantScrollAlert = false;   // "Eikon wasn't able to scroll" alert (before finishing)
+        bool cantScrollAlert = false;   // "Lucida wasn't able to scroll" alert (before finishing)
         std::optional<Bitmap> image;    // the result when finished
     };
 

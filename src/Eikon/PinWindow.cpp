@@ -78,7 +78,7 @@ namespace Eikon
         int const height = (std::max)(1, static_cast<int>(std::lround(m_original.height * start * m_scale)));
 
         // Level 3 (floating) -> topmost; kept off the taskbar; takes keys.
-        m_hwnd = CreateWindowExW(WS_EX_TOOLWINDOW | WS_EX_TOPMOST, L"EikonPin", L"Eikon", WS_POPUP | WS_THICKFRAME, center.x - width / 2,
+        m_hwnd = CreateWindowExW(WS_EX_TOOLWINDOW | WS_EX_TOPMOST, L"EikonPin", L"Lucida", WS_POPUP | WS_THICKFRAME, center.x - width / 2,
                                  center.y - height / 2, width, height, nullptr, nullptr, GetModuleHandleW(nullptr), this);
         if (!m_hwnd)
         {

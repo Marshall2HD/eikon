@@ -216,7 +216,7 @@ namespace Eikon::Core
         }
         UrlCommand result;
         result.scheme = Lowercase(schemeText);
-        if (result.scheme != L"eikon")
+        if (result.scheme != L"lucida")
         {
             return std::nullopt;
         }
@@ -235,8 +235,8 @@ namespace Eikon::Core
         {
             command = command.substr(sep + 3);
         }
-        // Windows normalises an empty path to "/" before the URL reaches us ("eikon://show" arrives as
-        // "eikon://show/", "eikon://settings?x" as "eikon://settings/?x"), so trailing slashes are
+        // Windows normalises an empty path to "/" before the URL reaches us ("lucida://show" arrives as
+        // "lucida://show/", "lucida://settings?x" as "lucida://settings/?x"), so trailing slashes are
         // dropped; commands never end in one.
         command = TrimWhitespace(command);
         while (!command.empty() && command.back() == L'/')

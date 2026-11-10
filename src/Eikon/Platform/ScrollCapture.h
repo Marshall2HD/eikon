@@ -1,8 +1,8 @@
 #pragma once
 
-// Scrolling capture engines: auto-scroll, where Eikon scrolls the
+// Scrolling capture engines: auto-scroll, where Lucida scrolls the
 // view under the selected region with wheel events, and manual mode, where the user
-// scrolls and Eikon samples the region every 0.3 s. Both select the region with the
+// scrolls and Lucida samples the region every 0.3 s. Both select the region with the
 // RegionSelector in Scrolling mode and keep its overlay up (click-through) until they finish.
 // The maths lives in Core/Stitch. UI thread only.
 

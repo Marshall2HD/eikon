@@ -35,14 +35,14 @@ jobs:
         shell: pwsh
         run: |
           $password = [guid]::NewGuid().ToString()
-          $cert = New-SelfSignedCertificate -Type Custom -Subject "CN=Eikon" `
-            -KeyUsage DigitalSignature -FriendlyName "Eikon CI test certificate" `
+          $cert = New-SelfSignedCertificate -Type Custom -Subject "CN=217334B3-10EF-48F6-BB35-BA93F82D16F3" `
+            -KeyUsage DigitalSignature -FriendlyName "Lucida CI test certificate" `
             -CertStoreLocation "Cert:\CurrentUser\My" `
             -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
-          $pfx = Join-Path $env:RUNNER_TEMP "Eikon.pfx"
+          $pfx = Join-Path $env:RUNNER_TEMP "Lucida.pfx"
           Export-PfxCertificate -Cert $cert -FilePath $pfx -Password (ConvertTo-SecureString $password -AsPlainText -Force) | Out-Null
           New-Item -ItemType Directory -Force -Path artifacts | Out-Null
-          Export-Certificate -Cert $cert -FilePath artifacts\Eikon.cer | Out-Null
+          Export-Certificate -Cert $cert -FilePath artifacts\Lucida.cer | Out-Null
           "pfx=$pfx" >> $env:GITHUB_OUTPUT
           "password=$password" >> $env:GITHUB_OUTPUT
           Write-Output "::add-mask::$password"
@@ -85,26 +85,26 @@ jobs:
       - name: Upload package
         uses: actions/upload-artifact@v4
         with:
-          name: Eikon-${{ matrix.platform }}
+          name: Lucida-${{ matrix.platform }}
           path: |
             artifacts/AppPackages/**/Eikon_*.msix
             artifacts/AppPackages/**/Dependencies/${{ matrix.dependencies }}/*.msix
             artifacts/AppPackages/**/Dependencies/${{ matrix.dependencies }}/*.appx
-            artifacts/Eikon.cer
+            artifacts/Lucida.cer
           if-no-files-found: error
 
       - name: Release zip
         if: startsWith(github.ref, 'refs/tags/v')
         shell: pwsh
         run: |
-          $stage = Join-Path $env:RUNNER_TEMP 'Eikon'
+          $stage = Join-Path $env:RUNNER_TEMP 'Lucida'
           New-Item -ItemType Directory -Force -Path $stage | Out-Null
           $msix = Get-ChildItem artifacts\AppPackages -Recurse -Filter 'Eikon_*.msix' | Select-Object -First 1
-          Copy-Item $msix.FullName $stage
+          Copy-Item $msix.FullName (Join-Path $stage ($msix.Name -replace "^Eikon_", "Lucida_"))
           $deps = Join-Path $msix.DirectoryName 'Dependencies\${{ matrix.dependencies }}'
           if (Test-Path $deps) { Copy-Item $deps (Join-Path $stage 'Dependencies') -Recurse }
-          Copy-Item artifacts\Eikon.cer, tools\install\Install.ps1, tools\install\Install.cmd $stage
-          $zip = "artifacts\Eikon-$('${{ github.ref_name }}'.Substring(1))-${{ matrix.platform }}.zip"
+          Copy-Item artifacts\Lucida.cer, tools\install\Install.ps1, tools\install\Install.cmd $stage
+          $zip = "artifacts\Lucida-$('${{ github.ref_name }}'.Substring(1))-${{ matrix.platform }}.zip"
           Compress-Archive -Path "$stage\*" -DestinationPath $zip
           Get-ChildItem $zip
 
@@ -113,14 +113,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: release-${{ matrix.platform }}
-          path: artifacts/Eikon-*.zip
+          path: artifacts/Lucida-*.zip
           if-no-files-found: error
 
       - name: Upload build log
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: Eikon-${{ matrix.platform }}-binlog
+          name: Lucida-${{ matrix.platform }}-binlog
           path: artifacts/build.binlog
 
   test:
@@ -164,10 +164,10 @@ jobs:
         run: |
           cat > notes.md <<'EOF'
           **Install:** download the zip for your PC (x64 for most PCs, ARM64 for Snapdragon), extract it and
-          double-click `Install.cmd`. Windows asks once for permission to trust Eikon's signing certificate,
-          then Eikon installs, starts and sits in the notification area. Running a newer release's
+          double-click `Install.cmd`. Windows asks once for permission to trust Lucida's signing certificate,
+          then Lucida installs, starts and sits in the notification area. Running a newer release's
           `Install.cmd` updates it.
 
           Default hotkeys: Ctrl+Shift+2 area, Ctrl+Shift+1 fullscreen, Ctrl+Alt+Shift+O copy text.
           EOF
-          gh release create "$GITHUB_REF_NAME" Eikon-*.zip --repo "$GITHUB_REPOSITORY" --title "Eikon ${GITHUB_REF_NAME#v}" --notes-file notes.md
+          gh release create "$GITHUB_REF_NAME" Lucida-*.zip --repo "$GITHUB_REPOSITORY" --title "Lucida ${GITHUB_REF_NAME#v}" --notes-file notes.md

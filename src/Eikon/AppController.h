@@ -54,21 +54,21 @@ namespace Eikon
         void OpenFile(std::wstring_view source);              // The "Open Image" dialog
 
         // ---- Windows ----
-        // "Reopen Eikon", the reopen hotkey and eikon://show: shows the editor with the current image.
+        // "Reopen Lucida", the reopen hotkey and lucida://show: shows the editor with the current image.
         void Reopen(std::wstring_view source);
         void ShowEditor();
         void HideEditor();
         bool IsEditorVisible() const;
         // `page` is a Settings pane tag: "general", "hotkeys", "uploading", "advanced" ("" = General).
         void OpenSettings(std::wstring_view page = {});
-        // Library: the tray click, the library hotkey and eikon://lib toggle or
-        // open it; it is off until eikon://settings/library/enable.
+        // Library: the tray click, the library hotkey and lucida://lib toggle or
+        // open it; it is off until lucida://settings/library/enable.
         void ToggleLibrary(std::wstring_view source);
         void OpenLibrary(std::optional<std::wstring> search);
-        // For the Library's "Edit in Eikon": loads an image file into the editor.
+        // For the Library's "Edit in Lucida": loads an image file into the editor.
         // Returns false when it cannot be decoded.
         bool OpenImageFile(std::wstring const& path, double dpr = 1.0);
-        // eikon://uploads: Eikon has no upload history, so it reports the failure.
+        // lucida://uploads: Lucida has no upload history, so it reports the failure.
         void OpenPastUploads();
 
         // ---- URL scheme ----

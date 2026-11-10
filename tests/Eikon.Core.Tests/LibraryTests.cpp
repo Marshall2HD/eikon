@@ -30,7 +30,7 @@ TEST(Library_WritesOneJsonObjectPerLine)
 
 TEST(Library_EncryptedOrForeignLinesAreSkipped)
 {
-    // A base64 line (the encrypted format Eikon does not read) is skipped like any other non-JSON line.
+    // A base64 line (the encrypted format Lucida does not read) is skipped like any other non-JSON line.
     constexpr char kEncrypted[] =
         "AQIDBAUGBwgJCgsMPoqaCDojXtvq7vogD+pdw6tB3AVW3Ne++KAWv8TkTEwtOqqVGH6ykyiV532QppgecROhP7cTXvciWA57DxS+zViYEm4X/tuckZgdeEwmjmJkIONJLpjpqPE2FOXFDifXSNU=";
     CHECK(!Library::ParseLine(kEncrypted));

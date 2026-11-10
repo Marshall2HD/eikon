@@ -1,4 +1,4 @@
-// Precompiled header for Eikon. Keep this list in sync with what the code base actually uses;
+// Precompiled header for Lucida. Keep this list in sync with what the code base actually uses;
 // every translation unit includes it first.
 #pragma once
 

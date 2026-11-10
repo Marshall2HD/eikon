@@ -1156,7 +1156,7 @@ namespace winrt::Eikon::implementation
 
     void EditorWindow::ApplyIntroTheme()
     {
-        // Eikon's welcome look (the "Candy" direction): base colour, peach / lilac / mint fields, ink text, the
+        // Lucida's welcome look (the "Candy" direction): base colour, peach / lilac / mint fields, ink text, the
         // name in the #FF5A36 → #B14BFF gradient, a solid ink button and a translucent ghost button. High contrast
         // keeps to the system colours with no gradients.
         using C = winrt::Windows::UI::Color;
@@ -1991,7 +1991,7 @@ namespace winrt::Eikon::implementation
             item(L"Menu_FullScreen", Shortcut(VK_F11), [this] { ToggleFullScreen(); }, false),
         }));
 
-        // The Help menu's items all open website; Eikon has none, so no Help menu.
+        // The Help menu's items all open website; Lucida has none, so no Help menu.
 
         // validateMenuItem.
         m_menu.Opening([this](auto&&, auto&&) {

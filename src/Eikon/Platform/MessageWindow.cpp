@@ -31,7 +31,7 @@ namespace Eikon
 
         // A hidden top-level popup (never shown) rather than HWND_MESSAGE so that it receives
         // broadcasts such as TaskbarCreated and WM_SETTINGCHANGE.
-        const HWND hwnd = CreateWindowExW(WS_EX_TOOLWINDOW, kClassName, L"Eikon", WS_POPUP,
+        const HWND hwnd = CreateWindowExW(WS_EX_TOOLWINDOW, kClassName, L"Lucida", WS_POPUP,
             0, 0, 0, 0, nullptr, nullptr, instance, this);
         if (!hwnd)
         {

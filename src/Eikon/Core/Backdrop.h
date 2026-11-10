@@ -239,7 +239,7 @@ namespace Eikon::Core::Backdrop
     Bitmap Grain(std::int64_t seed);
     Bitmap ShadowMask(std::int64_t seed);
 
-    // The backdrop of one document: global Backdrop instance, kept per image here (Eikon has
+    // The backdrop of one document: global Backdrop instance, kept per image here (Lucida has
     // one document open at a time). `config` is saved to `bdrConfig` after every render.
     struct State
     {

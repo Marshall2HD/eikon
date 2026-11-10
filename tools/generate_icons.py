@@ -1,4 +1,4 @@
-"""Renders Eikon's tool and UI icons from Lucide (third_party/lucide) into src/Eikon/Assets, and
+"""Renders Lucida's tool and UI icons from Lucide (third_party/lucide) into src/Eikon/Assets, and
 draws the images Lucide has no icon for (cursors, helper sheets, window-background previews, file
 badges, the drag-out file, the More arrow).
 

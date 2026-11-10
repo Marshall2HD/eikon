@@ -112,7 +112,7 @@ namespace Eikon::Uploader
                 port = static_cast<INTERNET_PORT>(std::wcstoul(hostName.c_str() + colon + 1, nullptr, 10));
                 hostName.resize(colon);
             }
-            WinHttpHandle session{ WinHttpOpen(L"Eikon", WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY, WINHTTP_NO_PROXY_NAME,
+            WinHttpHandle session{ WinHttpOpen(L"Lucida", WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY, WINHTTP_NO_PROXY_NAME,
                                                                WINHTTP_NO_PROXY_BYPASS, 0) };
             if (!session)
             {

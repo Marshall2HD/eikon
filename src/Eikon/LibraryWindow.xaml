@@ -11,7 +11,7 @@
         <Grid.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.ThemeDictionaries>
-                    <!-- The holders' colours in Eikon's Candy look (Themes/Candy.xaml): the base colour, a light (surface)
+                    <!-- The holders' colours in Lucida's Candy look (Themes/Candy.xaml): the base colour, a light (surface)
                          toolbar in both themes, an ink tooltip; are in-->
                     <ResourceDictionary x:Key="Light">
                         <SolidColorBrush x:Key="LibraryBackgroundBrush" Color="#FBF7FF" />

@@ -1,6 +1,6 @@
-# Eikon architecture
+# Lucida architecture
 
-Eikon is a screenshot tool for Windows 11: area, window, fullscreen and scrolling capture, an
+Lucida is a screenshot tool for Windows 11: area, window, fullscreen and scrolling capture, an
 annotation editor, a floating preview thumbnail, pinned images, OCR, a pixel ruler and colour picker,
 backdrops, and a screenshot Library. It is written in C++20 with C++/WinRT on WinUI 3 (Windows App
 SDK), uses Win2D for every canvas and Win32 + Direct2D for the capture overlays, and ships as an MSIX
@@ -15,16 +15,16 @@ package. See [building.md](building.md) for how to build and test it.
    belongs to the taskbar). A hotkey that another app already holds fails to register silently; the
    Hotkeys pane shows which one failed. The pane's "Reassign Default" section offers taking Print Screen
    from the Snipping Tool.
-3. **Area selection always uses Eikon's own selector.** Windows has no system picker that returns a
+3. **Area selection always uses Lucida's own selector.** Windows has no system picker that returns a
    rectangle, so `RegionSelector` handles area, window ("Capture Any Window" highlights windows) and
    repeat capture. The `areaCustomGrabber`/`scrollingCustomGrabber` settings are kept for compatibility
    of stored settings but have no effect.
 4. **No accounts, telemetry or update check.** Every feature is available. Uploads go only to an
    S3-compatible bucket the user configures. The Library is off until it is enabled
-   (`eikon://settings/library/enable`).
-5. **URL scheme:** `eikon://` commands (`grab/area`, `grab/fullscreen`, `load/clipboard`, `show`,
+   (`lucida://settings/library/enable`).
+5. **URL scheme:** `lucida://` commands (`grab/area`, `grab/fullscreen`, `load/clipboard`, `show`,
    `settings/…`, …) are parsed by `Core/UrlCommand` and routed by `AppController`.
-6. **Scale factors:** Eikon uses each monitor's real scale (1.25, 1.5, …) for every device-pixel
+6. **Scale factors:** Lucida uses each monitor's real scale (1.25, 1.5, …) for every device-pixel
    calculation, including the ruler's px/pt readout. Saved image DPI is 96 × scale.
 7. **Wheel scrolling:** Windows wheel events scroll by lines, so scrolling capture places each strip by
    its measured shift instead of assuming a fixed step.
@@ -70,7 +70,7 @@ src/Eikon/
   Themes/                       Candy.xaml (design tokens), Settings.xaml
   Core/        platform-neutral, unit-tested
     Settings                    every setting key with its default; typed getters write the default on first read
-    UrlCommand                  eikon:// parser
+    UrlCommand                  lucida:// parser
     Geometry, Framer            Rect/Point, rounding, editor framing maths
     Document, Undo              the open image: bitmap, crop, objects, backdrop, counter; undo snapshots
     Objects/                    ProtoObject and every annotation class, with JSON Dump/Load
@@ -115,7 +115,7 @@ third_party/                    ZXing-C++ (QR), Lucide icon sources, U²-Net-p m
 
 ## Third-party notices
 
-Everything Eikon ships that it did not write, with its licence (the full text is in each folder):
+Everything Lucida ships that it did not write, with its licence (the full text is in each folder):
 
 | Component | Use | Licence | Where |
 |---|---|---|---|
@@ -150,7 +150,7 @@ the model) come from NuGet under their own Microsoft licences.
 ## Packaging
 
 The app is a single-project MSIX (`src/Eikon/Package.appxmanifest`): a full-trust desktop app with the
-`eikon` protocol, a startup task ("Run at Startup") and the Windows App SDK framework as a dependency.
+`lucida` protocol, a startup task ("Run at Startup") and the Windows App SDK framework as a dependency.
 Assets in subfolders of `Assets/` are `Image` items in `Eikon.vcxproj`, so they are packaged. The
 U²-Net-p model is embedded in `Eikon.exe` as an `RCDATA` resource (`Eikon.rc`). CI
 (`.github/workflows/build.yml`) builds x64 and ARM64 sideload packages signed with a throwaway

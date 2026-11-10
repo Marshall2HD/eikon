@@ -11,11 +11,11 @@ namespace winrt
 
 namespace
 {
-    // A command-line argument that is itself a URL of ours ("eikon.exe eikon://grab/fullscreen").
+    // A command-line argument that is itself a URL of ours ("lucida.exe lucida://grab/fullscreen").
     std::optional<std::wstring> UrlArgument(std::wstring const& arguments)
     {
         int count = 0;
-        std::wstring const commandLine = L"eikon.exe " + arguments;
+        std::wstring const commandLine = L"lucida.exe " + arguments;
         LPWSTR* argv = ::CommandLineToArgvW(commandLine.c_str(), &count);
         if (!argv)
         {
@@ -38,7 +38,7 @@ namespace
 namespace winrt::Eikon::implementation
 {
     // Read everything out of the activation arguments immediately. For a redirected activation they
-    // are a proxy into the second eikon.exe, which exits once the redirect completes; touching them
+    // are a proxy into the second lucida.exe, which exits once the redirect completes; touching them
     // later on the UI thread fails with RPC_S_CALL_FAILED.
     App::Activation App::Snapshot(AppActivationArguments const& args)
     {
@@ -55,7 +55,7 @@ namespace winrt::Eikon::implementation
         {
             if (auto protocol = args.Data().try_as<winrt::Windows::ApplicationModel::Activation::IProtocolActivatedEventArgs>())
             {
-                // RawUri keeps the URL as typed; AbsoluteUri would normalise it ("eikon://show/").
+                // RawUri keeps the URL as typed; AbsoluteUri would normalise it ("lucida://show/").
                 activation.uri = protocol.Uri().RawUri();
             }
         }
@@ -73,7 +73,7 @@ namespace winrt::Eikon::implementation
             }
         });
 #endif
-        // Eikon lives in the notification area: hiding the editor or closing Settings must not end the app.
+        // Lucida lives in the notification area: hiding the editor or closing Settings must not end the app.
         DispatcherShutdownMode(winrt::Microsoft::UI::Xaml::DispatcherShutdownMode::OnExplicitShutdown);
     }
 
@@ -127,8 +127,8 @@ namespace winrt::Eikon::implementation
         }
         if (!initial)
         {
-            // A second copy opens eikon://show on the running one.
-            controller.HandleUrl(L"eikon://show");
+            // A second copy opens lucida://show on the running one.
+            controller.HandleUrl(L"lucida://show");
             return;
         }
         // Start hidden when showIntro != 1 and the Hotkeys tab was visited; a

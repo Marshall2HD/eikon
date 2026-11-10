@@ -674,7 +674,7 @@ namespace Eikon::Exporter
         info.bmiHeader.biBitCount = 32;
         info.bmiHeader.biCompression = BI_RGB;
 
-        std::wstring const name = L"Eikon";
+        std::wstring const name = L"Lucida";
         DOCINFOW doc{};
         doc.cbSize = sizeof(doc);
         doc.lpszDocName = name.c_str();
