@@ -22,10 +22,28 @@ if (-not (Get-ChildItem Cert:\LocalMachine\TrustedPeople | Where-Object Thumbpri
 
 $deps = Join-Path $here 'Dependencies'
 if (Test-Path $deps) {
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
     Get-ChildItem $deps -Recurse -Include *.msix, *.appx | ForEach-Object {
-        # 0x80073D06: the same or a newer version is already installed, which is fine.
-        try { Add-AppxPackage -Path $_.FullName -ErrorAction Stop }
-        catch { if ($_.Exception.HResult -ne -2147009274 -and "$_" -notmatch '0x80073D06') { throw } }
+        $file = $_.FullName
+        try { Add-AppxPackage -Path $file -ErrorAction Stop }
+        catch {
+            $message = "$_"
+            # 0x80073D06: the same or a newer version is installed.
+            if ($_.Exception.HResult -eq -2147009274 -or $message -match '0x80073D06') { return }
+            # 0x80073D02: an older version is installed and other apps are using it. Eikon only needs a
+            # minimum version, which the installed one normally meets; if it doesn't, installing Eikon
+            # below says so.
+            if ($message -match '0x80073D02') {
+                $zip = [System.IO.Compression.ZipFile]::OpenRead($file)
+                try {
+                    $reader = [System.IO.StreamReader]::new($zip.GetEntry('AppxManifest.xml').Open())
+                    $name = ([xml]$reader.ReadToEnd()).Package.Identity.Name
+                    $reader.Dispose()
+                } finally { $zip.Dispose() }
+                if (Get-AppxPackage -Name $name) { return }
+            }
+            throw
+        }
     }
 }
 
