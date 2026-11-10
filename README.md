@@ -5,6 +5,10 @@ window, the whole screen or a scrolling page, and opens the result in a fast ann
 you can crop, draw, blur, measure, pick colours, add a backdrop and then save, copy, pin or drag the
 image out. It is a native WinUI 3 app written in C++.
 
+**[Download Eikon](https://github.com/Marshall2HD/eikon/releases/latest)**: take the x64 zip (ARM64 for
+Snapdragon PCs), extract it and double-click `Install.cmd`. Windows asks once to trust Eikon's signing
+certificate, then Eikon installs and starts in the notification area.
+
 ![The empty editor's welcome screen](docs/screenshot-welcome.png)
 
 ![The editor with an arrow and a text annotation](docs/screenshot-editor.png)
