@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Eikon.UploadSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Eikon"
+    Background="Transparent"
+    Loaded="Page_Loaded"
+    Unloaded="Page_Unloaded">
+    <Page.Resources>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource SettingsComboBoxStyle}" />
+        <Style TargetType="RadioButton" BasedOn="{StaticResource DefaultRadioButtonStyle}">
+            <Setter Property="MinWidth" Value="0" />
+        </Style>
+        <Style x:Key="S3FieldStyle" TargetType="TextBox" BasedOn="{StaticResource DefaultTextBoxStyle}">
+            <Setter Property="Width" Value="240" />
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock x:Uid="Prefs_UploadingHeader" Style="{StaticResource SettingsPageHeaderTextStyle}" AutomationProperties.HeadingLevel="Level1" />
+
+        <ScrollViewer Grid.Row="1" Style="{StaticResource SettingsPageScrollViewerStyle}">
+            <StackPanel Style="{StaticResource SettingsPageContentStyle}">
+
+                <!-- ===== Mode ===== -->
+                <local:SettingsCard x:Uid="Prefs_UploadMode">
+                    <ComboBox x:Name="UploadModeCombo" MinWidth="320" SelectionChanged="UploadModeCombo_SelectionChanged">
+                        <ComboBoxItem x:Uid="Prefs_UploadNone" Tag="none" />
+                        <ComboBoxItem x:Uid="Prefs_UploadS3" Tag="s3" />
+                    </ComboBox>
+                </local:SettingsCard>
+
+                <!-- viewDisabled -->
+                <TextBlock
+                    x:Name="DisabledText"
+                    x:Uid="Prefs_UploadDisabled"
+                    Margin="1,20,0,0"
+                    Style="{StaticResource SettingsParagraphTextStyle}" />
+
+                <!-- boxS3 -->
+                <StackPanel x:Name="S3Panel" Spacing="4" Margin="0,20,0,0">
+                    <local:SettingsCard x:Uid="Prefs_S3Access">
+                        <TextBox x:Name="AccessBox" Style="{StaticResource S3FieldStyle}" LostFocus="Field_LostFocus" KeyDown="Field_KeyDown" />
+                    </local:SettingsCard>
+                    <local:SettingsCard x:Uid="Prefs_S3Secret">
+                        <PasswordBox x:Name="SecretBox" Width="240" LostFocus="Field_LostFocus" KeyDown="Field_KeyDown" />
+                    </local:SettingsCard>
+                    <local:SettingsCard x:Uid="Prefs_S3Bucket">
+                        <TextBox x:Name="BucketBox" Style="{StaticResource S3FieldStyle}" LostFocus="Field_LostFocus" KeyDown="Field_KeyDown" />
+                    </local:SettingsCard>
+                    <local:SettingsCard x:Uid="Prefs_S3Service">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <RadioButton x:Name="AmazonRadio" x:Uid="Prefs_S3Amazon" GroupName="S3Service" Checked="Service_Checked" />
+                            <RadioButton x:Name="OtherRadio" x:Uid="Prefs_S3Other" GroupName="S3Service" Checked="Service_Checked" />
+                        </StackPanel>
+                    </local:SettingsCard>
+                    <local:SettingsCard x:Name="RegionCard" x:Uid="Prefs_S3Region">
+                        <TextBox x:Name="RegionBox" Style="{StaticResource S3FieldStyle}" LostFocus="Field_LostFocus" KeyDown="Field_KeyDown" />
+                    </local:SettingsCard>
+                    <local:SettingsCard x:Name="EndpointCard" x:Uid="Prefs_S3Endpoint">
+                        <TextBox x:Name="EndpointBox" Style="{StaticResource S3FieldStyle}" LostFocus="Field_LostFocus" KeyDown="Field_KeyDown" />
+                    </local:SettingsCard>
+                    <local:SettingsCard x:Uid="Prefs_S3Prefix">
+                        <TextBox x:Name="PrefixBox" x:Uid="Prefs_S3PrefixBox" Style="{StaticResource S3FieldStyle}" LostFocus="Field_LostFocus" KeyDown="Field_KeyDown" />
+                    </local:SettingsCard>
+                    <Grid Style="{StaticResource SettingsCardGridStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
+                            <ProgressRing x:Name="TestRing" Width="16" Height="16" IsActive="False" Visibility="Collapsed" />
+                            <TextBlock x:Name="TestStatus" VerticalAlignment="Center" />
+                            <Button x:Name="TestButton" x:Uid="Prefs_S3Test" Click="TestButton_Click" />
+                        </StackPanel>
+                    </Grid>
+
+                    <local:SettingsCard x:Uid="Prefs_S3Sharing" Margin="0,20,0,0">
+                        <ComboBox x:Name="SharingCombo" SelectionChanged="SharingCombo_SelectionChanged">
+                            <ComboBoxItem x:Uid="Prefs_SharingNone" Tag="none" />
+                            <ComboBoxItem x:Uid="Prefs_SharingPresign" Tag="presign" />
+                            <ComboBoxItem x:Uid="Prefs_SharingPublic" Tag="public" />
+                        </ComboBox>
+                    </local:SettingsCard>
+                    <local:SettingsCard x:Name="ExpirationCard" x:Uid="Prefs_S3Expiration">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Slider
+                                x:Name="ExpirationSlider"
+                                Width="190"
+                                Minimum="0"
+                                Maximum="6"
+                                StepFrequency="1"
+                                TickFrequency="1"
+                                TickPlacement="Outside"
+                                SnapsTo="Ticks"
+                                IsThumbToolTipEnabled="False"
+                                ValueChanged="ExpirationSlider_ValueChanged" />
+                            <TextBlock x:Name="ExpirationLabel" MinWidth="56" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </local:SettingsCard>
+                    <local:SettingsCard x:Name="PublicUrlCard" x:Uid="Prefs_S3PublicUrl">
+                        <TextBox x:Name="PublicUrlBox" Style="{StaticResource S3FieldStyle}" LostFocus="Field_LostFocus" KeyDown="Field_KeyDown" />
+                    </local:SettingsCard>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

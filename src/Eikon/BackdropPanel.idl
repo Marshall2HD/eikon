@@ -1,0 +1,10 @@
+namespace Eikon
+{
+    // The backdrop panel, 298 wide, shown in a
+    // flyout under the editor's Backdrop button by Editor::ShowBackdropPanel.
+    [default_interface]
+    runtimeclass BackdropPanel : Microsoft.UI.Xaml.Controls.UserControl
+    {
+        BackdropPanel();
+    }
+}

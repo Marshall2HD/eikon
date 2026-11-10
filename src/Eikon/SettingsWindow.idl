@@ -1,0 +1,11 @@
+namespace Eikon
+{
+    // Settings: General, Hotkeys, Uploading and Advanced panes.
+    [default_interface]
+    runtimeclass SettingsWindow : Microsoft.UI.Xaml.Window
+    {
+        SettingsWindow();
+        // Selects a pane: "general", "hotkeys", "uploading", "advanced" (anything else = general).
+        void ShowPage(String tag);
+    }
+}

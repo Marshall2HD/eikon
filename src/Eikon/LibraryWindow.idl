@@ -1,0 +1,10 @@
+namespace Eikon
+{
+    // The screenshot Library: popover, as a borderless window above
+    // the notification-area icon that closes when it loses focus.
+    [default_interface]
+    runtimeclass LibraryWindow : Microsoft.UI.Xaml.Window
+    {
+        LibraryWindow();
+    }
+}

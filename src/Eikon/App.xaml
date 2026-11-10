@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application
+    x:Class="Eikon.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <ResourceDictionary Source="ms-appx:///Themes/Settings.xaml" />
+                <ResourceDictionary Source="ms-appx:///Themes/Candy.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Named colours. *Color is the
+                 Windows.UI.Color, the plain name the brush. -->
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <Color x:Key="clrMainColor">#FFFF0C01</Color>
+                    <Color x:Key="clrToolbarInfoColor">#FF747474</Color>
+                    <Color x:Key="clrToolbarLabelColor">#FF282828</Color>
+                    <SolidColorBrush x:Key="clrMain" Color="#FFFF0C01" />
+                    <SolidColorBrush x:Key="clrToolbarInfo" Color="#FF747474" />
+                    <SolidColorBrush x:Key="clrToolbarLabel" Color="#FF282828" />
+                    <!-- ShotView's light background, rgb(0.97, 0.97, 0.97). -->
+                    <SolidColorBrush x:Key="EditorBackgroundBrush" Color="#FFF7F7F7" />
+                    <!-- WinUI's accent (switches, sliders, radios, checkboxes, focus) is the Candy lilac (Themes/Candy.xaml):
+                         light themes fill with SystemAccentColorDark1 (#7B4BFF), dark ones with Light2 (#A98BFF). -->
+                    <Color x:Key="SystemAccentColor">#FF7B4BFF</Color>
+                    <Color x:Key="SystemAccentColorDark1">#FF7B4BFF</Color>
+                    <Color x:Key="SystemAccentColorDark2">#FF6A3AE8</Color>
+                    <Color x:Key="SystemAccentColorDark3">#FF5A2FD0</Color>
+                    <Color x:Key="SystemAccentColorLight1">#FF8F66FF</Color>
+                    <Color x:Key="SystemAccentColorLight2">#FFA98BFF</Color>
+                    <Color x:Key="SystemAccentColorLight3">#FFC4B0FF</Color>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <Color x:Key="clrMainColor">#FFFF0C01</Color>
+                    <Color x:Key="clrToolbarInfoColor">#FFA2A2A2</Color>
+                    <Color x:Key="clrToolbarLabelColor">#FFD0D0D0</Color>
+                    <SolidColorBrush x:Key="clrMain" Color="#FFFF0C01" />
+                    <SolidColorBrush x:Key="clrToolbarInfo" Color="#FFA2A2A2" />
+                    <SolidColorBrush x:Key="clrToolbarLabel" Color="#FFD0D0D0" />
+                    <!-- Dark: the system window background. -->
+                    <SolidColorBrush x:Key="EditorBackgroundBrush" Color="#FF202020" />
+                    <!-- WinUI's accent (switches, sliders, radios, checkboxes, focus) is the Candy lilac (Themes/Candy.xaml):
+                         light themes fill with SystemAccentColorDark1 (#7B4BFF), dark ones with Light2 (#A98BFF). -->
+                    <Color x:Key="SystemAccentColor">#FF7B4BFF</Color>
+                    <Color x:Key="SystemAccentColorDark1">#FF7B4BFF</Color>
+                    <Color x:Key="SystemAccentColorDark2">#FF6A3AE8</Color>
+                    <Color x:Key="SystemAccentColorDark3">#FF5A2FD0</Color>
+                    <Color x:Key="SystemAccentColorLight1">#FF8F66FF</Color>
+                    <Color x:Key="SystemAccentColorLight2">#FFA98BFF</Color>
+                    <Color x:Key="SystemAccentColorLight3">#FFC4B0FF</Color>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="clrMain" Color="{ThemeResource SystemColorHighlightColor}" />
+                    <SolidColorBrush x:Key="clrToolbarInfo" Color="{ThemeResource SystemColorGrayTextColor}" />
+                    <SolidColorBrush x:Key="clrToolbarLabel" Color="{ThemeResource SystemColorWindowTextColor}" />
+                    <SolidColorBrush x:Key="EditorBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <!-- Candy's control radius (buttons, text boxes, combo boxes, toggles' focus): 8 px, no capsules. -->
+            <CornerRadius x:Key="ControlCornerRadius">8</CornerRadius>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

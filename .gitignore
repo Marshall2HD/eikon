@@ -1,0 +1,22 @@
+# Build output
+bin/
+obj/
+x64/
+ARM64/
+Win32/
+Debug/
+Release/
+AppPackages/
+BundleArtifacts/
+Generated Files/
+packages/
+*.user
+*.aps
+*.pdb
+*.ipch
+*.VC.db
+*.VC.opendb
+.vs/
+*.pfx
+*.binlog
+__pycache__/

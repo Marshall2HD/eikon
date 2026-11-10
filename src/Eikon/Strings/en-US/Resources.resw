@@ -1,0 +1,1657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Screenshot tool with annotation, OCR and scrolling capture</value>
+    <comment>Package description (Start menu, Settings &gt; Apps)</comment>
+  </data>
+  <data name="Tray_Reopen" xml:space="preserve">
+    <value>Reopen Eikon</value>
+    <comment>Status menu row 2</comment>
+  </data>
+  <data name="Tray_CaptureScreen" xml:space="preserve">
+    <value>Capture Screen</value>
+    <comment>Status menu row 4</comment>
+  </data>
+  <data name="Tray_CaptureArea" xml:space="preserve">
+    <value>Capture Area</value>
+    <comment>Status menu row 5</comment>
+  </data>
+  <data name="Tray_ScrollingCapture" xml:space="preserve">
+    <value>Scrolling Capture</value>
+    <comment>Status menu row 6</comment>
+  </data>
+  <data name="Tray_ManualScrollingCapture" xml:space="preserve">
+    <value>Manual Scrolling Capture</value>
+    <comment>Status menu row 7</comment>
+  </data>
+  <data name="Tray_RecognizeText" xml:space="preserve">
+    <value>Recognize Text/QR</value>
+    <comment>Status menu row 8</comment>
+  </data>
+  <data name="Tray_More" xml:space="preserve">
+    <value>more</value>
+    <comment>Status menu row 9: submenu; lower case</comment>
+  </data>
+  <data name="Tray_RepeatArea" xml:space="preserve">
+    <value>Repeat Area Capture</value>
+    <comment>Status menu row 9.1</comment>
+  </data>
+  <data name="Tray_ActiveWindow" xml:space="preserve">
+    <value>Capture Active Window</value>
+    <comment>Status menu row 9.2</comment>
+  </data>
+  <data name="Tray_AnyWindow" xml:space="preserve">
+    <value>Capture Any Window</value>
+    <comment>Status menu row 9.3</comment>
+  </data>
+  <data name="Tray_Delayed" xml:space="preserve">
+    <value>Delayed Screenshot (3s)</value>
+    <comment>Status menu row 9.4</comment>
+  </data>
+  <data name="Tray_ScrollingUp" xml:space="preserve">
+    <value>Scrolling (Up)</value>
+    <comment>Status menu row 9.5</comment>
+  </data>
+  <data name="Tray_OpenFile" xml:space="preserve">
+    <value>Open File</value>
+    <comment>Status menu row 9.7</comment>
+  </data>
+  <data name="Tray_LoadClipboard" xml:space="preserve">
+    <value>Load From Clipboard</value>
+    <comment>Status menu row 9.8</comment>
+  </data>
+  <data name="Tray_LaunchAtStartup" xml:space="preserve">
+    <value>Launch at Startup</value>
+    <comment>Status menu row 16</comment>
+  </data>
+  <data name="Tray_Settings" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Status menu row 17</comment>
+  </data>
+  <data name="Tray_Quit" xml:space="preserve">
+    <value>Quit</value>
+    <comment>Status menu row 18</comment>
+  </data>
+  <data name="Url_UnknownCommand" xml:space="preserve">
+    <value>Unknown URL Scheme command:
+{0}</value>
+    <comment>{0} = command</comment>
+  </data>
+  <data name="Url_CommandFailed" xml:space="preserve">
+    <value>URL Scheme command failed:
+{0}</value>
+    <comment>{0} = command</comment>
+  </data>
+  <data name="Url_DeepLinksTitle" xml:space="preserve">
+    <value>Enable URL Scheme (Deep Links)</value>
+    <comment>confirm dialog title</comment>
+  </data>
+  <data name="Url_DeepLinksMessage" xml:space="preserve">
+    <value>Some app, perhaps on your behalf, tries to execute deep link {0}://{1}. Do you want to enable deep links in Eikon?</value>
+    <comment>confirm dialog text; {0} = scheme (eikon), {1} = command</comment>
+  </data>
+  <data name="Url_UnrecognizedThenTitle" xml:space="preserve">
+    <value>Unrecognized "then" parameter</value>
+    <comment></comment>
+  </data>
+  <data name="Url_UnrecognizedThenMessage" xml:space="preserve">
+    <value>Available options: "copy", "save", "edit", "pin", or a comma-separated combination</value>
+    <comment></comment>
+  </data>
+  <data name="Url_TokenUpdatedTitle" xml:space="preserve">
+    <value>Token Updated</value>
+    <comment>settings/token</comment>
+  </data>
+  <data name="Url_TokenUpdatedMessage" xml:space="preserve">
+    <value>New token is applied successfully: {0}</value>
+    <comment>settings/token; {0} = token</comment>
+  </data>
+  <data name="Url_TokenRemovedTitle" xml:space="preserve">
+    <value>Token Was Removed</value>
+    <comment>settings/token=none</comment>
+  </data>
+  <data name="Url_TokenRemovedMessage" xml:space="preserve">
+    <value>Upload feature will not work until you add a new token</value>
+    <comment>settings/token=none</comment>
+  </data>
+  <data name="Url_UploadsFailedTitle" xml:space="preserve">
+    <value>Can't open past uploads</value>
+    <comment>uploads</comment>
+  </data>
+  <data name="Url_UploadsFailedMessage" xml:space="preserve">
+    <value>This may happen if the upload feature is not activated with a valid token.</value>
+    <comment>uploads</comment>
+  </data>
+  <data name="Library_DisabledTitle" xml:space="preserve">
+    <value>Screenshot Library is disabled</value>
+    <comment>library hotkey</comment>
+  </data>
+  <data name="Library_DisabledMessage" xml:space="preserve">
+    <value>Enable it in the app settings</value>
+    <comment>library hotkey</comment>
+  </data>
+  <data name="Editor_WindowTitle" xml:space="preserve">
+    <value>Eikon</value>
+    <comment>Editor window title</comment>
+  </data>
+  <data name="Settings_WindowTitle" xml:space="preserve">
+    <value>Eikon Settings</value>
+    <comment>Settings window title</comment>
+  </data>
+  <data name="Settings_AppTitle.Text" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Settings title bar</comment>
+  </data>
+  <data name="Settings_Shortcut" xml:space="preserve">
+    <value>Shortcut</value>
+    <comment>Accessible name of a shortcut recorder without a label</comment>
+  </data>
+  <data name="Settings_NameValue" xml:space="preserve">
+    <value>{0}: {1}</value>
+    <comment>Accessible name: {0} = label, {1} = value</comment>
+  </data>
+  <data name="Settings_ClearNamed" xml:space="preserve">
+    <value>Clear {0}</value>
+    <comment>Accessible name of the clear button; {0} = label</comment>
+  </data>
+  <data name="Settings_IncludeModifier" xml:space="preserve">
+    <value>Include {0}, {1} or {2}</value>
+    <comment>Recorder hint; {0} {1} {2} = Ctrl, Alt, Win</comment>
+  </data>
+  <data name="Settings_PressShortcut" xml:space="preserve">
+    <value>Press Shortcut</value>
+    <comment>Recorder while recording</comment>
+  </data>
+  <data name="Settings_Recording" xml:space="preserve">
+    <value>Recording. Press a shortcut, Esc to cancel, Backspace to clear</value>
+    <comment>Accessible name while recording</comment>
+  </data>
+  <data name="Settings_NotSet" xml:space="preserve">
+    <value>Record Shortcut</value>
+    <comment>Recorder placeholder when unbound</comment>
+  </data>
+  <data name="Recorder_Edit.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Select to record a new shortcut. Esc cancels, Backspace clears.</value>
+  </data>
+  <data name="Recorder_Status.Text" xml:space="preserve">
+    <value>Record Shortcut</value>
+  </data>
+  <data name="Recorder_Clear.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Clear shortcut</value>
+  </data>
+  <data name="Recorder_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Clear shortcut</value>
+  </data>
+  <data name="Key_Ctrl" xml:space="preserve">
+    <value>Ctrl</value>
+  </data>
+  <data name="Key_Alt" xml:space="preserve">
+    <value>Alt</value>
+  </data>
+  <data name="Key_Shift" xml:space="preserve">
+    <value>Shift</value>
+  </data>
+  <data name="Key_Win" xml:space="preserve">
+    <value>Win</value>
+  </data>
+  <data name="Key_Space" xml:space="preserve">
+    <value>Space</value>
+  </data>
+  <data name="Key_Enter" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="Key_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Key_Backspace" xml:space="preserve">
+    <value>Backspace</value>
+  </data>
+  <data name="Key_Tab" xml:space="preserve">
+    <value>Tab</value>
+  </data>
+  <data name="Key_Escape" xml:space="preserve">
+    <value>Esc</value>
+  </data>
+  <data name="Key_Insert" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="Key_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Key_End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="Key_PageUp" xml:space="preserve">
+    <value>PageUp</value>
+  </data>
+  <data name="Key_PageDown" xml:space="preserve">
+    <value>PageDown</value>
+  </data>
+  <data name="Key_Up" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="Key_Down" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="Key_Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="Key_Right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="Key_PrintScreen" xml:space="preserve">
+    <value>Print Screen</value>
+  </data>
+  <!-- area: editor -->
+  <data name="Tool_Arrow" xml:space="preserve">
+    <value>Arrow (A)</value>
+  </data>
+  <data name="Tool_Text" xml:space="preserve">
+    <value>Text (T)</value>
+  </data>
+  <data name="Tool_Ruler" xml:space="preserve">
+    <value>Ruler (1 or 2)</value>
+  </data>
+  <data name="Tool_Rectangle" xml:space="preserve">
+    <value>Rectangle (R)</value>
+  </data>
+  <data name="Tool_Backdrop" xml:space="preserve">
+    <value>Backdrop (K)</value>
+  </data>
+  <data name="Tool_Freehand" xml:space="preserve">
+    <value>Freehand Drawing (D)</value>
+  </data>
+  <data name="Tool_Magnifier" xml:space="preserve">
+    <value>Magnifier (M)</value>
+  </data>
+  <data name="Tool_Append" xml:space="preserve">
+    <value>Add Capture (Ctrl+A)</value>
+  </data>
+  <data name="Tool_Blur" xml:space="preserve">
+    <value>Blur/Erase (B)</value>
+  </data>
+  <data name="Tool_Highlighter" xml:space="preserve">
+    <value>Highlighter (H)</value>
+  </data>
+  <data name="Tool_Spotlight" xml:space="preserve">
+    <value>Spotlight (S)</value>
+  </data>
+  <data name="Tool_Counter" xml:space="preserve">
+    <value>Counter (C)</value>
+  </data>
+  <data name="Tool_Oval" xml:space="preserve">
+    <value>Oval (O)</value>
+  </data>
+  <data name="Tool_Line" xml:space="preserve">
+    <value>Line (L)</value>
+  </data>
+  <data name="Tool_Image" xml:space="preserve">
+    <value>Paste Image (Ctrl+V)</value>
+  </data>
+  <data name="Export_Copy" xml:space="preserve">
+    <value>Copy (Esc or Ctrl+Shift+C)</value>
+  </data>
+  <data name="Export_Save" xml:space="preserve">
+    <value>Save (Ctrl+S)</value>
+  </data>
+  <data name="Export_Pin" xml:space="preserve">
+    <value>Floating Pin (Ctrl+P)</value>
+  </data>
+  <data name="Export_Upload" xml:space="preserve">
+    <value>Upload and Get Link (Ctrl+E)</value>
+  </data>
+  <data name="Editor_Crop" xml:space="preserve">
+    <value>Crop</value>
+  </data>
+  <data name="Editor_CropHint" xml:space="preserve">
+    <value>Hit Enter to crop</value>
+  </data>
+  <data name="Editor_CropHintUnits" xml:space="preserve">
+    <value>Click to switch PX/PT</value>
+  </data>
+  <data name="Editor_WrongTitle" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Editor_WrongMessage" xml:space="preserve">
+    <value>Not sure what though</value>
+  </data>
+  <data name="Selection_Adjust" xml:space="preserve">
+    <value>Autoadjust (A)</value>
+  </data>
+  <data name="Selection_Resize" xml:space="preserve">
+    <value>Resize ( Shift+] )</value>
+  </data>
+  <data name="Selection_Ocr" xml:space="preserve">
+    <value>Recognize Text or QR (Ctrl+O)</value>
+  </data>
+  <data name="Selection_Size" xml:space="preserve">
+    <value>Imprint Selection Size</value>
+  </data>
+  <data name="Selection_Erase" xml:space="preserve">
+    <value>Erase (Del)</value>
+  </data>
+  <data name="Selection_CutOut" xml:space="preserve">
+    <value>Cut Out</value>
+  </data>
+  <data name="Selection_Reset" xml:space="preserve">
+    <value>Reset Selection (Esc)</value>
+  </data>
+  <data name="Info_TabToCopy" xml:space="preserve">
+    <value>Tab to copy</value>
+  </data>
+  <data name="Info_SelectionSize" xml:space="preserve">
+    <value>Selection size</value>
+  </data>
+  <data name="Info_ImageSize" xml:space="preserve">
+    <value>Image size</value>
+  </data>
+  <data name="Info_Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="Options_Blur" xml:space="preserve">
+    <value>Blur</value>
+  </data>
+  <data name="Options_BlurText" xml:space="preserve">
+    <value>Blur Text</value>
+  </data>
+  <data name="Options_Erase" xml:space="preserve">
+    <value>Erase</value>
+  </data>
+  <data name="Options_EraseText" xml:space="preserve">
+    <value>Erase Text</value>
+  </data>
+  <data name="Pixels_Explanation" xml:space="preserve">
+    <value>One logical point is equal to several physical pixels on high-DPI displays. Use shortcut P to switch modes.</value>
+  </data>
+  <data name="Pixels_ShowPoints" xml:space="preserve">
+    <value>Show Size in Logical Points</value>
+  </data>
+  <data name="Resize_Title" xml:space="preserve">
+    <value>Resize Image</value>
+  </data>
+  <data name="Resize_Warning" xml:space="preserve">
+    <value>(can't be undone!)</value>
+  </data>
+  <data name="Resize_Button" xml:space="preserve">
+    <value>Resize</value>
+  </data>
+  <data name="Resize_ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Resize_NoImage" xml:space="preserve">
+    <value>No image to resize</value>
+  </data>
+  <data name="Resize_CantTitle" xml:space="preserve">
+    <value>Can't resize the image</value>
+  </data>
+  <data name="Resize_TooSmall" xml:space="preserve">
+    <value>New size is too small</value>
+  </data>
+  <data name="Resize_TooLarge" xml:space="preserve">
+    <value>New size is too large</value>
+  </data>
+  <data name="ColorHelper_Format" xml:space="preserve">
+    <value>Color Format</value>
+  </data>
+  <data name="ColorHelper_PixelTitle" xml:space="preserve">
+    <value>Copy Pixel Color</value>
+  </data>
+  <data name="ColorHelper_PixelText" xml:space="preserve">
+    <value>Hover mouse over any pixel and press Tab</value>
+  </data>
+  <data name="ColorHelper_TextTitle" xml:space="preserve">
+    <value>Copy Text Color</value>
+  </data>
+  <data name="ColorHelper_TextText" xml:space="preserve">
+    <value>Press Shift+Tab to copy the darkest color in the 20px area around the cursor</value>
+  </data>
+  <data name="ColorHelper_AverageTitle" xml:space="preserve">
+    <value>Copy Average Color</value>
+  </data>
+  <data name="ColorHelper_AverageText" xml:space="preserve">
+    <value>Select an area and press C to copy its average color</value>
+  </data>
+  <data name="ZoomSheet_In" xml:space="preserve">
+    <value>Zoom in</value>
+  </data>
+  <data name="ZoomSheet_Out" xml:space="preserve">
+    <value>Zoom out</value>
+  </data>
+  <data name="ZoomSheet_Selection" xml:space="preserve">
+    <value>Zoom to selection</value>
+  </data>
+  <data name="ZoomSheet_Wheel" xml:space="preserve">
+    <value>Wheel zooms</value>
+  </data>
+  <data name="ZoomSheet_RightDrag" xml:space="preserve">
+    <value>Right-drag pans</value>
+  </data>
+  <data name="Help_Title" xml:space="preserve">
+    <value>Use the keyboard</value>
+  </data>
+  <data name="Help_Text" xml:space="preserve">
+    <value>Hold a ⓵ or ⓶ key, or an arrow key, and move your mouse over the area which you want to measure</value>
+  </data>
+  <data name="Help_GotIt" xml:space="preserve">
+    <value>Got  it!</value>
+  </data>
+  <data name="Intro_Welcome" xml:space="preserve">
+    <value>Welcome to </value>
+  </data>
+  <data name="Intro_Tagline" xml:space="preserve">
+    <value>A tiny screenshot utility that lives in your notification area</value>
+  </data>
+  <data name="Intro_RunAtStartup" xml:space="preserve">
+    <value>Run at Startup</value>
+  </data>
+  <data name="Intro_SetupHotkeys" xml:space="preserve">
+    <value>Setup Hotkeys</value>
+  </data>
+  <data name="Quit_Title" xml:space="preserve">
+    <value>Red pill or blue pill?</value>
+  </data>
+  <data name="Quit_Message" xml:space="preserve">
+    <value>If you quit the app, shortcuts will stop working. If you close the window, the taskbar button will go away, but the app will stay in the notification area. We will remember your choice.</value>
+  </data>
+  <data name="Quit_Quit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="Quit_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Ocr_SelectTitle" xml:space="preserve">
+    <value>Select area first</value>
+  </data>
+  <data name="Ocr_SelectMessage" xml:space="preserve">
+    <value>Select rectangle with text that you want to recognize and copy</value>
+  </data>
+  <data name="Dialog_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Menu_More" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Menu_App" xml:space="preserve">
+    <value>Eikon</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Settings…</value>
+  </data>
+  <data name="Menu_Quit" xml:space="preserve">
+    <value>Quit Eikon</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Menu_CopyImage" xml:space="preserve">
+    <value>Copy Image</value>
+  </data>
+  <data name="Menu_SaveImage" xml:space="preserve">
+    <value>Save Image</value>
+  </data>
+  <data name="Menu_SaveImageAs" xml:space="preserve">
+    <value>Save Image As</value>
+  </data>
+  <data name="Menu_UploadImage" xml:space="preserve">
+    <value>Upload Image</value>
+  </data>
+  <data name="Menu_Pin" xml:space="preserve">
+    <value>Pin to Screen</value>
+  </data>
+  <data name="Menu_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Menu_OpenFile" xml:space="preserve">
+    <value>Open File</value>
+  </data>
+  <data name="Menu_OpenClipboard" xml:space="preserve">
+    <value>Open From Clipboard</value>
+  </data>
+  <data name="Menu_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Menu_Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="Menu_Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="Menu_ResetCrop" xml:space="preserve">
+    <value>Reset Crop</value>
+  </data>
+  <data name="Menu_Rasterize" xml:space="preserve">
+    <value>Rasterize (Merge) Image</value>
+  </data>
+  <data name="Menu_Draw" xml:space="preserve">
+    <value>Draw</value>
+  </data>
+  <data name="Menu_Arrow" xml:space="preserve">
+    <value>Arrow</value>
+  </data>
+  <data name="Menu_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Menu_Rectangle" xml:space="preserve">
+    <value>Rectangle</value>
+  </data>
+  <data name="Menu_Freehand" xml:space="preserve">
+    <value>Freehand Drawing</value>
+  </data>
+  <data name="Menu_Magnifier" xml:space="preserve">
+    <value>Magnifier</value>
+  </data>
+  <data name="Menu_Highlighter" xml:space="preserve">
+    <value>Highlighter</value>
+  </data>
+  <data name="Menu_Blur" xml:space="preserve">
+    <value>Blur</value>
+  </data>
+  <data name="Menu_Spotlight" xml:space="preserve">
+    <value>Spotlight</value>
+  </data>
+  <data name="Menu_Counter" xml:space="preserve">
+    <value>Counter</value>
+  </data>
+  <data name="Menu_Oval" xml:space="preserve">
+    <value>Oval</value>
+  </data>
+  <data name="Menu_Line" xml:space="preserve">
+    <value>Line</value>
+  </data>
+  <data name="Menu_AddCapture" xml:space="preserve">
+    <value>Add Capture</value>
+  </data>
+  <data name="Menu_Snap" xml:space="preserve">
+    <value>Snap to Objects</value>
+  </data>
+  <data name="Menu_SnapSimilar" xml:space="preserve">
+    <value>Snap to Similar Objects</value>
+  </data>
+  <data name="Menu_Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="Menu_ZoomIn" xml:space="preserve">
+    <value>Zoom In</value>
+  </data>
+  <data name="Menu_ZoomOut" xml:space="preserve">
+    <value>Zoom Out</value>
+  </data>
+  <data name="Menu_ZoomFit" xml:space="preserve">
+    <value>Zoom To Fit</value>
+  </data>
+  <data name="Menu_Zoom100" xml:space="preserve">
+    <value>Zoom To 100%</value>
+  </data>
+  <data name="Menu_ZoomSelection" xml:space="preserve">
+    <value>Zoom To Selection</value>
+  </data>
+  <data name="Menu_SelectionTopLeft" xml:space="preserve">
+    <value>Selection Top Left</value>
+  </data>
+  <data name="Menu_SelectionBottomRight" xml:space="preserve">
+    <value>Selection Bottom Right</value>
+  </data>
+  <data name="Menu_FullScreen" xml:space="preserve">
+    <value>Enter Full Screen</value>
+  </data>
+  <!-- area: scrolling -->
+  <data name="Scrolling_IntroTitle" xml:space="preserve">
+    <value>Scrolling Capture</value>
+  </data>
+  <data name="Scrolling_IntroMessage" xml:space="preserve">
+    <value>Select the area and let Eikon scroll automatically for you. Don't touch your mouse or press any keys until it stops. If you want to interrupt scrolling, press Escape.</value>
+  </data>
+  <data name="Scrolling_MaxHeightTitle" xml:space="preserve">
+    <value>Max height reached</value>
+  </data>
+  <data name="Scrolling_MaxHeightMessage" xml:space="preserve">
+    <value>You can change scrolling height limit in the app preferences</value>
+  </data>
+  <data name="Scrolling_CantScrollTitle" xml:space="preserve">
+    <value>Eikon wasn't able to scroll</value>
+  </data>
+  <data name="Scrolling_CantScrollMessage" xml:space="preserve">
+    <value>Try again. If you're running a scroll-modificator app (MOS, Scroll Reverser, Smooze, etc), try setting Reverse Scrolling Capture direction in the app preferences (Advanced tab). Try enabling manual scroll.</value>
+  </data>
+  <data name="Scrolling_ManualStart" xml:space="preserve">
+    <value>Start Scrolling (Up or Down)</value>
+  </data>
+  <data name="Scrolling_ManualKeepDown" xml:space="preserve">
+    <value>Keep Scrolling DOWN, then hit Esc</value>
+  </data>
+  <data name="Scrolling_ManualKeepUp" xml:space="preserve">
+    <value>Keep Scrolling UP, then hit Esc</value>
+  </data>
+  <data name="Scrolling_ManualTooFast" xml:space="preserve">
+    <value>You're Going Too Fast!</value>
+  </data>
+  <data name="Scrolling_ErrorTitle" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Scrolling_ErrorMessage" xml:space="preserve">
+    <value>Try again</value>
+  </data>
+  <!-- area: pixel-tools -->
+  <data name="PixelTools_CopiedToClipboard" xml:space="preserve">
+    <value>Copied to the clipboard</value>
+  </data>
+  <data name="PixelTools_DarkestColor" xml:space="preserve">
+    <value>Darkest color: {0}</value>
+  </data>
+  <data name="PixelTools_AverageColor" xml:space="preserve">
+    <value>Average color: {0}</value>
+  </data>
+  <data name="PixelTools_ShowEditor" xml:space="preserve">
+    <value>Show Eikon</value>
+  </data>
+  <data name="PixelTools_WcagHint" xml:space="preserve">
+    <value>WCAG 2.0 Contrast Ratio</value>
+  </data>
+  <data name="PixelTools_ApcaHint" xml:space="preserve">
+    <value>APCA Contrast Ratio</value>
+  </data>
+  <data name="PixelTools_ContrastHelpTitle" xml:space="preserve">
+    <value>WCAG 2.0 Contrast Ratio: {0} 
+ APCA Contrast Ratio: {1}</value>
+  </data>
+  <data name="PixelTools_ContrastHelpMessage" xml:space="preserve">
+    <value>Contrast ratio within the selection box. W3C accessibility guidelines recommend WCAG contrast ratio of at least 4.5 for regular text and 3.0 for large text and UI elements.</value>
+  </data>
+  <!-- area: output -->
+  <data name="BackdropPanel_Title.Text" xml:space="preserve">
+    <value>Backdrop</value>
+  </data>
+  <data name="BackdropPanel_Aspect.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Aspect ratio</value>
+  </data>
+  <data name="BackdropPanel_PaddingSlider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Backdrop</value>
+  </data>
+  <data name="BackdropPanel_Shadow.Text" xml:space="preserve">
+    <value>Shadow</value>
+  </data>
+  <data name="BackdropPanel_ShadowSlider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Shadow</value>
+  </data>
+  <data name="BackdropPanel_Inset.Text" xml:space="preserve">
+    <value>Inset</value>
+  </data>
+  <data name="BackdropPanel_Recenter.Content" xml:space="preserve">
+    <value>Recenter</value>
+  </data>
+  <data name="BackdropPanel_InsetSlider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Inset</value>
+  </data>
+  <data name="BackdropPanel_OuterRadius.Text" xml:space="preserve">
+    <value>Outer Radius</value>
+  </data>
+  <data name="BackdropPanel_OuterRadiusSlider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Outer Radius</value>
+  </data>
+  <data name="BackdropPanel_InnerRadius.Text" xml:space="preserve">
+    <value>Inner Radius</value>
+  </data>
+  <data name="BackdropPanel_InnerRadiusSlider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Inner Radius</value>
+  </data>
+  <data name="BackdropPanel_Solid.Content" xml:space="preserve">
+    <value>Solid</value>
+  </data>
+  <data name="BackdropPanel_Colormix.Content" xml:space="preserve">
+    <value>Colormix</value>
+  </data>
+  <data name="BackdropPanel_Image.Content" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="BackdropPanel_CustomGradOk.Content" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="BackdropPanel_GradientType.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Gradient type</value>
+  </data>
+  <data name="BackdropPanel_MeshGradient.Content" xml:space="preserve">
+    <value>Mesh gradient</value>
+  </data>
+  <data name="BackdropPanel_VerticalGradient.Content" xml:space="preserve">
+    <value>Vertical gradient</value>
+  </data>
+  <data name="BackdropPanel_DiagonalGradient.Content" xml:space="preserve">
+    <value>Diagonal gradient</value>
+  </data>
+  <data name="BackdropPanel_RadialGradient.Content" xml:space="preserve">
+    <value>Radial gradient</value>
+  </data>
+  <data name="BackdropPanel_Reverse.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Reverse</value>
+  </data>
+  <data name="BackdropPanel_Randomize.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Randomize</value>
+  </data>
+  <data name="BackdropPanel_ImageBlur.Text" xml:space="preserve">
+    <value>Image Blur</value>
+  </data>
+  <data name="BackdropPanel_BlurSlider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Image Blur</value>
+  </data>
+  <data name="BackdropPanel_Remove.Content" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="BackdropPanel_Ok.Content" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="BackdropPanel_Forget" xml:space="preserve">
+    <value>Forget</value>
+  </data>
+  <data name="BackdropPanel_AddImage" xml:space="preserve">
+    <value>Add image</value>
+  </data>
+  <data name="Output_TooLargeTitle" xml:space="preserve">
+    <value>The image is too large</value>
+  </data>
+  <data name="Output_TooLargeMessage" xml:space="preserve">
+    <value>Crop or resize to 15 megapixel first</value>
+  </data>
+  <data name="Output_HasBackdropTitle" xml:space="preserve">
+    <value>Window already has backdrop</value>
+  </data>
+  <data name="Output_HasBackdropMessage" xml:space="preserve">
+    <value>Change window capture setting to "Transparent", and take another screenshot.</value>
+  </data>
+  <data name="Output_HasBackdropButton" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Output_SavedTitle" xml:space="preserve">
+    <value>Click to open in File Explorer</value>
+  </data>
+  <data name="Output_SavedButton" xml:space="preserve">
+    <value>File Explorer</value>
+  </data>
+  <data name="Output_GifShowButton" xml:space="preserve">
+    <value>Show in Explorer</value>
+  </data>
+  <data name="Output_SaveFailedTitle" xml:space="preserve">
+    <value>Can't save file</value>
+  </data>
+  <data name="Output_SaveFailedMessage" xml:space="preserve">
+    <value>Something's wronger</value>
+  </data>
+  <data name="Output_GifOverlapTitle" xml:space="preserve">
+    <value>The images should overlap</value>
+  </data>
+  <data name="Output_GifOverlapMessage" xml:space="preserve">
+    <value>To create GIF with two frames, position overlay image on top of the screenshot.</value>
+  </data>
+  <data name="Output_GifHelpTitle" xml:space="preserve">
+    <value>"Before/After" Gif generation</value>
+  </data>
+  <data name="Output_GifHelpMessage" xml:space="preserve">
+    <value>This feature creates an animation of two alternating frames: the image overlay, and the screenshot under the overlay. 
+
+For better result, align overlay and the background using the transparency mode.</value>
+  </data>
+  <data name="Output_SaveAsTitle" xml:space="preserve">
+    <value>Save As</value>
+  </data>
+  <data name="Output_SaveAsPrompt" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <!-- area: annotations -->
+  <data name="ImageGif_OverlapTitle" xml:space="preserve">
+    <value>The images should overlap</value>
+  </data>
+  <data name="ImageGif_OverlapMessage" xml:space="preserve">
+    <value>To create GIF with two frames, position overlay image on top of the screenshot.</value>
+  </data>
+  <!-- area: capture -->
+  <data name="Capture_NoWindowsTitle" xml:space="preserve">
+    <value>Can't take a screenshot</value>
+    <comment>Active window capture finds no window</comment>
+  </data>
+  <data name="Capture_NoWindowsMessage" xml:space="preserve">
+    <value>No windows are present, try taking a fullscreen screenshot instead</value>
+  </data>
+  <data name="Capture_NoAreaTitle" xml:space="preserve">
+    <value>No area to repeat</value>
+    <comment></comment>
+  </data>
+  <data name="Capture_NoAreaMessage" xml:space="preserve">
+    <value>Repeat Area Capture takes a screenshot of the previously captured area. You need to perform the area capture first.</value>
+  </data>
+  <data name="Capture_AreaCardTitle" xml:space="preserve">
+    <value>Where should captures go?</value>
+    <comment>First area capture</comment>
+  </data>
+  <data name="Capture_AreaCardSubtitle" xml:space="preserve">
+    <value>We'll remember. You can change it in Settings later.</value>
+  </data>
+  <data name="Capture_AreaCardPreview" xml:space="preserve">
+    <value>Small preview</value>
+  </data>
+  <data name="Capture_AreaCardEditor" xml:space="preserve">
+    <value>Open the editor</value>
+  </data>
+  <data name="Capture_AreaCardContinue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Capture_ClipboardFailedTitle" xml:space="preserve">
+    <value>Can't load image from the clipboard</value>
+    <comment></comment>
+  </data>
+  <data name="Capture_ClipboardFailedMessage" xml:space="preserve">
+    <value>Make sure your clipboard contains an image and try again</value>
+  </data>
+  <data name="Capture_OpenImageTitle" xml:space="preserve">
+    <value>Open Image</value>
+    <comment>File dialog title</comment>
+  </data>
+  <data name="Capture_OpenImageFilter" xml:space="preserve">
+    <value>Image Files</value>
+    <comment>File type filter of the Open Image dialog</comment>
+  </data>
+  <data name="Capture_NoScreenshotTitle" xml:space="preserve">
+    <value>No Screenshot</value>
+    <comment>Add Capture without an image</comment>
+  </data>
+  <data name="Capture_NoScreenshotMessage" xml:space="preserve">
+    <value>Take a screenshot before adding a capture to it</value>
+  </data>
+  <data name="Capture_OcrNoAreaTitle" xml:space="preserve">
+    <value>You didn't select the area</value>
+    <comment>Instant OCR: the selection was cancelled</comment>
+  </data>
+  <data name="Capture_OcrNoAreaMessage" xml:space="preserve">
+    <value>Activate the feature once again, and select the area containing the text or QR code.</value>
+  </data>
+  <!-- area: preview -->
+  <data name="Preview_EditTooltip" xml:space="preserve">
+    <value>Edit (Enter)</value>
+  </data>
+  <data name="Preview_CopyTooltip" xml:space="preserve">
+    <value>Copy (Ctrl+C)</value>
+  </data>
+  <data name="Preview_SaveTooltip" xml:space="preserve">
+    <value>Save (Ctrl+S)</value>
+  </data>
+  <data name="Preview_UploadTooltip" xml:space="preserve">
+    <value>Upload (Ctrl+E)</value>
+  </data>
+  <data name="Preview_OcrTooltip" xml:space="preserve">
+    <value>OCR or QR (Ctrl+O)</value>
+  </data>
+  <data name="Preview_PinTooltip" xml:space="preserve">
+    <value>Pin (Ctrl+P)</value>
+  </data>
+  <data name="Pin_MenuEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Pin_MenuCopy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Pin_Menu50" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="Pin_Menu100" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="Pin_Menu200" xml:space="preserve">
+    <value>200%</value>
+  </data>
+  <data name="Pin_MenuSemiTransparent" xml:space="preserve">
+    <value>Semi-transparent</value>
+  </data>
+  <data name="Pin_MenuClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Ocr_AreaTooLargeTitle" xml:space="preserve">
+    <value>Area is too large</value>
+  </data>
+  <data name="Ocr_AreaTooLargeMessage" xml:space="preserve">
+    <value>Select a smaller area and try again</value>
+  </data>
+  <data name="Ocr_StillRunningTitle" xml:space="preserve">
+    <value>OCR is still running</value>
+  </data>
+  <data name="Ocr_StillRunningMessage" xml:space="preserve">
+    <value>Please wait a moment and try again</value>
+  </data>
+  <data name="Ocr_NotReadyTitle" xml:space="preserve">
+    <value>OCR is not ready yet</value>
+  </data>
+  <data name="Ocr_NotReadyMessage" xml:space="preserve">
+    <value>The first run after a system update or language change can take a minute or two. Please try again later.</value>
+  </data>
+  <data name="Ocr_NoTextTitle" xml:space="preserve">
+    <value>No text detected</value>
+  </data>
+  <data name="Ocr_NoTextMessage" xml:space="preserve">
+    <value>Selected area seems to be empty</value>
+  </data>
+  <data name="Ocr_CopiedTitle" xml:space="preserve">
+    <value>Text copied</value>
+    <comment>Short title (used only by the OCR notification)</comment>
+  </data>
+  <data name="Ocr_CopiedNoBreaksTitle" xml:space="preserve">
+    <value>Text without line breaks copied</value>
+  </data>
+  <data name="Ocr_CutBreaks" xml:space="preserve">
+    <value>Cut Breaks</value>
+  </data>
+  <data name="Ocr_AddBreaks" xml:space="preserve">
+    <value>Add Breaks</value>
+  </data>
+  <data name="Upload_NoImageTitle" xml:space="preserve">
+    <value>No Image to Upload</value>
+  </data>
+  <data name="Upload_NoImageMessage" xml:space="preserve">
+    <value>Take a screenshot first</value>
+  </data>
+  <data name="Upload_OffTitle" xml:space="preserve">
+    <value>Image Upload is Off</value>
+  </data>
+  <data name="Upload_OffMessage" xml:space="preserve">
+    <value>Enable Image Upload in app settings first</value>
+  </data>
+  <data name="Upload_MissingAccessTitle" xml:space="preserve">
+    <value>S3 Access Key is Missing</value>
+  </data>
+  <data name="Upload_MissingAccessMessage" xml:space="preserve">
+    <value>Enter S3 Access Key in the settings</value>
+  </data>
+  <data name="Upload_MissingSecretTitle" xml:space="preserve">
+    <value>S3 Secret Key is Missing</value>
+  </data>
+  <data name="Upload_MissingSecretMessage" xml:space="preserve">
+    <value>Enter S3 Secret Key in the settings</value>
+  </data>
+  <data name="Upload_MissingRegionTitle" xml:space="preserve">
+    <value>Region or Endpoint is Needed</value>
+  </data>
+  <data name="Upload_MissingRegionMessage" xml:space="preserve">
+    <value>Enter S3 Region or Endpoint in the settings</value>
+  </data>
+  <data name="Upload_MissingBucketTitle" xml:space="preserve">
+    <value>S3 Bucket is Missing</value>
+  </data>
+  <data name="Upload_MissingBucketMessage" xml:space="preserve">
+    <value>Enter S3 Bucket in the settings</value>
+  </data>
+  <data name="Upload_RegionRequired" xml:space="preserve">
+    <value>Region is required when no endpoint is provided.</value>
+  </data>
+  <data name="Upload_FailedTitle" xml:space="preserve">
+    <value>Upload Failed</value>
+  </data>
+  <data name="Upload_CompleteTitle" xml:space="preserve">
+    <value>Upload Complete</value>
+  </data>
+  <data name="Upload_UrlCopiedTitle" xml:space="preserve">
+    <value>URL copied to the clipboard</value>
+  </data>
+  <data name="Upload_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Upload_Uploaded" xml:space="preserve">
+    <value>File uploaded successfully</value>
+  </data>
+  <data name="Upload_TooLarge" xml:space="preserve">
+    <value>Image is too large</value>
+  </data>
+  <data name="Upload_NoImageData" xml:space="preserve">
+    <value>Can't get image data</value>
+  </data>
+  <data name="Upload_NoResponse" xml:space="preserve">
+    <value>No HTTP response received</value>
+  </data>
+  <data name="Upload_SignFailed" xml:space="preserve">
+    <value>Failed to sign the request</value>
+  </data>
+  <data name="Upload_PresignFailed" xml:space="preserve">
+    <value>URL presigning failed</value>
+  </data>
+  <data name="Upload_NoPublicUrl" xml:space="preserve">
+    <value>Failed to generate URL, no public bucket URL is provided</value>
+  </data>
+  <data name="Upload_FailedStatus" xml:space="preserve">
+    <value>Upload failed with status: {0}</value>
+  </data>
+  <data name="Upload_DeleteFailedStatus" xml:space="preserve">
+    <value>Delete failed with status: {0}</value>
+  </data>
+  <data name="Upload_Error400" xml:space="preserve">
+    <value>Error 400. Try checking the Access Key or Endpoint.</value>
+  </data>
+  <data name="Upload_Error401" xml:space="preserve">
+    <value>Credentials rejected (401). Not common for S3, check proxy/gateway.</value>
+  </data>
+  <data name="Upload_Error403" xml:space="preserve">
+    <value>Access Denied (403). Are Secret Key and Bucket correct? Try again.</value>
+  </data>
+  <data name="Upload_Error404" xml:space="preserve">
+    <value>Not Found (404). Object key or bucket name/path is wrong.</value>
+  </data>
+  <data name="Upload_Error409" xml:space="preserve">
+    <value>Conflict (409). Bucket state or object versioning conflict.</value>
+  </data>
+  <data name="Upload_Error411" xml:space="preserve">
+    <value>Length Required (411). Missing or invalid Content-Length.</value>
+  </data>
+  <data name="Upload_Error412" xml:space="preserve">
+    <value>Precondition Failed (412). ETag/If-* headers didn’t match.</value>
+  </data>
+  <data name="Upload_Error429" xml:space="preserve">
+    <value>Too Many Requests (429). You’re being throttled; back off and retry.</value>
+  </data>
+  <data name="Upload_Error500" xml:space="preserve">
+    <value>Server Error (500). Try again; could be provider-side.</value>
+  </data>
+  <data name="Upload_Error503" xml:space="preserve">
+    <value>Service Unavailable (503). Throttled or server busy; retry with backoff.</value>
+  </data>
+  <data name="Upload_Error301" xml:space="preserve">
+    <value>Error 301. Wrong Region or Endpoint for this bucket.</value>
+  </data>
+  <data name="Upload_Error307" xml:space="preserve">
+    <value>Error 307. Bucket is in a different Region; update Region/Endpoint.</value>
+  </data>
+  <data name="Upload_ErrorTimedOut" xml:space="preserve">
+    <value>Request timed out (-1001).</value>
+  </data>
+  <data name="Upload_ErrorHostNotFound" xml:space="preserve">
+    <value>Cannot find host (-1003). Endpoint or Region likely wrong.</value>
+  </data>
+  <data name="Upload_ErrorCannotConnect" xml:space="preserve">
+    <value>Cannot connect to host (-1004). Endpoint may be unreachable or blocked.</value>
+  </data>
+  <data name="Upload_ErrorConnectionLost" xml:space="preserve">
+    <value>Network connection lost (-1005). Try again.</value>
+  </data>
+  <data name="Upload_ErrorOffline" xml:space="preserve">
+    <value>No internet connection (-1009).</value>
+  </data>
+  <data name="Upload_ErrorSecureFailed" xml:space="preserve">
+    <value>Secure connection failed (-1200). TLS/SSL issue (cert, TLS version, or MITM).</value>
+  </data>
+  <data name="Upload_ErrorCertDate" xml:space="preserve">
+    <value>Secure connection: certificate expired/not yet valid (-1201). Check system date/time.</value>
+  </data>
+  <data name="Upload_ErrorCertUntrusted" xml:space="preserve">
+    <value>Secure connection: certificate not trusted (-1202). System clock may be wrong.</value>
+  </data>
+  <data name="Upload_TestGoodToGo" xml:space="preserve">
+    <value>Good to go!</value>
+  </data>
+  <data name="Upload_TestFailed" xml:space="preserve">
+    <value>Test Failed</value>
+  </data>
+  <data name="Upload_TestFailedTitle" xml:space="preserve">
+    <value>S3 Connection Test Failed</value>
+  </data>
+  <data name="Notification_NoSystemPermission" xml:space="preserve">
+    <value>P.S. Eikon doesn't have permission to show System Notifications</value>
+  </data>
+  <!-- area: settings -->
+  <data name="Prefs_NavGeneral.Content" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Prefs_NavHotkeys.Content" xml:space="preserve">
+    <value>Hotkeys</value>
+  </data>
+  <data name="Prefs_NavUploading.Content" xml:space="preserve">
+    <value>Uploading</value>
+  </data>
+  <data name="Prefs_NavAdvanced.Content" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="Prefs_GeneralHeader.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Prefs_HotkeysHeader.Text" xml:space="preserve">
+    <value>Hotkeys</value>
+  </data>
+  <data name="Prefs_UploadingHeader.Text" xml:space="preserve">
+    <value>Uploading</value>
+  </data>
+  <data name="Prefs_AdvancedHeader.Text" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="Prefs_Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Prefs_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Prefs_WindowBackground.Text" xml:space="preserve">
+    <value>Window Screenshot Background</value>
+  </data>
+  <data name="Prefs_HelpWindowBackground" xml:space="preserve">
+    <value>Setting applies to the shadow of the window captured via Active Window Capture or Any Window Capture. It does not affect Area Capture or Fullscreen screenshots.</value>
+  </data>
+  <data name="Prefs_BgWallpaper" xml:space="preserve">
+    <value>Wallpaper</value>
+  </data>
+  <data name="Prefs_BgTransparent" xml:space="preserve">
+    <value>Transparent</value>
+  </data>
+  <data name="Prefs_BgSolid" xml:space="preserve">
+    <value>Solid Color</value>
+  </data>
+  <data name="Prefs_BgTrimmed" xml:space="preserve">
+    <value>Trim shadow</value>
+  </data>
+  <data name="Prefs_SolidColorField" xml:space="preserve">
+    <value>Solid color</value>
+  </data>
+  <data name="Prefs_ScreenshotsFolder.Header" xml:space="preserve">
+    <value>Screenshots folder</value>
+  </data>
+  <data name="Prefs_SelectFolder" xml:space="preserve">
+    <value>Select Folder</value>
+  </data>
+  <data name="Prefs_ChooseFolderTitle" xml:space="preserve">
+    <value>Choose default folder</value>
+  </data>
+  <data name="Prefs_IndexingTitle" xml:space="preserve">
+    <value>Can't change folder while indexing</value>
+  </data>
+  <data name="Prefs_IndexingMessage" xml:space="preserve">
+    <value>Open Eikon library and stop indexing process before changing the default folder.</value>
+  </data>
+  <data name="Prefs_SaveFormat.Header" xml:space="preserve">
+    <value>Save format</value>
+  </data>
+  <data name="Prefs_SaveFormatPng.Content" xml:space="preserve">
+    <value>PNG</value>
+  </data>
+  <data name="Prefs_SaveFormatAuto.Content" xml:space="preserve">
+    <value>Auto (PNG/JPEG)</value>
+  </data>
+  <data name="Prefs_HelpSaveFormat" xml:space="preserve">
+    <value>Automatic mode optimizes size and quality based on the image content. If the screenshot has gradients, noise or photographs, it'll be saved as Jpeg. If the screenshot contains text and flat colors, it will be saved as PNG.</value>
+  </data>
+  <data name="Prefs_Downscale.Header" xml:space="preserve">
+    <value>Resize high-DPI screenshots</value>
+  </data>
+  <data name="Prefs_Downscale.Description" xml:space="preserve">
+    <value>Downscale to 1× when saving</value>
+  </data>
+  <data name="Prefs_ScrollingMax.Header" xml:space="preserve">
+    <value>Scrolling screenshot max height</value>
+  </data>
+  <data name="Prefs_Px.Text" xml:space="preserve">
+    <value>px</value>
+  </data>
+  <data name="Prefs_ScrollingSpeed.Header" xml:space="preserve">
+    <value>Scrolling screenshot speed</value>
+  </data>
+  <data name="Prefs_Autostart.Header" xml:space="preserve">
+    <value>Autostart</value>
+  </data>
+  <data name="Prefs_Autostart.Description" xml:space="preserve">
+    <value>Launch at startup</value>
+  </data>
+  <data name="Prefs_AfterScreenshot.Header" xml:space="preserve">
+    <value>After screenshot</value>
+  </data>
+  <data name="Prefs_AfterShow.Content" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Prefs_AfterCopy.Content" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Prefs_AfterSave.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Prefs_AfterAreaCrop.Header" xml:space="preserve">
+    <value>After Area Crop, show</value>
+  </data>
+  <data name="Prefs_AreaThumbnail.Content" xml:space="preserve">
+    <value>Thumbnail</value>
+  </data>
+  <data name="Prefs_AreaEditor.Content" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Prefs_ThumbnailClosing.Header" xml:space="preserve">
+    <value>Hide preview thumbnail</value>
+  </data>
+  <data name="Prefs_ClosingAuto.Content" xml:space="preserve">
+    <value>Automatically (click outside)</value>
+  </data>
+  <data name="Prefs_ClosingManual.Content" xml:space="preserve">
+    <value>Manually (close button)</value>
+  </data>
+  <data name="Prefs_HowToReassign.Text" xml:space="preserve">
+    <value>How to reassign default shortcuts</value>
+  </data>
+  <data name="Prefs_ReassignStep1.Text" xml:space="preserve">
+    <value>1. Go to Windows Settings → Accessibility → Keyboard</value>
+  </data>
+  <data name="Prefs_OpenWindowsSettings.Content" xml:space="preserve">
+    <value>Open Windows Settings</value>
+  </data>
+  <data name="Prefs_ReassignStep2.Text" xml:space="preserve">
+    <value>2. Turn off "Use the Print screen key to open screen capture"</value>
+  </data>
+  <data name="Prefs_ReassignStep3.Text" xml:space="preserve">
+    <value>3. Put Print Screen into Fullscreen or Area fields below </value>
+  </data>
+  <data name="Prefs_HotkeyFullscreen.Header" xml:space="preserve">
+    <value>Fullscreen screenshot</value>
+  </data>
+  <data name="Prefs_HotkeyArea.Header" xml:space="preserve">
+    <value>Area screenshot</value>
+  </data>
+  <data name="Prefs_HotkeyRepeatArea.Header" xml:space="preserve">
+    <value>Repeat area screenshot</value>
+  </data>
+  <data name="Prefs_HotkeyAnyWindow.Header" xml:space="preserve">
+    <value>Any window screenshot</value>
+  </data>
+  <data name="Prefs_HotkeyWindow.Header" xml:space="preserve">
+    <value>Active window screenshot</value>
+  </data>
+  <data name="Prefs_HotkeyScrolling.Header" xml:space="preserve">
+    <value>Scrolling screenshot</value>
+  </data>
+  <data name="Prefs_HotkeyReopen.Header" xml:space="preserve">
+    <value>Show Eikon</value>
+  </data>
+  <data name="Prefs_HotkeyOcr.Header" xml:space="preserve">
+    <value>Instant Text/QR Recognition</value>
+  </data>
+  <data name="Prefs_HotkeyClipboard.Header" xml:space="preserve">
+    <value>Load from clipboard</value>
+  </data>
+  <data name="Prefs_HotkeyLibrary.Header" xml:space="preserve">
+    <value>Screenshot Library</value>
+  </data>
+  <data name="Prefs_HotkeyTaken" xml:space="preserve">
+    <value>This keyboard shortcut cannot be used as it's already a system-wide keyboard shortcut.</value>
+  </data>
+  <data name="Prefs_UploadMode.Header" xml:space="preserve">
+    <value>Image Uploading &amp; Link Sharing</value>
+  </data>
+  <data name="Prefs_UploadNone.Content" xml:space="preserve">
+    <value>Disable Uploading</value>
+  </data>
+  <data name="Prefs_UploadS3.Content" xml:space="preserve">
+    <value>S3 (Amazon, Cloudflare, Backblaze, etc.)</value>
+  </data>
+  <data name="Prefs_UploadDisabled.Text" xml:space="preserve">
+    <value>Eikon allows you to upload an image online and generate a shareable link. Use the dropdown above to enable this functionality.</value>
+  </data>
+  <data name="Prefs_S3Access.Header" xml:space="preserve">
+    <value>Access key</value>
+  </data>
+  <data name="Prefs_S3Secret.Header" xml:space="preserve">
+    <value>Secret key</value>
+  </data>
+  <data name="Prefs_S3Bucket.Header" xml:space="preserve">
+    <value>Bucket</value>
+  </data>
+  <data name="Prefs_S3Service.Header" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="Prefs_S3Amazon.Content" xml:space="preserve">
+    <value>Amazon (AWS)</value>
+  </data>
+  <data name="Prefs_S3Other.Content" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Prefs_S3Region.Header" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="Prefs_S3Endpoint.Header" xml:space="preserve">
+    <value>Endpoint</value>
+  </data>
+  <data name="Prefs_S3Prefix.Header" xml:space="preserve">
+    <value>Key prefix (path)</value>
+  </data>
+  <data name="Prefs_S3PrefixBox.PlaceholderText" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="Prefs_S3Test.Content" xml:space="preserve">
+    <value>Test Connection</value>
+  </data>
+  <data name="Prefs_S3Checking" xml:space="preserve">
+    <value>Checking connection…</value>
+  </data>
+  <data name="Prefs_S3Good" xml:space="preserve">
+    <value>Good to go!</value>
+  </data>
+  <data name="Prefs_S3Failed" xml:space="preserve">
+    <value>Test Failed</value>
+  </data>
+  <data name="Prefs_S3FailedTitle" xml:space="preserve">
+    <value>S3 Connection Test Failed</value>
+  </data>
+  <data name="Prefs_S3UppercaseTitle" xml:space="preserve">
+    <value>Uppercase Bucket Name</value>
+  </data>
+  <data name="Prefs_S3UppercaseMessage" xml:space="preserve">
+    <value>Most providers do not support bucket names with uppercase characters</value>
+  </data>
+  <data name="Prefs_S3RegionRequired" xml:space="preserve">
+    <value>Region is required when no endpoint is provided.</value>
+  </data>
+  <data name="Prefs_S3Sharing.Header" xml:space="preserve">
+    <value>Link sharing</value>
+  </data>
+  <data name="Prefs_SharingNone.Content" xml:space="preserve">
+    <value>Don't Generate URL</value>
+  </data>
+  <data name="Prefs_SharingPresign.Content" xml:space="preserve">
+    <value>Generate Presigned URL</value>
+  </data>
+  <data name="Prefs_SharingPublic.Content" xml:space="preserve">
+    <value>Generate Public Bucket URL</value>
+  </data>
+  <data name="Prefs_S3Expiration.Header" xml:space="preserve">
+    <value>Link Expiration</value>
+  </data>
+  <data name="Prefs_S3Expiration.Description" xml:space="preserve">
+    <value>Presigned URLs are only valid for up to 7 days</value>
+  </data>
+  <data name="Prefs_S3PublicUrl.Header" xml:space="preserve">
+    <value>Public bucket URL</value>
+  </data>
+  <data name="Prefs_S3PublicUrl.Description" xml:space="preserve">
+    <value>Will only work if your bucket is public</value>
+  </data>
+  <data name="Upload_Expiration1Hour" xml:space="preserve">
+    <value>1 hour</value>
+  </data>
+  <data name="Upload_Expiration6Hours" xml:space="preserve">
+    <value>6 hrs</value>
+  </data>
+  <data name="Upload_Expiration12Hours" xml:space="preserve">
+    <value>12 hrs</value>
+  </data>
+  <data name="Upload_Expiration24Hours" xml:space="preserve">
+    <value>24 hrs</value>
+  </data>
+  <data name="Upload_Expiration2Days" xml:space="preserve">
+    <value>2 days</value>
+  </data>
+  <data name="Upload_Expiration4Days" xml:space="preserve">
+    <value>4 days</value>
+  </data>
+  <data name="Upload_Expiration7Days" xml:space="preserve">
+    <value>7 days</value>
+  </data>
+  <data name="Prefs_OcrLanguage.Header" xml:space="preserve">
+    <value>Primary OCR language</value>
+  </data>
+  <data name="Prefs_OcrBreaks.Header" xml:space="preserve">
+    <value>OCR line breaks</value>
+  </data>
+  <data name="Prefs_OcrBreaks.Description" xml:space="preserve">
+    <value>Remove line breaks</value>
+  </data>
+  <data name="Prefs_TrayIcon.Header" xml:space="preserve">
+    <value>Tray icon</value>
+  </data>
+  <data name="Prefs_TrayIcon.Description" xml:space="preserve">
+    <value>Hide tray icon</value>
+  </data>
+  <data name="Prefs_Splash.Header" xml:space="preserve">
+    <value>Splash window</value>
+  </data>
+  <data name="Prefs_Splash.Description" xml:space="preserve">
+    <value>Don't show splash</value>
+  </data>
+  <data name="Prefs_HelpRestart" xml:space="preserve">
+    <value>You may need to restart the app for the setting to take effect.</value>
+  </data>
+  <data name="Prefs_MainWindow.Header" xml:space="preserve">
+    <value>Main window</value>
+  </data>
+  <data name="Prefs_MainWindow.Description" xml:space="preserve">
+    <value>Always on top</value>
+  </data>
+  <data name="Prefs_ZoomWheel.Header" xml:space="preserve">
+    <value>Zoom with mouse wheel</value>
+  </data>
+  <data name="Prefs_ZoomWheel.Description" xml:space="preserve">
+    <value>Reverse scroll direction</value>
+  </data>
+  <data name="Prefs_ScrollingCapture.Header" xml:space="preserve">
+    <value>Scrolling capture</value>
+  </data>
+  <data name="Prefs_ScrollingCapture.Description" xml:space="preserve">
+    <value>Reverse scroll direction</value>
+  </data>
+  <data name="Prefs_HelpReverseAutoscroll" xml:space="preserve">
+    <value>If you have a third-party app that reverses Windows scroll direction, this setting may help to make Scrolling Capture work.</value>
+  </data>
+  <data name="Prefs_DefaultZoom.Header" xml:space="preserve">
+    <value>Default zoom level</value>
+  </data>
+  <data name="Prefs_DefaultZoom.Description" xml:space="preserve">
+    <value>Prefer 100%</value>
+  </data>
+  <data name="Prefs_HelpLargerWindow" xml:space="preserve">
+    <value>When selected, Area Capture will open the editor at 100% zoom when possible, and Fullscreen Capture will open the editor at 80% zoom.</value>
+  </data>
+  <data name="Prefs_EscAction.Header" xml:space="preserve">
+    <value>Action when hiding with Esc</value>
+  </data>
+  <data name="Prefs_EscCopy.Content" xml:space="preserve">
+    <value>Copy Image</value>
+  </data>
+  <data name="Prefs_EscSave.Content" xml:space="preserve">
+    <value>Save Image</value>
+  </data>
+  <data name="Prefs_Confirmation.Header" xml:space="preserve">
+    <value>Confirmation style</value>
+  </data>
+  <data name="Prefs_NotifyCustom.Content" xml:space="preserve">
+    <value>Custom Notification</value>
+  </data>
+  <data name="Prefs_NotifySystem.Content" xml:space="preserve">
+    <value>System Notification</value>
+  </data>
+  <data name="Prefs_NotifyNone.Content" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Prefs_Deeplinks.Header" xml:space="preserve">
+    <value>URL Scheme API</value>
+  </data>
+  <data name="Prefs_Deeplinks.Description" xml:space="preserve">
+    <value>Enable deep links</value>
+  </data>
+  <data name="Library_WindowTitle" xml:space="preserve">
+    <value>Eikon Library</value>
+  </data>
+  <data name="Library_ToolShow" xml:space="preserve">
+    <value>Show Eikon</value>
+  </data>
+  <data name="Library_ToolFullscreen" xml:space="preserve">
+    <value>Fullscreen Screenshot</value>
+  </data>
+  <data name="Library_ToolArea" xml:space="preserve">
+    <value>Area Capture</value>
+  </data>
+  <data name="Library_ToolRepeat" xml:space="preserve">
+    <value>Repeat Area Capture</value>
+  </data>
+  <data name="Library_ToolWindow" xml:space="preserve">
+    <value>Window Capture</value>
+  </data>
+  <data name="Library_ToolScrolling" xml:space="preserve">
+    <value>Scrolling Capture</value>
+  </data>
+  <data name="Library_ToolScrollingUp" xml:space="preserve">
+    <value>Scrolling Capture (Up)</value>
+  </data>
+  <data name="Library_ToolOcr" xml:space="preserve">
+    <value>Text/QR Recognition</value>
+  </data>
+  <data name="Library_ToolClipboard" xml:space="preserve">
+    <value>Load From Clipboard </value>
+  </data>
+  <data name="Library_ToolMore" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="Library_Search.PlaceholderText" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Library_Search.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Library_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Library_Layout" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="Library_LayoutList" xml:space="preserve">
+    <value>File List</value>
+  </data>
+  <data name="Library_LayoutSmall" xml:space="preserve">
+    <value>Small Tiles</value>
+  </data>
+  <data name="Library_LayoutMedium" xml:space="preserve">
+    <value>Medium Tiles</value>
+  </data>
+  <data name="Library_LayoutLarge" xml:space="preserve">
+    <value>Large Tiles</value>
+  </data>
+  <data name="Library_Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Library_CountOne" xml:space="preserve">
+    <value>{0} image</value>
+  </data>
+  <data name="Library_CountMany" xml:space="preserve">
+    <value>{0} images</value>
+  </data>
+  <data name="Library_Found" xml:space="preserve">
+    <value>{0} images found</value>
+  </data>
+  <data name="Library_Selected" xml:space="preserve">
+    <value>{0} images selected</value>
+  </data>
+  <data name="Library_MenuQuickLook" xml:space="preserve">
+    <value>Quick Look</value>
+  </data>
+  <data name="Library_MenuEdit" xml:space="preserve">
+    <value>Edit in Eikon</value>
+  </data>
+  <data name="Library_MenuOpen" xml:space="preserve">
+    <value>Open in Default App</value>
+  </data>
+  <data name="Library_MenuExplorer" xml:space="preserve">
+    <value>Show in File Explorer</value>
+  </data>
+  <data name="Library_MenuCopy" xml:space="preserve">
+    <value>Copy as Image</value>
+  </data>
+  <data name="Library_MenuCopyFile" xml:space="preserve">
+    <value>Copy as File</value>
+  </data>
+  <data name="Library_MenuCopyFiles" xml:space="preserve">
+    <value>Copy as Files ({0})</value>
+  </data>
+  <data name="Library_MenuPin" xml:space="preserve">
+    <value>Pin</value>
+  </data>
+  <data name="Library_MenuDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Library_MenuDeleteCount" xml:space="preserve">
+    <value>Delete ({0})</value>
+  </data>
+  <data name="Library_GoneTitle" xml:space="preserve">
+    <value>File doesn't exist</value>
+  </data>
+  <data name="Library_GoneMessage" xml:space="preserve">
+    <value>File {0} doesn't seem to exist anymore</value>
+  </data>
+  <data name="Library_CantOpenTitle" xml:space="preserve">
+    <value>Can't open file</value>
+  </data>
+  <data name="Library_CantOpenMessage" xml:space="preserve">
+    <value>Can't open {0}, not even sure why.</value>
+  </data>
+  <data name="Library_CopiedTitle" xml:space="preserve">
+    <value>Copied to the clipboard</value>
+  </data>
+  <data name="Library_CopiedMessage" xml:space="preserve">
+    <value>As an image</value>
+  </data>
+  <data name="Library_EmptyTitle" xml:space="preserve">
+    <value>No screenshots yet</value>
+    <comment>Candy empty state: the display-weight title over the message</comment>
+  </data>
+  <data name="Library_EmptyMessage" xml:space="preserve">
+    <value>Screenshots you save with Eikon will appear here.</value>
+  </data>
+  <data name="Library_NoFolderTitle" xml:space="preserve">
+    <value>Pick a home for your shots</value>
+  </data>
+  <data name="Library_NoFolderMessage" xml:space="preserve">
+    <value>Everything you save with Eikon shows up here.</value>
+  </data>
+  <data name="Library_PreexistingTitle" xml:space="preserve">
+    <value>Screenshots found</value>
+  </data>
+  <data name="Library_IndexingTitle" xml:space="preserve">
+    <value>Building your library</value>
+  </data>
+  <data name="Library_PreexistingMessage" xml:space="preserve">
+    <value>{0} pre-existing screenshots found.
+Do you want to add them to the library?</value>
+  </data>
+  <data name="Library_AddScreenshots" xml:space="preserve">
+    <value>Add Screenshots</value>
+  </data>
+  <data name="Library_NothingFound" xml:space="preserve">
+    <value>Nothing found</value>
+  </data>
+  <data name="Library_NothingFoundMessage" xml:space="preserve">
+    <value>Try another word from the screenshot.</value>
+  </data>
+  <data name="Library_NewImagesMessage" xml:space="preserve">
+    <value>{0} new images found. Do you want
+to add them to the library?</value>
+  </data>
+  <data name="Library_AddFiles" xml:space="preserve">
+    <value>Add Files</value>
+  </data>
+  <data name="Library_Preparing" xml:space="preserve">
+    <value>Preparing to index</value>
+  </data>
+  <data name="Library_PreparingMessage" xml:space="preserve">
+    <value>Preparing to index your files...</value>
+  </data>
+  <data name="Library_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Library_Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Library_Indexing" xml:space="preserve">
+    <value>Indexing {0} of {1}</value>
+  </data>
+  <data name="Library_TimeLeft" xml:space="preserve">
+    <value>{0} left</value>
+  </data>
+  <data name="Library_Finishing" xml:space="preserve">
+    <value>Finishing indexing</value>
+  </data>
+</root>

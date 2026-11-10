@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="Eikon.LibraryWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Library popover:
+         a vertical stack of the toolbar (48), progress (56), search (43), message (228), spinner (80),
+         gallery (flexible) and status bar (36) holders. -->
+    <Grid x:Name="Host">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.ThemeDictionaries>
+                    <!-- The holders' colours in Eikon's Candy look (Themes/Candy.xaml): the base colour, a light (surface)
+                         toolbar in both themes, an ink tooltip; are in-->
+                    <ResourceDictionary x:Key="Light">
+                        <SolidColorBrush x:Key="LibraryBackgroundBrush" Color="#FBF7FF" />
+                        <SolidColorBrush x:Key="LibraryToolbarBrush" Color="#FFFFFF" />
+                        <SolidColorBrush x:Key="LibraryTooltipBrush" Color="#1A1530" />
+                        <SolidColorBrush x:Key="LibraryProgressFillBrush" Color="#E6F2FA" />
+                        <SolidColorBrush x:Key="LibraryProgressBorderBrush" Color="#D1DBE0" />
+                        <SolidColorBrush x:Key="LibraryPressedBrush" Color="#0D000000" />
+                        <SolidColorBrush x:Key="LibraryIconBrush" Color="#4B4566" />
+                    </ResourceDictionary>
+                    <ResourceDictionary x:Key="Dark">
+                        <SolidColorBrush x:Key="LibraryBackgroundBrush" Color="#15121F" />
+                        <SolidColorBrush x:Key="LibraryToolbarBrush" Color="#1F1A2E" />
+                        <SolidColorBrush x:Key="LibraryTooltipBrush" Color="#F3EFFF" />
+                        <SolidColorBrush x:Key="LibraryProgressFillBrush" Color="#333D4D" />
+                        <SolidColorBrush x:Key="LibraryProgressBorderBrush" Color="#40474F" />
+                        <SolidColorBrush x:Key="LibraryPressedBrush" Color="#0DFFFFFF" />
+                        <SolidColorBrush x:Key="LibraryIconBrush" Color="#B9B2D6" />
+                    </ResourceDictionary>
+                    <ResourceDictionary x:Key="HighContrast">
+                        <SolidColorBrush x:Key="LibraryBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+                        <SolidColorBrush x:Key="LibraryToolbarBrush" Color="{ThemeResource SystemColorWindowColor}" />
+                        <SolidColorBrush x:Key="LibraryTooltipBrush" Color="{ThemeResource SystemColorWindowColor}" />
+                        <SolidColorBrush x:Key="LibraryProgressFillBrush" Color="{ThemeResource SystemColorWindowColor}" />
+                        <SolidColorBrush x:Key="LibraryProgressBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+                        <SolidColorBrush x:Key="LibraryPressedBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+                        <SolidColorBrush x:Key="LibraryIconBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+                    </ResourceDictionary>
+                </ResourceDictionary.ThemeDictionaries>
+
+                <Style x:Key="LibraryIconButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="MinWidth" Value="0" />
+                    <Setter Property="MinHeight" Value="0" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+    <Grid
+        x:Name="Root"
+        Background="{ThemeResource LibraryBackgroundBrush}"
+        PreviewKeyDown="Root_PreviewKeyDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="36" />
+        </Grid.RowDefinitions>
+
+        <!-- 1. Toolbar: CtrlToolbar 320x32 at (8, 8) and btnToolbarMore at x = 340; Candy icon buttons (neutral wash
+             on hover) on the surface, a hairline under it. -->
+        <Grid Background="{ThemeResource LibraryToolbarBrush}" BorderBrush="{ThemeResource CandyLineBrush}" BorderThickness="0,0,0,1">
+            <StackPanel x:Name="ToolbarPanel" Orientation="Horizontal" Spacing="4" Margin="8,8,0,8" HorizontalAlignment="Left" />
+            <Button
+                x:Name="MoreButton"
+                Width="32"
+                Height="32"
+                Margin="340,8,0,8"
+                HorizontalAlignment="Left"
+                Style="{StaticResource CandyIconButtonStyle}"
+                Click="MoreButton_Click"
+                PointerEntered="Tool_PointerEntered"
+                PointerExited="Tool_PointerExited">
+                <BitmapIcon Width="28" Height="28" ShowAsMonochrome="True" UriSource="ms-appx:///Assets/Library/lib-tool-28-more.png" />
+            </Button>
+        </Grid>
+
+        <!-- 3. Progress holder (56). -->
+        <Border
+            x:Name="ProgressHolder"
+            Grid.Row="1"
+            Height="44"
+            Margin="12,6,12,6"
+            Padding="12,0,8,0"
+            CornerRadius="6"
+            BorderThickness="1"
+            Background="{ThemeResource LibraryProgressFillBrush}"
+            BorderBrush="{ThemeResource LibraryProgressBorderBrush}"
+            Visibility="Collapsed">
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel VerticalAlignment="Center" Spacing="4">
+                    <Grid>
+                        <TextBlock x:Name="ProgressLabel" FontSize="12" TextWrapping="Wrap" />
+                        <TextBlock x:Name="ProgressLeft" FontSize="12" HorizontalAlignment="Right" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    </Grid>
+                    <ProgressBar x:Name="ProgressBar" Maximum="100" />
+                </StackPanel>
+                <Button x:Name="ProgressAction" Grid.Column="1" VerticalAlignment="Center" Click="ProgressAction_Click" />
+            </Grid>
+        </Border>
+
+        <!-- 4. Search holder (43): search box 358x32 with the 20-searchbar-lens image. -->
+        <Grid x:Name="SearchHolder" Grid.Row="2" Height="43" Padding="11,5,11,6">
+            <TextBox
+                x:Name="SearchBox"
+                x:Uid="Library_Search"
+                Height="32"
+                CornerRadius="8"
+                Padding="32,5,10,6"
+                VerticalContentAlignment="Center"
+                TextChanged="SearchBox_TextChanged" />
+            <BitmapIcon
+                Width="20"
+                Height="20"
+                Margin="8,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                IsHitTestVisible="False"
+                ShowAsMonochrome="True"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                UriSource="ms-appx:///Assets/Library/20-searchbar-lens.png" />
+        </Grid>
+
+        <!-- 5. Message holder (228): Candy's quiet empty state, a 40-px Lucide glyph in the accent, a display-weight
+             title, one short line and an ink button, centred with room around them. -->
+        <StackPanel x:Name="MessageHolder" Grid.Row="3" MinHeight="228" Spacing="8" Padding="28,40,28,12" Visibility="Collapsed">
+            <BitmapIcon x:Name="MessageImage" Width="40" Height="40" HorizontalAlignment="Center" ShowAsMonochrome="True"
+                        Foreground="{ThemeResource CandyAccentBrush}" Margin="0,0,0,8" />
+            <TextBlock x:Name="MessageTitle" Style="{StaticResource CandyDisplayTextStyle}" FontSize="17" TextAlignment="Center"
+                       HorizontalAlignment="Center" />
+            <TextBlock x:Name="MessageLabel" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="13"
+                       Foreground="{ThemeResource CandyInk2Brush}" MaxWidth="300" />
+            <StackPanel x:Name="MessageProgress" Spacing="4" Width="240" HorizontalAlignment="Center" Visibility="Collapsed">
+                <ProgressBar x:Name="MessageProgressBar" Maximum="100" />
+                <TextBlock x:Name="MessageProgressLeft" FontSize="12" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+            </StackPanel>
+            <Button x:Name="MessageAction" HorizontalAlignment="Center" Margin="0,10,0,0" Style="{StaticResource CandyInkButtonStyle}"
+                    Click="MessageAction_Click" />
+        </StackPanel>
+
+        <!-- 6. Spinner holder (80). -->
+        <Grid x:Name="SpinnerHolder" Grid.Row="4" Height="80" Visibility="Collapsed">
+            <ProgressRing x:Name="Spinner" Width="24" Height="24" IsActive="False" />
+        </Grid>
+
+        <!-- 7. Gallery: an absolutely positioned flow of item views, virtualised by hand. -->
+        <ScrollViewer
+            x:Name="GalleryScroll"
+            Grid.Row="5"
+            IsTabStop="True"
+            UseSystemFocusVisuals="False"
+            HorizontalScrollMode="Disabled"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto"
+            ViewChanged="GalleryScroll_ViewChanged"
+            SizeChanged="GalleryScroll_SizeChanged"
+            GotFocus="GalleryScroll_FocusChanged"
+            LostFocus="GalleryScroll_FocusChanged"
+            CharacterReceived="GalleryScroll_CharacterReceived">
+            <Canvas x:Name="GalleryCanvas" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" PointerPressed="GalleryCanvas_PointerPressed" />
+        </ScrollViewer>
+
+        <!-- 8. Status bar (36): txStatus, then settings, ddlLayout (25x20) and btnPopoverSize. -->
+        <Grid Grid.Row="6" Padding="14,0,8,0">
+            <TextBlock x:Name="StatusText" VerticalAlignment="Center" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextTrimming="CharacterEllipsis" Margin="0,0,100,0" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="4">
+                <Button x:Name="SettingsButton" Width="28" Height="28" CornerRadius="8" Style="{StaticResource CandyIconButtonStyle}" Click="SettingsButton_Click">
+                    <BitmapIcon Width="16" Height="16" ShowAsMonochrome="True" Foreground="{ThemeResource LibraryIconBrush}" UriSource="ms-appx:///Assets/Library/16-settings.png" />
+                </Button>
+                <Button x:Name="LayoutButton" Width="28" Height="28" CornerRadius="8" Style="{StaticResource CandyIconButtonStyle}" Click="LayoutButton_Click">
+                    <BitmapIcon x:Name="LayoutIcon" Width="16" Height="16" ShowAsMonochrome="True" Foreground="{ThemeResource LibraryIconBrush}" UriSource="ms-appx:///Assets/Library/16-lib-layout-medium.png" />
+                </Button>
+                <Button x:Name="SizeButton" Width="28" Height="28" CornerRadius="8" Style="{StaticResource CandyIconButtonStyle}" Click="SizeButton_Click">
+                    <BitmapIcon x:Name="SizeIcon" Width="16" Height="16" ShowAsMonochrome="True" Foreground="{ThemeResource LibraryIconBrush}" UriSource="ms-appx:///Assets/Library/16-expand.png" />
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <!-- 2. Tooltip box (28): over the content, just below the toolbar, hidden until a tool is hovered; Candy's ink
+             tooltip (radius 8) instead of full-width bar. -->
+        <Border
+            x:Name="TooltipBox"
+            Grid.Row="1"
+            Grid.RowSpan="5"
+            Height="28"
+            Margin="8,6,8,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Padding="10,0,10,0"
+            CornerRadius="8"
+            Background="{ThemeResource LibraryTooltipBrush}"
+            IsHitTestVisible="False"
+            Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                <TextBlock x:Name="TooltipText" FontSize="12" Foreground="{ThemeResource CandyOnInkBrush}" />
+                <TextBlock x:Name="TooltipHotkey" FontSize="12" Foreground="{ThemeResource CandyOnInkBrush}" Opacity="0.6" />
+            </StackPanel>
+        </Border>
+    </Grid>
+    </Grid>
+</Window>

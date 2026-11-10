@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Eikon.HotkeysSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Eikon"
+    Background="Transparent"
+    Loaded="Page_Loaded"
+    Unloaded="Page_Unloaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock x:Uid="Prefs_HotkeysHeader" Style="{StaticResource SettingsPageHeaderTextStyle}" AutomationProperties.HeadingLevel="Level1" />
+
+        <ScrollViewer Grid.Row="1" Style="{StaticResource SettingsPageScrollViewerStyle}">
+            <StackPanel Style="{StaticResource SettingsPageContentStyle}">
+
+                <!-- ===== How to reassign default shortcuts ===== -->
+                <Border Style="{StaticResource SettingsCardBorderStyle}">
+                    <StackPanel Spacing="8">
+                        <TextBlock x:Uid="Prefs_HowToReassign" Style="{StaticResource BodyStrongTextBlockStyle}" AutomationProperties.HeadingLevel="Level2" />
+                        <TextBlock x:Uid="Prefs_ReassignStep1" TextWrapping="Wrap" />
+                        <Button x:Name="OpenWindowsSettingsButton" x:Uid="Prefs_OpenWindowsSettings" Margin="16,0,0,0" Click="OpenWindowsSettingsButton_Click" />
+                        <TextBlock x:Uid="Prefs_ReassignStep2" TextWrapping="Wrap" />
+                        <TextBlock x:Uid="Prefs_ReassignStep3" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+                <!-- ===== The recorders, 34 pt apart ===== -->
+                <local:SettingsCard x:Uid="Prefs_HotkeyFullscreen" Margin="0,20,0,0">
+                    <local:ShortcutRecorder x:Name="FullscreenRecorder" Tag="fullscreen" />
+                </local:SettingsCard>
+                <local:SettingsCard x:Uid="Prefs_HotkeyArea">
+                    <local:ShortcutRecorder x:Name="AreaRecorder" Tag="area" />
+                </local:SettingsCard>
+                <local:SettingsCard x:Uid="Prefs_HotkeyRepeatArea">
+                    <local:ShortcutRecorder x:Name="RepeatAreaRecorder" Tag="repeatArea" />
+                </local:SettingsCard>
+                <local:SettingsCard x:Uid="Prefs_HotkeyAnyWindow">
+                    <local:ShortcutRecorder x:Name="AnyWindowRecorder" Tag="anyWindow" />
+                </local:SettingsCard>
+                <local:SettingsCard x:Uid="Prefs_HotkeyWindow">
+                    <local:ShortcutRecorder x:Name="WindowRecorder" Tag="window" />
+                </local:SettingsCard>
+                <local:SettingsCard x:Uid="Prefs_HotkeyScrolling">
+                    <local:ShortcutRecorder x:Name="ScrollingRecorder" Tag="scrolling" />
+                </local:SettingsCard>
+                <local:SettingsCard x:Uid="Prefs_HotkeyReopen">
+                    <local:ShortcutRecorder x:Name="ReopenRecorder" Tag="reopen" />
+                </local:SettingsCard>
+
+                <!-- separator -->
+                <local:SettingsCard x:Uid="Prefs_HotkeyOcr" Margin="0,20,0,0">
+                    <local:ShortcutRecorder x:Name="OcrRecorder" Tag="ocr" />
+                </local:SettingsCard>
+                <local:SettingsCard x:Uid="Prefs_HotkeyClipboard">
+                    <local:ShortcutRecorder x:Name="ClipboardRecorder" Tag="loadClipboard" />
+                </local:SettingsCard>
+                <local:SettingsCard x:Uid="Prefs_HotkeyLibrary">
+                    <local:ShortcutRecorder x:Name="LibraryRecorder" Tag="library" />
+                </local:SettingsCard>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

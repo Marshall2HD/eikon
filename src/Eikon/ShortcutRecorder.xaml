@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="Eikon.ShortcutRecorder"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    IsTabStop="False"
+    Unloaded="Recorder_Unloaded">
+    <StackPanel
+        x:Name="RootPanel"
+        Orientation="Horizontal"
+        Spacing="4"
+        VerticalAlignment="Center"
+        PreviewKeyDown="Root_PreviewKeyDown"
+        PreviewKeyUp="Root_PreviewKeyUp">
+        <Button
+            x:Name="EditButton"
+            MinHeight="36"
+            Padding="6,4,10,4"
+            Background="Transparent"
+            BorderThickness="1"
+            Click="EditButton_Click"
+            LostFocus="EditButton_LostFocus"
+            x:Uid="Recorder_Edit">
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <StackPanel x:Name="KeysPanel" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center" />
+                <TextBlock
+                    x:Name="StatusText"
+                    x:Uid="Recorder_Status"
+                    VerticalAlignment="Center"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                <FontIcon
+                    x:Name="EditGlyph"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Glyph="&#xE70F;"
+                    AutomationProperties.AccessibilityView="Raw" />
+            </StackPanel>
+        </Button>
+        <Button
+            x:Name="ClearButton"
+            Width="36"
+            Height="36"
+            Padding="0"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="ClearButton_Click"
+            x:Uid="Recorder_Clear">
+            <FontIcon FontSize="12" Glyph="&#xE711;" />
+        </Button>
+    </StackPanel>
+</UserControl>

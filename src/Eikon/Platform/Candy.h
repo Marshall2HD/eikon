@@ -1,0 +1,55 @@
+#pragma once
+
+// Eikon's "Candy" design tokens for code-drawn surfaces (Direct2D popups, the capture overlay, the
+// first-capture card) and code-built XAML. Themes/Candy.xaml holds the same values for XAML; keep the
+// two in step. Radius scale: 8 controls and labels (6 inner segments), 12 cards and rows (10 tiles),
+// 16 floating windows and popovers. No capsules.
+
+#include <cstdint>
+
+namespace Eikon::Candy
+{
+    struct Argb
+    {
+        std::uint8_t a, r, g, b;
+    };
+
+    struct Palette
+    {
+        Argb base, ink, ink2, muted, line, surface, surface2, accent, accentSoft, peach, lilac, mint, onInk, hover;
+    };
+
+    inline constexpr Palette kLight{
+        { 0xFF, 0xFB, 0xF7, 0xFF }, { 0xFF, 0x1A, 0x15, 0x30 }, { 0xFF, 0x4B, 0x45, 0x66 }, { 0xFF, 0x8A, 0x83, 0xA6 },
+        { 0x19, 0x1A, 0x15, 0x30 }, { 0xFF, 0xFF, 0xFF, 0xFF }, { 0xFF, 0xF3, 0xEE, 0xFB }, { 0xFF, 0x7B, 0x4B, 0xFF },
+        { 0xFF, 0xEC, 0xE4, 0xFF }, { 0xFF, 0xFF, 0xD9, 0xC4 }, { 0xFF, 0xD8, 0xCC, 0xFF }, { 0xFF, 0xC3, 0xF0, 0xDE },
+        { 0xFF, 0xFB, 0xF7, 0xFF }, { 0xFF, 0xF3, 0xEE, 0xFB },
+    };
+    inline constexpr Palette kDark{
+        { 0xFF, 0x15, 0x12, 0x1F }, { 0xFF, 0xF3, 0xEF, 0xFF }, { 0xFF, 0xB9, 0xB2, 0xD6 }, { 0xFF, 0x8A, 0x83, 0xA6 },
+        { 0x1C, 0xFF, 0xFF, 0xFF }, { 0xFF, 0x1F, 0x1A, 0x2E }, { 0xFF, 0x29, 0x23, 0x3B }, { 0xFF, 0xA9, 0x8B, 0xFF },
+        { 0xFF, 0x3A, 0x2A, 0x6E }, { 0xFF, 0x5A, 0x2A, 0x22 }, { 0xFF, 0x3A, 0x2A, 0x6E }, { 0xFF, 0x1D, 0x4A, 0x3C },
+        { 0xFF, 0x15, 0x12, 0x1F }, { 0xFF, 0x29, 0x23, 0x3B },
+    };
+    inline constexpr Palette const& For(bool dark) noexcept { return dark ? kDark : kLight; }
+
+    // The wordmark / app-mark gradient, left to right (or top-left to bottom-right).
+    inline constexpr Argb kGradientFrom{ 0xFF, 0xFF, 0x5A, 0x36 };
+    inline constexpr Argb kGradientTo{ 0xFF, 0xB1, 0x4B, 0xFF };
+    inline constexpr Argb kCoral{ 0xFF, 0xFF, 0x5A, 0x36 };
+    // The pin's frosted ink bar (#1A1530 at α 0.8) — the same in both themes.
+    inline constexpr Argb kFrostedInk{ 0xCC, 0x1A, 0x15, 0x30 };
+
+    inline constexpr float kRadiusControl = 8;
+    inline constexpr float kRadiusSegment = 6;
+    inline constexpr float kRadiusCard = 12;
+    inline constexpr float kRadiusTile = 10;
+    inline constexpr float kRadiusFloat = 16;
+
+    // The Candy shadow: 0 14 34 −14 #3B2A8A at α 0.33 (light), black at α 0.67 (dark).
+    inline constexpr Argb kShadowLight{ 0x55, 0x3B, 0x2A, 0x8A };
+    inline constexpr Argb kShadowDark{ 0xAA, 0x00, 0x00, 0x00 };
+
+    // Whether Windows' high contrast is on: then every surface keeps the system colours.
+    bool HighContrast() noexcept;
+}

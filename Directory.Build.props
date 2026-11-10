@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AppxLogTelemetryFromSideloadingScript>false</AppxLogTelemetryFromSideloadingScript>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ConformanceMode>true</ConformanceMode>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+      <!-- /Zi, not Debug's default /ZI (Edit and Continue), which /guard:cf rejects (D8016). -->
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>%(AdditionalOptions) /dynamicbase</AdditionalOptions>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+      <CETCompat Condition="'$(Platform)'!='ARM64'">true</CETCompat>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>

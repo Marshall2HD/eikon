@@ -1,0 +1,7 @@
+* text=auto
+*.sln text eol=crlf
+*.vcxproj text eol=crlf
+*.filters text eol=crlf
+*.png binary
+*.ico binary
+*.onnx binary

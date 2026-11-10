@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="Eikon.SettingsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <!-- Candy: the title bar and the navigation pane on surface 2, the pages on the base colour in a 16-px
+         rounded content area; the selected item is a raised surface (radius 10) with an accent icon
+         (SettingsWindow::UpdateNavItems). -->
+    <Grid x:Name="RootGrid" Background="{ThemeResource CandySurface2Brush}">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <!-- Candy values (Themes/Candy.xaml) in Light and Dark; system colours in high contrast. -->
+                <ResourceDictionary.ThemeDictionaries>
+                    <ResourceDictionary x:Key="Light">
+                        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="Transparent" />
+                        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="Transparent" />
+                        <SolidColorBrush x:Key="NavigationViewContentBackground" Color="#FFFBF7FF" />
+                        <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="#191A1530" />
+                        <CornerRadius x:Key="NavigationViewContentGridCornerRadius">16,0,0,0</CornerRadius>
+                        <SolidColorBrush x:Key="NavigationViewItemBackgroundSelected" Color="#FFFFFFFF" />
+                        <SolidColorBrush x:Key="NavigationViewItemBackgroundSelectedPointerOver" Color="#FFFFFFFF" />
+                        <SolidColorBrush x:Key="NavigationViewItemBackgroundSelectedPressed" Color="#FFFFFFFF" />
+                        <SolidColorBrush x:Key="NavigationViewItemForeground" Color="#FF4B4566" />
+                        <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="#FF1A1530" />
+                        <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="#FF1A1530" />
+                        <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="#FF1A1530" />
+                        <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="Transparent" />
+                    </ResourceDictionary>
+                    <ResourceDictionary x:Key="Dark">
+                        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="Transparent" />
+                        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="Transparent" />
+                        <SolidColorBrush x:Key="NavigationViewContentBackground" Color="#FF15121F" />
+                        <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="#1CFFFFFF" />
+                        <CornerRadius x:Key="NavigationViewContentGridCornerRadius">16,0,0,0</CornerRadius>
+                        <SolidColorBrush x:Key="NavigationViewItemBackgroundSelected" Color="#FF1F1A2E" />
+                        <SolidColorBrush x:Key="NavigationViewItemBackgroundSelectedPointerOver" Color="#FF1F1A2E" />
+                        <SolidColorBrush x:Key="NavigationViewItemBackgroundSelectedPressed" Color="#FF1F1A2E" />
+                        <SolidColorBrush x:Key="NavigationViewItemForeground" Color="#FFB9B2D6" />
+                        <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="#FFF3EFFF" />
+                        <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="#FFF3EFFF" />
+                        <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="#FFF3EFFF" />
+                        <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="Transparent" />
+                    </ResourceDictionary>
+                    <!-- High contrast: system colours for the surfaces (without this dictionary the Light values would apply);
+                         the items keep NavigationView's own high-contrast look. -->
+                    <ResourceDictionary x:Key="HighContrast">
+                        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{ThemeResource SystemColorWindowColor}" />
+                        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{ThemeResource SystemColorWindowColor}" />
+                        <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{ThemeResource SystemColorWindowColor}" />
+                        <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+                        <CornerRadius x:Key="NavigationViewContentGridCornerRadius">16,0,0,0</CornerRadius>
+                    </ResourceDictionary>
+                </ResourceDictionary.ThemeDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="AppTitleBar" Height="48" Padding="16,0,140,0" ColumnSpacing="12" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image
+                Width="16"
+                Height="16"
+                VerticalAlignment="Center"
+                Source="ms-appx:///Assets/Square44x44Logo.png"
+                AutomationProperties.AccessibilityView="Raw" />
+            <TextBlock
+                x:Name="AppTitleText"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                x:Uid="Settings_AppTitle"
+                Style="{StaticResource CaptionTextBlockStyle}"
+                TextTrimming="CharacterEllipsis" />
+        </Grid>
+
+        <!-- The panes as a left NavigationView with the 30-pref icons. -->
+        <NavigationView
+            x:Name="NavView"
+            Grid.Row="1"
+            PaneDisplayMode="Left"
+            IsBackButtonVisible="Collapsed"
+            IsSettingsVisible="False"
+            IsTitleBarAutoPaddingEnabled="False"
+            IsPaneToggleButtonVisible="False"
+            OpenPaneLength="200"
+            SelectionChanged="NavView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Uid="Prefs_NavGeneral" Tag="general">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/Prefs/30-pref-general.png" ShowAsMonochrome="True" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Uid="Prefs_NavHotkeys" Tag="hotkeys">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/Prefs/30-pref-hotkeys.png" ShowAsMonochrome="True" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Uid="Prefs_NavUploading" Tag="uploading">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/Prefs/30-pref-upload.png" ShowAsMonochrome="True" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Uid="Prefs_NavAdvanced" Tag="advanced">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/Prefs/30-pref-advanced.png" ShowAsMonochrome="True" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+
+            <Frame x:Name="ContentFrame" IsTabStop="False" />
+        </NavigationView>
+    </Grid>
+</Window>

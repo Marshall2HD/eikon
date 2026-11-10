@@ -1,0 +1,20 @@
+namespace Eikon
+{
+    // Records a keyboard shortcut (Settings > Hotkeys). Shows the shortcut as Windows
+    // keycaps; click (or Enter/Space) to record, Esc cancels, Backspace/Delete clears.
+    [default_interface]
+    runtimeclass ShortcutRecorder : Microsoft.UI.Xaml.Controls.UserControl
+    {
+        ShortcutRecorder();
+
+        // KeyShortcut::ToString() form ("Ctrl+Shift+1"); empty = not set (disabled).
+        String Shortcut;
+        // When true, a shortcut must include Ctrl, Alt or Win (Shift alone is not enough), except
+        // for function keys and Print Screen.
+        Boolean RequireModifier;
+        Boolean IsRecording { get; };
+
+        // Raised after the user recorded or cleared a shortcut (not when Shortcut is set in code).
+        event Windows.Foundation.TypedEventHandler<ShortcutRecorder, Object> ShortcutChanged;
+    }
+}

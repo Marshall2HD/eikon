@@ -1,0 +1,8 @@
+namespace Eikon
+{
+    [default_interface]
+    runtimeclass UploadSettingsPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        UploadSettingsPage();
+    }
+}

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="NuGet">
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <NuGetTargetMoniker>native,Version=v0.0</NuGetTargetMoniker>
+    <NuGetTargetPlatformIdentifier>Windows</NuGetTargetPlatformIdentifier>
+    <NuGetTargetPlatformVersion>$(WindowsTargetPlatformVersion)</NuGetTargetPlatformVersion>
+  </PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <CppWinRTOptimized>true</CppWinRTOptimized>
+    <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
+    <MinimalCoreWin>true</MinimalCoreWin>
+    <ProjectGuid>{81f857d8-a41b-46f6-a558-3534df43bf49}</ProjectGuid>
+    <ProjectName>Eikon</ProjectName>
+    <RootNamespace>Eikon</RootNamespace>
+    <TargetName>$(RootNamespace)</TargetName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>false</AppContainerApplication>
+    <AppxPackage>true</AppxPackage>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
+    <UseWinUI>true</UseWinUI>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <RuntimeIdentifiers>win10-x64;win10-arm64</RuntimeIdentifiers>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" />
+    <PackageReference Include="Microsoft.Windows.CppWinRT" />
+    <PackageReference Include="Microsoft.Windows.ImplementationLibrary" />
+    <PackageReference Include="Microsoft.Graphics.Win2D" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '17.0'">v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <DesktopCompatible>true</DesktopCompatible>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level4</WarningLevel>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\third_party\zxing-cpp\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NOMINMAX;WIN32_LEAN_AND_MEAN;DISABLE_XAML_GENERATED_MAIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /utf-8</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Shlwapi.lib;Version.lib;Windowscodecs.lib;Dwmapi.lib;Shcore.lib;Crypt32.lib;Bcrypt.lib;Winhttp.lib;D2d1.lib;Dwrite.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Manifest Include="app.manifest" />
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <!--
+    Source files are picked up by convention so that new files only need to be dropped into the
+    right place:
+      * Core\, Platform\, Editor\   plain C++ (.h/.cpp), no XAML (Editor\ may use Win2D)
+      * project root        WinRT runtime classes (*.idl), XAML windows/pages/controls (*.xaml with
+                            *.xaml.h/*.xaml.cpp code-behind) and their view models. XAML must stay in
+                            the project root so that C++/WinRT finds the generated *.xaml.g.h files.
+  -->
+  <ItemGroup>
+    <!-- Headers of non-XAML runtime classes must name their .idl in DependentUpon, otherwise the XAML
+         compiler cannot include them in XamlTypeInfo.g.cpp when the class is used in markup. -->
+    <ClInclude Include="*.h;Core\**\*.h;Platform\**\*.h;Editor\**\*.h" Exclude="*.xaml.h;SettingsCard.h" />
+    <ClInclude Include="SettingsCard.h">
+      <DependentUpon>SettingsCard.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="*.xaml.h">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+    <Page Include="*.xaml;Themes\*.xaml" Exclude="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="*.cpp;Core\**\*.cpp;Platform\**\*.cpp;Editor\**\*.cpp" Exclude="pch.cpp;*.xaml.cpp;SettingsCard.cpp" />
+    <ClCompile Include="SettingsCard.cpp">
+      <DependentUpon>SettingsCard.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="*.xaml.cpp">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="*.idl">
+      <SubType>Code</SubType>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\*.png" />
+    <!-- Editor images: Image items are what the MSIX layout picks up. -->
+    <Image Include="Assets\Editor\*.png" />
+    <!-- The window and fallback tray icon, loaded at runtime: an Image item too (Content items are not in the MSIX). -->
+    <Image Include="Assets\*.ico" />
+    <!-- Thumbnail, pin and notification images. -->
+    <Image Include="Assets\Preview\*.png" />
+    <!-- 16-menu-* (tray menu) and eikon-22* (status icon) images, loaded at runtime from the
+         package folder: Image items, because Content items in subfolders are not in the MSIX. -->
+    <Image Include="Assets\Menu\*.png;Assets\Tray\*.png" />
+    <!-- Library and Preferences images: Image items are what the MSIX layout picks up. -->
+    <Image Include="Assets\Library\*.png;Assets\Prefs\*.png" />
+    <!-- The drawn zoom and pen cursor masters (Editor/Cursors scales them at runtime). -->
+    <Image Include="Assets\Cursors\*.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Eikon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\**\*.resw" />
+  </ItemGroup>
+  <!-- QR detection for OCR (third_party/zxing-cpp/README.eikon.md). -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\third_party\zxing-cpp\ZXing.vcxproj">
+      <Project>{3f925e22-bc57-43c8-9642-b9d802374ab3}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

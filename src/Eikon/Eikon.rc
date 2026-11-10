@@ -1,0 +1,5 @@
+// Win32 resources of Eikon.exe.
+#include "resource.h"
+
+// Cut Out's subject model (third_party/u2net, Apache-2.0), run by Platform/SubjectMask.
+IDR_EIKON_SUBJECT_MODEL RCDATA "..\\..\\third_party\\u2net\\u2netp.onnx"

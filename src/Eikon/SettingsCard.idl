@@ -1,0 +1,21 @@
+namespace Eikon
+{
+    // A Windows 11 Settings style row: icon + header + description on the left, the control
+    // (Content) on the right. Template: implicit style in Themes/Settings.xaml.
+    [default_interface]
+    runtimeclass SettingsCard : Microsoft.UI.Xaml.Controls.ContentControl
+    {
+        SettingsCard();
+
+        Object Header;
+        Object Description;
+        // Segoe Fluent Icons glyph, e.g. "\xE713". Ignored when HeaderIcon is set.
+        String Glyph;
+        Microsoft.UI.Xaml.Controls.IconElement HeaderIcon;
+
+        static Microsoft.UI.Xaml.DependencyProperty HeaderProperty { get; };
+        static Microsoft.UI.Xaml.DependencyProperty DescriptionProperty { get; };
+        static Microsoft.UI.Xaml.DependencyProperty GlyphProperty { get; };
+        static Microsoft.UI.Xaml.DependencyProperty HeaderIconProperty { get; };
+    }
+}

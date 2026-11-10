@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:systemai="http://schemas.microsoft.com/appx/manifest/systemai/windows10"
+  IgnorableNamespaces="uap uap5 desktop rescap systemai">
+
+  <Identity
+    Name="Eikon"
+    Publisher="CN=Eikon"
+    Version="0.1.0.0" />
+
+  <Properties>
+    <DisplayName>Eikon</DisplayName>
+    <PublisherDisplayName>Eikon contributors</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.19041.0" MaxVersionTested="10.0.26226.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="$targetentrypoint$">
+      <uap:VisualElements
+        DisplayName="Eikon"
+        Description="ms-resource:AppDescription"
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+      </uap:VisualElements>
+      <Extensions>
+        <!-- URL scheme. -->
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="eikon">
+            <uap:DisplayName>Eikon</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+        <!-- "Launch at Startup". The id is Platform/SystemIntegration's. -->
+        <uap5:Extension Category="windows.startupTask">
+          <uap5:StartupTask TaskId="EikonStartup" Enabled="false" DisplayName="Eikon" />
+        </uap5:Extension>
+        <uap5:Extension Category="windows.appExecutionAlias">
+          <uap5:AppExecutionAlias>
+            <uap5:ExecutionAlias Alias="eikon.exe" />
+          </uap5:AppExecutionAlias>
+        </uap5:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+    <!-- Windows AI's ImageObjectExtractor for Cut Out; it also needs MaxVersionTested
+         10.0.26226.0 or later. -->
+    <systemai:Capability Name="systemAIModels" />
+  </Capabilities>
+</Package>

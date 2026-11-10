@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Eikon's "Candy" look: the design tokens and the shared control styles, in one place. Merged into the
+    application resources by App.xaml. The Direct2D surfaces (thumbnail, pins, notification, capture
+    overlay) and code-built XAML read the same values from Platform/Candy.h.
+
+    Colour fields (peach / lilac / mint over the base) appear only on empty and first-time surfaces: the
+    welcome panel and the first-capture card. Working surfaces stay neutral: lilac selection, ink
+    primary buttons and tooltips, display-weight headings, and one radius scale (no capsules):
+      8 px  buttons, inputs, search, tooltips, labels, segments (6 px inner segments)
+      12 px cards and rows (10 px small tiles)
+      16 px floating windows and popovers
+    High contrast keeps the system colours and no gradients.
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <Color x:Key="CandyBaseColor">#FFFBF7FF</Color>
+            <Color x:Key="CandyInkColor">#FF1A1530</Color>
+            <Color x:Key="CandyInk2Color">#FF4B4566</Color>
+            <Color x:Key="CandyMutedColor">#FF8A83A6</Color>
+            <Color x:Key="CandyLineColor">#191A1530</Color>
+            <Color x:Key="CandySurfaceColor">#FFFFFFFF</Color>
+            <Color x:Key="CandySurface2Color">#FFF3EEFB</Color>
+            <Color x:Key="CandyAccentColor">#FF7B4BFF</Color>
+            <Color x:Key="CandyAccentSoftColor">#FFECE4FF</Color>
+            <Color x:Key="CandyCoralColor">#FFFF5A36</Color>
+            <SolidColorBrush x:Key="CandyBaseBrush" Color="#FFFBF7FF" />
+            <SolidColorBrush x:Key="CandyInkBrush" Color="#FF1A1530" />
+            <SolidColorBrush x:Key="CandyInk2Brush" Color="#FF4B4566" />
+            <SolidColorBrush x:Key="CandyMutedBrush" Color="#FF8A83A6" />
+            <SolidColorBrush x:Key="CandyLineBrush" Color="#191A1530" />
+            <SolidColorBrush x:Key="CandySurfaceBrush" Color="#FFFFFFFF" />
+            <SolidColorBrush x:Key="CandySurface2Brush" Color="#FFF3EEFB" />
+            <SolidColorBrush x:Key="CandyAccentBrush" Color="#FF7B4BFF" />
+            <SolidColorBrush x:Key="CandyAccentSoftBrush" Color="#FFECE4FF" />
+            <SolidColorBrush x:Key="CandyCoralBrush" Color="#FFFF5A36" />
+            <!-- Ink buttons and tooltips: ink fill, base-coloured text. -->
+            <SolidColorBrush x:Key="CandyOnInkBrush" Color="#FFFBF7FF" />
+            <!-- Secondary (ghost) buttons: surface at 70 % with a hairline. -->
+            <SolidColorBrush x:Key="CandyGhostBrush" Color="#B3FFFFFF" />
+            <SolidColorBrush x:Key="CandyHoverBrush" Color="#FFF3EEFB" />
+            <SolidColorBrush x:Key="CandyPressedBrush" Color="#FFE9E2F6" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <Color x:Key="CandyBaseColor">#FF15121F</Color>
+            <Color x:Key="CandyInkColor">#FFF3EFFF</Color>
+            <Color x:Key="CandyInk2Color">#FFB9B2D6</Color>
+            <Color x:Key="CandyMutedColor">#FF8A83A6</Color>
+            <Color x:Key="CandyLineColor">#1CFFFFFF</Color>
+            <Color x:Key="CandySurfaceColor">#FF1F1A2E</Color>
+            <Color x:Key="CandySurface2Color">#FF29233B</Color>
+            <Color x:Key="CandyAccentColor">#FFA98BFF</Color>
+            <Color x:Key="CandyAccentSoftColor">#FF3A2A6E</Color>
+            <Color x:Key="CandyCoralColor">#FFFF5A36</Color>
+            <SolidColorBrush x:Key="CandyBaseBrush" Color="#FF15121F" />
+            <SolidColorBrush x:Key="CandyInkBrush" Color="#FFF3EFFF" />
+            <SolidColorBrush x:Key="CandyInk2Brush" Color="#FFB9B2D6" />
+            <SolidColorBrush x:Key="CandyMutedBrush" Color="#FF8A83A6" />
+            <SolidColorBrush x:Key="CandyLineBrush" Color="#1CFFFFFF" />
+            <SolidColorBrush x:Key="CandySurfaceBrush" Color="#FF1F1A2E" />
+            <SolidColorBrush x:Key="CandySurface2Brush" Color="#FF29233B" />
+            <SolidColorBrush x:Key="CandyAccentBrush" Color="#FFA98BFF" />
+            <SolidColorBrush x:Key="CandyAccentSoftBrush" Color="#FF3A2A6E" />
+            <SolidColorBrush x:Key="CandyCoralBrush" Color="#FFFF5A36" />
+            <SolidColorBrush x:Key="CandyOnInkBrush" Color="#FF15121F" />
+            <SolidColorBrush x:Key="CandyGhostBrush" Color="#B31F1A2E" />
+            <SolidColorBrush x:Key="CandyHoverBrush" Color="#FF29233B" />
+            <SolidColorBrush x:Key="CandyPressedBrush" Color="#FF332C48" />
+        </ResourceDictionary>
+        <!-- High contrast: system colours only; WinUI's own accent is left alone. -->
+        <ResourceDictionary x:Key="HighContrast">
+            <Color x:Key="CandyBaseColor">#FF000000</Color>
+            <Color x:Key="CandyInkColor">#FFFFFFFF</Color>
+            <Color x:Key="CandyInk2Color">#FFFFFFFF</Color>
+            <Color x:Key="CandyMutedColor">#FFFFFFFF</Color>
+            <Color x:Key="CandyLineColor">#FFFFFFFF</Color>
+            <Color x:Key="CandySurfaceColor">#FF000000</Color>
+            <Color x:Key="CandySurface2Color">#FF000000</Color>
+            <Color x:Key="CandyAccentColor">#FFFFFFFF</Color>
+            <Color x:Key="CandyAccentSoftColor">#FF000000</Color>
+            <Color x:Key="CandyCoralColor">#FFFFFFFF</Color>
+            <SolidColorBrush x:Key="CandyBaseBrush" Color="{ThemeResource SystemColorWindowColor}" />
+            <SolidColorBrush x:Key="CandyInkBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="CandyInk2Brush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="CandyMutedBrush" Color="{ThemeResource SystemColorGrayTextColor}" />
+            <SolidColorBrush x:Key="CandyLineBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="CandySurfaceBrush" Color="{ThemeResource SystemColorWindowColor}" />
+            <SolidColorBrush x:Key="CandySurface2Brush" Color="{ThemeResource SystemColorWindowColor}" />
+            <SolidColorBrush x:Key="CandyAccentBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="CandyAccentSoftBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="CandyCoralBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="CandyOnInkBrush" Color="{ThemeResource SystemColorButtonTextColor}" />
+            <SolidColorBrush x:Key="CandyGhostBrush" Color="{ThemeResource SystemColorButtonFaceColor}" />
+            <SolidColorBrush x:Key="CandyHoverBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="CandyPressedBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <CornerRadius x:Key="CandyRadiusControl">8</CornerRadius>
+    <CornerRadius x:Key="CandyRadiusSegment">6</CornerRadius>
+    <CornerRadius x:Key="CandyRadiusCard">12</CornerRadius>
+    <CornerRadius x:Key="CandyRadiusFloat">16</CornerRadius>
+    <FontFamily x:Key="CandyDisplayFont">Segoe UI Variable Display, Segoe UI</FontFamily>
+
+    <!-- Primary button: ink fill, base-coloured bold text, radius 8. In high contrast the ink brush is
+         the window text colour, so the button keeps a system-coloured outline instead. -->
+    <Style x:Key="CandyInkButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{ThemeResource CandyInkBrush}" />
+        <Setter Property="Foreground" Value="{ThemeResource CandyOnInkBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CandyInkBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="16,8" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="CornerRadius" Value="{StaticResource CandyRadiusControl}" />
+        <Setter Property="UseSystemFocusVisuals" Value="True" />
+        <Setter Property="FocusVisualMargin" Value="-3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Root" CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="Root.Opacity" Value="0.88" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="Root.Opacity" Value="0.75" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="Root.Opacity" Value="0.4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter Padding="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}"
+                                          FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Secondary button: translucent surface with a hairline, ink text. -->
+    <Style x:Key="CandyGhostButtonStyle" TargetType="Button" BasedOn="{StaticResource CandyInkButtonStyle}">
+        <Setter Property="Background" Value="{ThemeResource CandyGhostBrush}" />
+        <Setter Property="Foreground" Value="{ThemeResource CandyInkBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CandyLineBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+    <!-- Toolbar icon button: 32 × 32, radius 10, neutral wash on hover. The selected state (lilac fill,
+         accent glyph) is set by code through Background and Foreground. -->
+    <Style x:Key="CandyIconButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="{ThemeResource CandyInk2Brush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="Root" CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="Hover.Background" Value="{ThemeResource CandyHoverBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="Hover.Background" Value="{ThemeResource CandyPressedBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="Root.Opacity" Value="0.35" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Hover" CornerRadius="{TemplateBinding CornerRadius}" Background="Transparent" />
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- A card: surface, radius 12, hairline. -->
+    <Style x:Key="CandyCardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource CandySurfaceBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CandyLineBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{StaticResource CandyRadiusCard}" />
+    </Style>
+
+    <!-- Display-weight heading (the welcome headline's family). -->
+    <Style x:Key="CandyDisplayTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource CandyDisplayFont}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="CharacterSpacing" Value="-10" />
+        <Setter Property="Foreground" Value="{ThemeResource CandyInkBrush}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+</ResourceDictionary>

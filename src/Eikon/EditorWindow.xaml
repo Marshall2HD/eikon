@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="Eikon.EditorWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml">
+
+    <Grid x:Name="RootGrid" Background="{ThemeResource EditorBackgroundBrush}">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.ThemeDictionaries>
+                    <!-- Candy (Themes/Candy.xaml): CtrlButton fill = surface 2, pressed a shade darker, selected the lilac
+                         accent-soft; segment wells surface 2; separators the line colour. -->
+                    <ResourceDictionary x:Key="Light">
+                        <SolidColorBrush x:Key="CtrlButtonBackground" Color="#FFF3EEFB" />
+                        <SolidColorBrush x:Key="CtrlButtonPressed" Color="#FFE9E2F6" />
+                        <SolidColorBrush x:Key="CtrlButtonSelected" Color="#FFECE4FF" />
+                        <SolidColorBrush x:Key="SegmentsBackground" Color="#FFF3EEFB" />
+                        <SolidColorBrush x:Key="InfoSeparator" Color="#191A1530" />
+                        <!-- CtrlHelper curtain as a floating Candy card: the surface colour, a hairline, radius 16. -->
+                        <Color x:Key="HelperTintColor">#FFFFFFFF</Color>
+                        <SolidColorBrush x:Key="HelperCurtainBorder" Color="#00FFFFFF" />
+                        <SolidColorBrush x:Key="HelperOuterBorder" Color="#191A1530" />
+                        <SolidColorBrush x:Key="HelperText" Color="#FF1A1530" />
+                        <SolidColorBrush x:Key="HelperSecondaryText" Color="#FF4B4566" />
+                        <SolidColorBrush x:Key="InputBorder" Color="#33000000" />
+                    </ResourceDictionary>
+                    <ResourceDictionary x:Key="Dark">
+                        <SolidColorBrush x:Key="CtrlButtonBackground" Color="#FF29233B" />
+                        <SolidColorBrush x:Key="CtrlButtonPressed" Color="#FF332C48" />
+                        <SolidColorBrush x:Key="CtrlButtonSelected" Color="#FF3A2A6E" />
+                        <SolidColorBrush x:Key="SegmentsBackground" Color="#FF29233B" />
+                        <SolidColorBrush x:Key="InfoSeparator" Color="#1CFFFFFF" />
+                        <!-- Dark: the Candy dark surface. -->
+                        <Color x:Key="HelperTintColor">#FF1F1A2E</Color>
+                        <SolidColorBrush x:Key="HelperCurtainBorder" Color="#00FFFFFF" />
+                        <SolidColorBrush x:Key="HelperOuterBorder" Color="#1CFFFFFF" />
+                        <SolidColorBrush x:Key="HelperText" Color="#FFF3EFFF" />
+                        <SolidColorBrush x:Key="HelperSecondaryText" Color="#FFB9B2D6" />
+                        <SolidColorBrush x:Key="InputBorder" Color="#40FFFFFF" />
+                    </ResourceDictionary>
+                    <!-- High contrast keeps the system colours (no Candy tints). -->
+                    <ResourceDictionary x:Key="HighContrast">
+                        <SolidColorBrush x:Key="CtrlButtonBackground" Color="{ThemeResource SystemColorButtonFaceColor}" />
+                        <SolidColorBrush x:Key="CtrlButtonPressed" Color="{ThemeResource SystemColorHighlightColor}" />
+                        <SolidColorBrush x:Key="CtrlButtonSelected" Color="{ThemeResource SystemColorHighlightColor}" />
+                        <SolidColorBrush x:Key="SegmentsBackground" Color="{ThemeResource SystemColorWindowColor}" />
+                        <SolidColorBrush x:Key="InfoSeparator" Color="{ThemeResource SystemColorGrayTextColor}" />
+                        <StaticResource x:Key="HelperTintColor" ResourceKey="SystemColorWindowColor" />
+                        <SolidColorBrush x:Key="HelperCurtainBorder" Color="Transparent" />
+                        <SolidColorBrush x:Key="HelperOuterBorder" Color="{ThemeResource SystemColorWindowTextColor}" />
+                        <SolidColorBrush x:Key="HelperText" Color="{ThemeResource SystemColorWindowTextColor}" />
+                        <SolidColorBrush x:Key="HelperSecondaryText" Color="{ThemeResource SystemColorWindowTextColor}" />
+                        <SolidColorBrush x:Key="InputBorder" Color="{ThemeResource SystemColorWindowTextColor}" />
+                    </ResourceDictionary>
+                </ResourceDictionary.ThemeDictionaries>
+
+                <!-- CtrlButton: rounded rect (Candy radius 8), intrinsic size = content + (15, 8). -->
+                <Style x:Key="CtrlButtonStyle" TargetType="Button">
+                    <Setter Property="Foreground" Value="{ThemeResource clrToolbarLabel}" />
+                    <Setter Property="Padding" Value="7.5,4" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="IsTabStop" Value="False" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="Root" CornerRadius="8" Background="{ThemeResource CtrlButtonBackground}">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="PointerOver" />
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter Target="Root.Background" Value="{ThemeResource CtrlButtonPressed}" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled">
+                                                <VisualState.Setters>
+                                                    <Setter Target="Root.Opacity" Value="0.4" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <ContentPresenter Padding="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                      Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+                <!-- Borderless image buttons (CtrlButtonHover, segments, tool items): Candy's 32-px icon buttons, radius 10
+                     (6 inside segment wells), a neutral wash on hover. The selected state (lilac fill, accent glyph) is set by
+                     code through Background and Foreground. -->
+                <Style x:Key="IconButtonStyle" TargetType="Button">
+                    <Setter Property="Foreground" Value="{ThemeResource CandyInk2Brush}" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="CornerRadius" Value="10" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="IsTabStop" Value="False" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="Root" CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="PointerOver">
+                                                <VisualState.Setters>
+                                                    <Setter Target="Hover.Background" Value="{ThemeResource CtrlButtonBackground}" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter Target="Hover.Background" Value="{ThemeResource CtrlButtonPressed}" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled">
+                                                <VisualState.Setters>
+                                                    <Setter Target="Root.Opacity" Value="0.35" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Border x:Name="Hover" CornerRadius="{TemplateBinding CornerRadius}" Background="Transparent" />
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                      Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+                <Style x:Key="InfoTopLabel" TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="11" />
+                    <Setter Property="FontWeight" Value="Medium" />
+                    <Setter Property="Foreground" Value="{ThemeResource CandyInkBrush}" />
+                    <Setter Property="TextLineBounds" Value="Tight" />
+                </Style>
+                <Style x:Key="InfoBottomLabel" TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="10" />
+                    <Setter Property="Foreground" Value="{ThemeResource CandyMutedBrush}" />
+                    <Setter Property="TextLineBounds" Value="Tight" />
+                </Style>
+                <Style x:Key="HelperTextStyle" TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="Foreground" Value="{ThemeResource HelperText}" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                </Style>
+                <Style x:Key="HelperSecondaryStyle" TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="11" />
+                    <Setter Property="Foreground" Value="{ThemeResource HelperSecondaryText}" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                </Style>
+                <!-- Keycaps of the zoom helper's sheet. -->
+                <Style x:Key="KeycapStyle" TargetType="Border">
+                    <Setter Property="MinWidth" Value="22" />
+                    <Setter Property="Height" Value="20" />
+                    <Setter Property="Padding" Value="5,0" />
+                    <Setter Property="CornerRadius" Value="4" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="BorderBrush" Value="{ThemeResource ControlStrokeColorDefaultBrush}" />
+                    <Setter Property="Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
+                </Style>
+                <Style x:Key="KeycapTextStyle" TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="11" />
+                    <Setter Property="Foreground" Value="{ThemeResource HelperText}" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+
+                <!-- The welcome panel's buttons (padding 11 × 22, 14 px bold, radius 8 like every Candy button). Background,
+                     Foreground and BorderBrush come from code (EditorWindow::ApplyIntroTheme). -->
+                <Style x:Key="IntroButtonStyle" TargetType="Button">
+                    <Setter Property="Padding" Value="22,11" />
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="IsTabStop" Value="False" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="Root" CornerRadius="8" Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="PointerOver">
+                                                <VisualState.Setters>
+                                                    <Setter Target="Root.Opacity" Value="0.88" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter Target="Root.Opacity" Value="0.75" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled">
+                                                <VisualState.Setters>
+                                                    <Setter Target="Root.Opacity" Value="0.4" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <ContentPresenter Padding="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                      Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                                                      FontWeight="{TemplateBinding FontWeight}" FontSize="{TemplateBinding FontSize}"
+                                                      FontFamily="{TemplateBinding FontFamily}" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- The empty editor's welcome background (Eikon's "Candy" look): three soft radial
+             colour fields over a base colour, behind the title bar too. The brushes come from code
+             (ApplyIntroTheme); collapsed once there is a capture and in high contrast. -->
+        <Grid x:Name="IntroBackdrop" Grid.RowSpan="2" IsHitTestVisible="False" Visibility="Collapsed">
+            <Rectangle x:Name="IntroFieldPeach" />
+            <Rectangle x:Name="IntroFieldLilac" />
+            <Rectangle x:Name="IntroFieldMint" />
+        </Grid>
+
+        <!-- Custom title bar = unified toolbar: Buttons left, Info right, the system
+             caption buttons after them. -->
+        <Grid x:Name="TitleBarArea" Grid.Row="0" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition x:Name="CaptionColumn" Width="138" />
+            </Grid.ColumnDefinitions>
+
+            <!-- "Buttons": leading 15, the stack's children 7 apart. -->
+            <StackPanel x:Name="ButtonsGroup" Grid.Column="0" Orientation="Horizontal" Spacing="7" Margin="15,0,0,0"
+                        VerticalAlignment="Center" HorizontalAlignment="Left">
+                <!-- Snake: design 58 × 18 in a 75 × 32 box. -->
+                <Grid x:Name="LogoBox" Width="58" Height="24" Background="Transparent">
+                    <!-- The wordmark in the Candy gradient (ApplyThemeImages; window text in high contrast). -->
+                    <TextBlock x:Name="LogoText" Text="eikon" FontSize="19" FontWeight="Bold" CharacterSpacing="-20"
+                               FontFamily="{StaticResource CandyDisplayFont}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <!-- The Snake field (73 × 33) at the 75 × 32 box's origin: 8.5 left of the centred logo art,
+                         centred on it vertically. A zero-size Canvas so the field is not clipped. -->
+                    <Canvas Width="0" Height="0" HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="False">
+                        <Canvas x:Name="SnakeField" Canvas.Left="-8.5" Canvas.Top="-4.5" Width="73" Height="33" Visibility="Collapsed" />
+                    </Canvas>
+                </Grid>
+                <!-- scExportButtons: 32-px icon buttons in a soft well (surface 2, radius 12, 2 px inset). -->
+                <Border x:Name="ExportSegments" CornerRadius="12" Background="{ThemeResource SegmentsBackground}" Height="36" Padding="2">
+                    <StackPanel x:Name="ExportButtons" Orientation="Horizontal" />
+                </Border>
+                <!-- CtrlDragOut 40 × 32. -->
+                <Button x:Name="DragOutButton" Style="{StaticResource IconButtonStyle}" Width="40" Height="32">
+                    <!-- A template image tinted like the other toolbar icons, so it reads in dark mode. -->
+                    <BitmapIcon UriSource="ms-appx:///Assets/Editor/20-dragger.png" ShowAsMonochrome="True" Width="32" Height="20" />
+                </Button>
+                <!-- CtrlToolbar: Candy items 32 × 32, padding 2; overflow into "more". -->
+                <StackPanel x:Name="ToolsPanel" Orientation="Horizontal" Spacing="2" Height="32" />
+                <!-- btnCrop "Crop" 46 × 23. -->
+                <Button x:Name="CropButton" Style="{StaticResource CtrlButtonStyle}" Height="28" MinWidth="46" Padding="10,0"
+                        BorderThickness="1" Visibility="Collapsed" />
+                <!-- scSelectionButtons: 8 segments × 30. -->
+                <Border x:Name="SelectionSegments" CornerRadius="12" Background="{ThemeResource SegmentsBackground}" Height="36" Padding="2"
+                        Visibility="Collapsed">
+                    <StackPanel x:Name="SelectionButtons" Orientation="Horizontal" />
+                </Border>
+            </StackPanel>
+
+            <!-- The main menu lives behind this button on Windows. -->
+            <Button x:Name="MenuButton" Grid.Column="1" Style="{StaticResource IconButtonStyle}" Width="32" Height="32"
+                    VerticalAlignment="Center" Margin="0,0,8,0">
+                <FontIcon Glyph="&#xE712;" FontSize="14" />
+            </Button>
+
+            <!--"Info" (278 × 34): colour, size and zoom boxes with 5 × 26 separators. -->
+            <StackPanel x:Name="InfoGroup" Grid.Column="2" Orientation="Horizontal" Height="34" Spacing="1"
+                        VerticalAlignment="Center" Margin="0,0,10,0">
+                <Grid x:Name="ColorBox" Height="34" Width="122" Background="Transparent">
+                    <Border x:Name="ColorSwatch" Width="18" Height="18" CornerRadius="4" Margin="6,8,0,8"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0.5" BorderBrush="#4D000000"
+                            Background="#FFFFFFFF" />
+                    <TextBlock x:Name="ColorLabel" Style="{StaticResource InfoTopLabel}" Margin="30,5,0,0" VerticalAlignment="Top"
+                               Text="#FFFFFF" />
+                    <TextBlock x:Name="ColorHint" Style="{StaticResource InfoBottomLabel}" Margin="30,20,0,0" VerticalAlignment="Top" />
+                </Grid>
+                <Grid Width="5" Height="26"><Rectangle Width="1" Fill="{ThemeResource InfoSeparator}" /></Grid>
+                <Grid x:Name="SizeBox" Height="34" Width="92" Background="Transparent">
+                    <TextBlock x:Name="SizeLabel" Style="{StaticResource InfoTopLabel}" Margin="0,5,0,0" VerticalAlignment="Top"
+                               HorizontalAlignment="Center" />
+                    <TextBlock x:Name="SizeDescription" Style="{StaticResource InfoBottomLabel}" Margin="0,20,0,0"
+                               VerticalAlignment="Top" HorizontalAlignment="Center" />
+                </Grid>
+                <Grid Width="5" Height="26"><Rectangle Width="1" Fill="{ThemeResource InfoSeparator}" /></Grid>
+                <Grid x:Name="ZoomBox" Height="34" Width="50" Background="Transparent">
+                    <TextBlock x:Name="ZoomLabel" Style="{StaticResource InfoTopLabel}" Margin="0,5,0,0" VerticalAlignment="Top"
+                               HorizontalAlignment="Center" />
+                    <TextBlock x:Name="ZoomDescription" Style="{StaticResource InfoBottomLabel}" Margin="0,20,0,0"
+                               VerticalAlignment="Top" HorizontalAlignment="Center" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="ContentArea" Grid.Row="1">
+            <canvas:CanvasControl x:Name="Canvas" ClearColor="Transparent" IsTabStop="True" UseSystemFocusVisuals="False" />
+            <!-- Host of the ObjText editing TextBox (Editor/TextEditOverlay); no background, so clicks pass to the canvas. -->
+            <Canvas x:Name="TextOverlay" />
+
+            <!-- Helper popovers (CtrlHelper). Each sits in its own place over the canvas. -->
+            <Grid x:Name="HelperLayer">
+                <!-- svEditor, the options bar: top 4, right 4, height 48. -->
+                <Border x:Name="OptionsBar" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,4,4,0" Height="48"
+                        CornerRadius="16" BorderThickness="1" BorderBrush="{ThemeResource HelperOuterBorder}" Visibility="Collapsed">
+                    <Border CornerRadius="16" BorderThickness="0" BorderBrush="{ThemeResource HelperCurtainBorder}">
+                        <Border.Background>
+                            <AcrylicBrush TintColor="{ThemeResource HelperTintColor}" TintOpacity="0.92" TintLuminosityOpacity="0.95" FallbackColor="{ThemeResource HelperTintColor}" />
+                        </Border.Background>
+                        <StackPanel x:Name="OptionsStack" Orientation="Horizontal" Spacing="8" Height="24" Margin="14,12,14,12"
+                                    VerticalAlignment="Center" />
+                    </Border>
+                </Border>
+
+                <!-- ctrlHelperZoom 200 × 284 (top 20, trailing 20). -->
+                <Border x:Name="ZoomHelper" Width="200" Height="284" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,20,20,0"
+                        CornerRadius="16" BorderThickness="1" BorderBrush="{ThemeResource HelperOuterBorder}" Visibility="Collapsed">
+                    <Border CornerRadius="16" BorderThickness="0" BorderBrush="{ThemeResource HelperCurtainBorder}">
+                        <Border.Background>
+                            <AcrylicBrush TintColor="{ThemeResource HelperTintColor}" TintOpacity="0.92" TintLuminosityOpacity="0.95" FallbackColor="{ThemeResource HelperTintColor}" />
+                        </Border.Background>
+                        <Grid>
+                            <Grid Height="64" VerticalAlignment="Top">
+                                <Button x:Name="ZoomOutButton" Style="{StaticResource IconButtonStyle}" Width="32" Height="32" Margin="16,0,0,0"
+                                        HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <BitmapIcon UriSource="ms-appx:///Assets/Editor/16-minus.png" Width="16" Height="16" ShowAsMonochrome="True" />
+                                </Button>
+                                <Button x:Name="ZoomPercentButton" Style="{StaticResource IconButtonStyle}" Height="32" Padding="6,0"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock x:Name="ZoomPercentText" FontSize="20" FontWeight="Light" Margin="6,0" />
+                                </Button>
+                                <Button x:Name="ZoomInButton" Style="{StaticResource IconButtonStyle}" Width="32" Height="32" Margin="0,0,16,0"
+                                        HorizontalAlignment="Right" VerticalAlignment="Center">
+                                    <BitmapIcon UriSource="ms-appx:///Assets/Editor/16-plus.png" Width="16" Height="16" ShowAsMonochrome="True" />
+                                </Button>
+                            </Grid>
+                            <!-- The gesture sheet as live text: keys, a rule,
+                                 then the wheel and right-drag gestures. -->
+                            <StackPanel x:Name="ZoomSheet" Width="200" Height="220" VerticalAlignment="Bottom" Padding="20,4,20,16" Spacing="10">
+                                <Grid>
+                                    <TextBlock x:Name="ZoomSheetIn" Style="{StaticResource HelperTextStyle}" VerticalAlignment="Center" />
+                                    <StackPanel Orientation="Horizontal" Spacing="3" HorizontalAlignment="Right">
+                                        <Border Style="{StaticResource KeycapStyle}"><TextBlock x:Name="ZoomSheetInCtrl" Style="{StaticResource KeycapTextStyle}" /></Border>
+                                        <Border Style="{StaticResource KeycapStyle}"><TextBlock Text="+" Style="{StaticResource KeycapTextStyle}" /></Border>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock x:Name="ZoomSheetOut" Style="{StaticResource HelperTextStyle}" VerticalAlignment="Center" />
+                                    <StackPanel Orientation="Horizontal" Spacing="3" HorizontalAlignment="Right">
+                                        <Border Style="{StaticResource KeycapStyle}"><TextBlock x:Name="ZoomSheetOutCtrl" Style="{StaticResource KeycapTextStyle}" /></Border>
+                                        <Border Style="{StaticResource KeycapStyle}"><TextBlock Text="−" Style="{StaticResource KeycapTextStyle}" /></Border>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock x:Name="ZoomSheetSelection" Style="{StaticResource HelperTextStyle}" VerticalAlignment="Center" />
+                                    <StackPanel Orientation="Horizontal" Spacing="3" HorizontalAlignment="Right">
+                                        <Border Style="{StaticResource KeycapStyle}"><TextBlock x:Name="ZoomSheetSelectionCtrl" Style="{StaticResource KeycapTextStyle}" /></Border>
+                                        <Border Style="{StaticResource KeycapStyle}"><TextBlock Text="2" Style="{StaticResource KeycapTextStyle}" /></Border>
+                                    </StackPanel>
+                                </Grid>
+                                <Rectangle Height="1" Fill="{ThemeResource InfoSeparator}" Margin="0,4,0,4" />
+                                <Grid ColumnSpacing="8">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                                    <StackPanel Spacing="6">
+                                        <BitmapIcon UriSource="ms-appx:///Assets/Editor/18-zoomhelp-mouse.png" Width="18" Height="18"
+                                                    ShowAsMonochrome="True" Foreground="{ThemeResource HelperSecondaryText}" />
+                                        <TextBlock x:Name="ZoomSheetWheel" Style="{StaticResource HelperSecondaryStyle}" TextAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Spacing="6">
+                                        <BitmapIcon UriSource="ms-appx:///Assets/Editor/18-zoomhelp-hand.png" Width="18" Height="18"
+                                                    ShowAsMonochrome="True" Foreground="{ThemeResource HelperSecondaryText}" />
+                                        <TextBlock x:Name="ZoomSheetRightDrag" Style="{StaticResource HelperSecondaryStyle}" TextAlignment="Center" />
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Border>
+
+                <!-- ctrlHelperColor 320 × 337. -->
+                <Border x:Name="ColorHelper" Width="320" Height="337" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,20,20,0"
+                        CornerRadius="16" BorderThickness="1" BorderBrush="{ThemeResource HelperOuterBorder}" Visibility="Collapsed">
+                    <Border CornerRadius="16" BorderThickness="0" BorderBrush="{ThemeResource HelperCurtainBorder}">
+                        <Border.Background>
+                            <AcrylicBrush TintColor="{ThemeResource HelperTintColor}" TintOpacity="0.92" TintLuminosityOpacity="0.95" FallbackColor="{ThemeResource HelperTintColor}" />
+                        </Border.Background>
+                        <StackPanel Margin="20,16,20,16" Spacing="10">
+                            <Grid>
+                                <TextBlock x:Name="ColorFormatLabel" Style="{StaticResource HelperTextStyle}" VerticalAlignment="Center" FontWeight="SemiBold" />
+                                <ComboBox x:Name="ColorFormatBox" HorizontalAlignment="Right" MinWidth="170" FontSize="12" IsTabStop="False" />
+                            </Grid>
+                            <Grid ColumnSpacing="12">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="90" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                                <Image x:Name="ColorPixelImage" Width="90" Height="64" />
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                                    <TextBlock x:Name="ColorPixelTitle" Style="{StaticResource HelperTextStyle}" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="ColorPixelText" Style="{StaticResource HelperSecondaryStyle}" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid ColumnSpacing="12">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="90" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                                <Image x:Name="ColorTextImage" Width="90" Height="64" />
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                                    <TextBlock x:Name="ColorTextTitle" Style="{StaticResource HelperTextStyle}" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="ColorTextText" Style="{StaticResource HelperSecondaryStyle}" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid ColumnSpacing="12">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="90" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                                <Image x:Name="ColorAverageImage" Width="90" Height="64" />
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                                    <TextBlock x:Name="ColorAverageTitle" Style="{StaticResource HelperTextStyle}" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="ColorAverageText" Style="{StaticResource HelperSecondaryStyle}" />
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </Border>
+
+                <!-- ctrlHelperPixels 292 × 229 with Resize Image. -->
+                <Border x:Name="PixelsHelper" Width="292" Height="229" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,20,20,0"
+                        CornerRadius="16" BorderThickness="1" BorderBrush="{ThemeResource HelperOuterBorder}" Visibility="Collapsed">
+                    <Border CornerRadius="16" BorderThickness="0" BorderBrush="{ThemeResource HelperCurtainBorder}">
+                        <Border.Background>
+                            <AcrylicBrush TintColor="{ThemeResource HelperTintColor}" TintOpacity="0.92" TintLuminosityOpacity="0.95" FallbackColor="{ThemeResource HelperTintColor}" />
+                        </Border.Background>
+                        <Grid Margin="20,12,20,16">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="PixelsPointsLabel" Style="{StaticResource HelperTextStyle}" FontSize="13" FontWeight="SemiBold"
+                                       VerticalAlignment="Center" />
+                            <ToggleSwitch x:Name="PixelsPointsSwitch" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="0"
+                                          OnContent="" OffContent="" Margin="0,0,-12,0" IsTabStop="False" />
+                            <TextBlock x:Name="PixelsExplanation" Grid.Row="1" Style="{StaticResource HelperSecondaryStyle}" Margin="0,4,0,0" />
+                            <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="4">
+                                <TextBlock x:Name="ResizeTitle" Style="{StaticResource HelperTextStyle}" FontSize="13" FontWeight="SemiBold" />
+                                <TextBlock x:Name="ResizeWarning" Style="{StaticResource HelperSecondaryStyle}" VerticalAlignment="Bottom" />
+                            </StackPanel>
+                            <Border Grid.Row="4" CornerRadius="8" Background="{ThemeResource SegmentsBackground}" Height="24" Margin="0,8,0,0"
+                                    HorizontalAlignment="Stretch">
+                                <Grid x:Name="ResizePresets" />
+                            </Border>
+                            <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="6" Margin="0,10,0,0">
+                                <TextBox x:Name="ResizeWidth" Width="64" Height="24" MinHeight="24" FontSize="12" Padding="6,2" />
+                                <TextBlock Text="×" Style="{StaticResource HelperTextStyle}" VerticalAlignment="Center" />
+                                <TextBox x:Name="ResizeHeight" Width="64" Height="24" MinHeight="24" FontSize="12" Padding="6,2" />
+                                <TextBlock x:Name="ResizePx" Style="{StaticResource HelperTextStyle}" VerticalAlignment="Center" />
+                                <Button x:Name="ResizeButton" Style="{StaticResource CtrlButtonStyle}" Height="24" Padding="10,0" Margin="6,0,0,0" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Border>
+
+                <!-- ctrlHelperHelp 246 × 272, top 20, centred. -->
+                <Border x:Name="HelpHelper" Width="246" Height="272" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0"
+                        CornerRadius="16" BorderThickness="1" BorderBrush="{ThemeResource HelperOuterBorder}" Visibility="Collapsed">
+                    <Border CornerRadius="16" BorderThickness="0" BorderBrush="{ThemeResource HelperCurtainBorder}">
+                        <Border.Background>
+                            <AcrylicBrush TintColor="{ThemeResource HelperTintColor}" TintOpacity="0.92" TintLuminosityOpacity="0.95" FallbackColor="{ThemeResource HelperTintColor}" />
+                        </Border.Background>
+                        <StackPanel Margin="18,14,18,14" Spacing="10">
+                            <TextBlock x:Name="HelpTitle" Style="{StaticResource HelperTextStyle}" FontSize="14" FontWeight="SemiBold"
+                                       HorizontalAlignment="Center" />
+                            <Image x:Name="HelpImage" Width="190" Height="80" />
+                            <TextBlock x:Name="HelpText" Style="{StaticResource HelperSecondaryStyle}" FontSize="12" TextAlignment="Center" />
+                            <Button x:Name="HelpGotIt" Style="{StaticResource CtrlButtonStyle}" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                </Border>
+
+                <!-- ctrlHelperTooltip in Candy: an ink rounded rectangle (radius 8, height 30) under the toolbar with a
+                     5 pt gap; base-coloured text, the key at 60 %. -->
+                <Border x:Name="Tooltip" Height="30" CornerRadius="8" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,5,0,0"
+                        IsHitTestVisible="False" Visibility="Collapsed" Background="{ThemeResource CandyInkBrush}">
+                    <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock x:Name="TooltipName" FontSize="13" Foreground="{ThemeResource CandyOnInkBrush}" />
+                        <TextBlock x:Name="TooltipKey" FontSize="13" Foreground="{ThemeResource CandyOnInkBrush}" Opacity="0.6" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!-- Intro (introStandard) in Eikon's look: "Welcome to eikon" (40 px, heavy, the name
+             in the wordmark gradient), the tagline on one line (15 px), and the two buttons 10 apart; centred
+             in the whole window. Each of the three rows rises in when the panel appears (PlayIntroRise). -->
+        <StackPanel x:Name="IntroPanel" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Collapsed">
+            <StackPanel x:Name="IntroHeadline" Orientation="Horizontal" Spacing="9" HorizontalAlignment="Center">
+                <TextBlock x:Name="IntroWelcomeText" FontFamily="Segoe UI Variable Display, Segoe UI" FontSize="40" LineHeight="44"
+                           FontWeight="Bold" CharacterSpacing="-25" />
+                <TextBlock Text="eikon" FontFamily="Segoe UI Variable Display, Segoe UI" FontSize="40" LineHeight="44"
+                           FontWeight="Bold" CharacterSpacing="-25">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush x:Name="IntroNameBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                            <GradientStop Offset="0" Color="#FFFF5A36" />
+                            <GradientStop Offset="1" Color="#FFB14BFF" />
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </StackPanel>
+            <TextBlock x:Name="IntroTagline" Margin="0,12,0,0" HorizontalAlignment="Center" TextAlignment="Center"
+                       FontFamily="Segoe UI Variable Display, Segoe UI" FontSize="15" LineHeight="22" TextWrapping="NoWrap" />
+            <StackPanel x:Name="IntroButtons" Orientation="Horizontal" Spacing="10" Margin="0,40,0,0" HorizontalAlignment="Center">
+                <Button x:Name="IntroRunAtStartup" Style="{StaticResource IntroButtonStyle}" />
+                <Button x:Name="IntroSetupHotkeys" Style="{StaticResource IntroButtonStyle}" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

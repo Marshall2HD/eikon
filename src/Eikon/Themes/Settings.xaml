@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Styles for the Settings window (Windows 11 Settings look without the Community Toolkit).
+    Merged into the application resources by App.xaml:
+        <ResourceDictionary Source="ms-appx:///Themes/Settings.xaml" />
+    Everything is keyed except the implicit style of local:SettingsCard, so nothing here changes
+    other windows.
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Eikon">
+
+    <!-- ===== Page layout ===== -->
+    <x:Double x:Key="SettingsPageMaxWidth">1000</x:Double>
+
+    <!-- Fixed page title ("General", "Storage", ...), aligned with the content column: Candy's display weight. -->
+    <Style x:Key="SettingsPageHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+        <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="CharacterSpacing" Value="-10" />
+        <Setter Property="Foreground" Value="{ThemeResource CandyInkBrush}" />
+        <Setter Property="MaxWidth" Value="1000" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="56,36,56,20" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    </Style>
+
+    <!-- The ScrollViewer hosting a page's content. -->
+    <Style x:Key="SettingsPageScrollViewerStyle" TargetType="ScrollViewer">
+        <Setter Property="HorizontalScrollMode" Value="Disabled" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="VerticalScrollMode" Value="Auto" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="IsTabStop" Value="False" />
+    </Style>
+
+    <!-- The StackPanel holding the cards of a page. -->
+    <Style x:Key="SettingsPageContentStyle" TargetType="StackPanel">
+        <Setter Property="MaxWidth" Value="1000" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="56,0,56,36" />
+        <Setter Property="Spacing" Value="4" />
+        <Setter Property="Orientation" Value="Vertical" />
+    </Style>
+
+    <!-- ===== Text ===== -->
+    <Style x:Key="SettingsSectionHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyStrongTextBlockStyle}">
+        <Setter Property="Margin" Value="1,24,0,4" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style x:Key="SettingsCardHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style x:Key="SettingsDescriptionTextStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
+        <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <!-- Free-standing explanatory paragraph between cards. -->
+    <Style x:Key="SettingsParagraphTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
+        <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="1,0,0,4" />
+    </Style>
+
+    <Style x:Key="SettingsMonospaceTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
+        <Setter Property="FontFamily" Value="Cascadia Mono, Consolas, Courier New" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="IsTextSelectionEnabled" Value="True" />
+    </Style>
+
+    <!-- ===== Cards (Candy: 12-px rows on the surface colour with a hairline) ===== -->
+    <Style x:Key="SettingsCardBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource CandySurfaceBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CandyLineBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="16,12,16,12" />
+        <Setter Property="MinHeight" Value="68" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+
+    <Style x:Key="SettingsCardGridStyle" TargetType="Grid">
+        <Setter Property="Background" Value="{ThemeResource CandySurfaceBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CandyLineBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="16,12,16,12" />
+        <Setter Property="MinHeight" Value="68" />
+        <Setter Property="ColumnSpacing" Value="16" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+
+    <Style x:Key="SettingsCardIconStyle" TargetType="FontIcon">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="2,0,4,0" />
+    </Style>
+
+    <!-- Toggle switches inside cards: no 154px minimum width. The "On"/"Off" labels are WinUI's own,
+         localized by WinUI. Pages apply it as an implicit style in their own resources (BasedOn this one). -->
+    <Style x:Key="SettingsToggleSwitchStyle" TargetType="ToggleSwitch">
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="SettingsComboBoxStyle" TargetType="ComboBox">
+        <Setter Property="MinWidth" Value="200" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="SettingsNumberBoxStyle" TargetType="NumberBox">
+        <Setter Property="MinWidth" Value="140" />
+        <Setter Property="SpinButtonPlacementMode" Value="Inline" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!-- Header/description/icon slot inside SettingsCard: a plain presenter of its own Content, wrapping text. -->
+    <Style x:Key="SettingsCardSlotStyle" TargetType="ContentControl">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <ContentPresenter
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        TextWrapping="Wrap" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- A settings row: icon + header/description on the left, the control (Content) on the right.
+         Implemented by Eikon.SettingsCard (SettingsCard.idl/.h/.cpp). -->
+    <Style TargetType="local:SettingsCard">
+        <Setter Property="Background" Value="{ThemeResource CandySurfaceBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CandyLineBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="16,12,16,12" />
+        <Setter Property="MinHeight" Value="68" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SettingsCard">
+                    <Grid
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Padding="{TemplateBinding Padding}"
+                        ColumnSpacing="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <!-- Row 1 holds the control when the card is too narrow for it beside the text
+                             (SettingsCard::UpdateWrap, like the Windows Settings cards). -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <!-- Header, description and icon slots are ContentControls, not ContentPresenters:
+                             a ContentPresenter in a ContentControl template whose Content is template-bound to a
+                             custom property (and null) falls back to the card's own Content, and the second
+                             presenter showing that element fails with E_INVALIDARG. -->
+                        <Grid x:Name="IconHost" VerticalAlignment="Center" Margin="2,0,4,0">
+                            <FontIcon
+                                x:Name="GlyphElement"
+                                Glyph="{TemplateBinding Glyph}"
+                                FontSize="20"
+                                AutomationProperties.AccessibilityView="Raw" />
+                            <ContentControl
+                                x:Name="HeaderIconPresenter"
+                                Style="{StaticResource SettingsCardSlotStyle}"
+                                Content="{TemplateBinding HeaderIcon}"
+                                Width="20"
+                                Height="20"
+                                AutomationProperties.AccessibilityView="Raw" />
+                        </Grid>
+                        <StackPanel x:Name="TextHost" Grid.Column="1" VerticalAlignment="Center" Spacing="1">
+                            <ContentControl
+                                x:Name="HeaderPresenter"
+                                Style="{StaticResource SettingsCardSlotStyle}"
+                                Content="{TemplateBinding Header}" />
+                            <ContentControl
+                                x:Name="DescriptionPresenter"
+                                Style="{StaticResource SettingsCardSlotStyle}"
+                                Content="{TemplateBinding Description}"
+                                FontSize="12"
+                                Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                        </StackPanel>
+                        <ContentPresenter
+                            x:Name="ContentPresenter"
+                            Grid.Column="2"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Round "?" help button (bezel style 9, 20×20),. -->
+    <Style x:Key="PrefsHelpButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Content" Value="?" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <!-- Candy's segmented control: a radio group drawn as segments (6-px inner segments in an 8-px surface-2 well,
+         CandySegmentWellStyle); the checked one is a raised surface with ink text. Same RadioButtons and setting. -->
+    <Style x:Key="CandySegmentWellStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource CandySurface2Brush}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="CandySegmentRadioStyle" TargetType="RadioButton">
+        <Setter Property="Foreground" Value="{ThemeResource CandyInk2Brush}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="Padding" Value="12,4" />
+        <Setter Property="UseSystemFocusVisuals" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border x:Name="Segment" CornerRadius="6" Background="Transparent" BorderThickness="0"
+                            BorderBrush="{ThemeResource CandyLineBrush}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="Text.Foreground" Value="{ThemeResource CandyInkBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed" />
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="Segment.Opacity" Value="0.4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <VisualState.Setters>
+                                        <Setter Target="Segment.Background" Value="{ThemeResource CandySurfaceBrush}" />
+                                        <Setter Target="Segment.BorderThickness" Value="1" />
+                                        <Setter Target="Text.Foreground" Value="{ThemeResource CandyInkBrush}" />
+                                        <Setter Target="Text.FontWeight" Value="SemiBold" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked" />
+                                <VisualState x:Name="Indeterminate" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter x:Name="Text" Padding="{TemplateBinding Padding}" HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" Content="{TemplateBinding Content}"
+                                          Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- The space between groups (5 pt separators). -->
+    <x:Double x:Key="PrefsGroupGap">20</x:Double>
+
+    <!-- ===== Shortcut keycaps (ShortcutRecorder) ===== -->
+    <Style x:Key="SettingsKeycapBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource AccentFillColorDefaultBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource AccentControlElevationBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="Padding" Value="8,3,8,4" />
+        <Setter Property="MinWidth" Value="30" />
+        <Setter Property="MinHeight" Value="28" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="SettingsKeycapTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyStrongTextBlockStyle}">
+        <Setter Property="Foreground" Value="{ThemeResource TextOnAccentFillColorPrimaryBrush}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!-- Keys held while recording (not yet accepted). -->
+    <Style x:Key="SettingsKeycapPendingBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="Padding" Value="8,3,8,4" />
+        <Setter Property="MinWidth" Value="30" />
+        <Setter Property="MinHeight" Value="28" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="SettingsKeycapPendingTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyStrongTextBlockStyle}">
+        <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+</ResourceDictionary>

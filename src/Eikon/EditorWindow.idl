@@ -1,0 +1,17 @@
+namespace Eikon
+{
+    // The screenshot editor. One instance for the app's lifetime: closing hides it.
+    [default_interface]
+    runtimeclass EditorWindow : Microsoft.UI.Xaml.Window
+    {
+        EditorWindow();
+
+        Boolean IsShown { get; };
+        // Shows the window with its current image (or none), keeping its size.
+        void ShowEditor();
+        // Hides instead of closing.
+        void HideEditor();
+        // Really closes the window (quit).
+        void Destroy();
+    }
+}
