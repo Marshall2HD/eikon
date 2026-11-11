@@ -5,7 +5,7 @@ window, the whole screen or a scrolling page, and opens the result in a fast ann
 you can crop, draw, blur, measure, pick colours, add a backdrop and then save, copy, pin or drag the
 image out. It is a native WinUI 3 app written in C++.
 
-**[Download Lucida](https://github.com/Marshall2HD/eikon/releases/latest)**: take the x64 zip (ARM64 for
+**[Download Lucida](https://github.com/Marshall2HD/lucida/releases/latest)**: take the x64 zip (ARM64 for
 Snapdragon PCs), extract it and double-click `Install.cmd`. Windows asks once to trust Lucida's signing
 certificate, then Lucida installs and starts in the notification area.
 

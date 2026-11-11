@@ -29,4 +29,4 @@ sending your data.
 
 ## Contact
 
-Questions or concerns: open an issue at https://github.com/Marshall2HD/eikon/issues.
+Questions or concerns: open an issue at https://github.com/Marshall2HD/lucida/issues.
