@@ -11,7 +11,7 @@ certificate, then Lucida installs and starts in the notification area.
 
 ![The empty editor's welcome screen](docs/screenshot-welcome.png)
 
-![The editor with an arrow and a text annotation](docs/screenshot-editor.png)
+![The editor with a capture open](docs/screenshot-editor.png)
 
 ## Features
 
